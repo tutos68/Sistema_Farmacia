@@ -33,6 +33,11 @@ public class Pedido implements Serializable {
     private List<Detalle> detalles;
     private FormaPago formaPago;
 
+    public Pedido() {
+    }
+    
+    
+
     public Pedido(int codigo, Usuario usuario, double latitud, double longitud, Detalle detalle, EstadoPedido estado, Date tiempoEspera, double costoEnvio, List<Detalle> detalles, FormaPago formaPago) {
         this.codigo = codigo;
         this.usuario = usuario;
