@@ -43,7 +43,7 @@ public class JakartaEE9Resource {
         Empleado e = new Empleado(new GregorianCalendar(1987,0,31), "1", 500, s, 0,"0101967016", "Luis", "P", "lp@gmail.com", "Gualaceo", "0987644321");
         ejbEmpleado.create(e);
         return Response
-                .ok("ping Jakarta EE Farmacia")
+                .ok("ping Jakarta EE Farmacia FarmaSama")
                 .build();
     }
 }
