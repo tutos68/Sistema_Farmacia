@@ -35,8 +35,6 @@ public class Pedido implements Serializable {
 
     public Pedido() {
     }
-    
-    
 
     public Pedido(int codigo, Usuario usuario, double latitud, double longitud, Detalle detalle, EstadoPedido estado, Date tiempoEspera, double costoEnvio, List<Detalle> detalles, FormaPago formaPago) {
         this.codigo = codigo;
@@ -44,6 +42,21 @@ public class Pedido implements Serializable {
         this.latitud = latitud;
         this.longitud = longitud;
         this.detalle = detalle;
+        this.estado = estado;
+        this.tiempoEspera = tiempoEspera;
+        this.costoEnvio = costoEnvio;
+        this.detalles = detalles;
+        this.formaPago = formaPago;
+    }
+    
+    
+
+    public Pedido(int codigo, Usuario usuario, double latitud, double longitud, EstadoPedido estado, Date tiempoEspera, double costoEnvio, List<Detalle> detalles, FormaPago formaPago) {
+        this.codigo = codigo;
+        this.usuario = usuario;
+        this.latitud = latitud;
+        this.longitud = longitud;
+        this.detalle = new Detalle();//Composicion
         this.estado = estado;
         this.tiempoEspera = tiempoEspera;
         this.costoEnvio = costoEnvio;
