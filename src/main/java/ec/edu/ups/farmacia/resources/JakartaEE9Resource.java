@@ -1,21 +1,30 @@
 package ec.edu.ups.farmacia.resources;
 
 import ec.edu.ups.farmacia.controlador.AdministradorFacade;
+import ec.edu.ups.farmacia.controlador.CategoriaFacade;
 import ec.edu.ups.farmacia.controlador.ClienteFacade;
 import ec.edu.ups.farmacia.controlador.EmpleadoFacade;
 import ec.edu.ups.farmacia.controlador.FormaPagoFacade;
 import ec.edu.ups.farmacia.controlador.KardexFacade;
 import ec.edu.ups.farmacia.controlador.PedidoFacade;
+import ec.edu.ups.farmacia.controlador.ProductoFacade;
+import ec.edu.ups.farmacia.controlador.ProveedorFacade;
 import ec.edu.ups.farmacia.controlador.SucursalFacade;
+import ec.edu.ups.farmacia.controlador.UsuarioFacade;
 import ec.edu.ups.farmacia.modelo.Administrador;
+import ec.edu.ups.farmacia.modelo.Categoria;
 import ec.edu.ups.farmacia.modelo.Cliente;
 import ec.edu.ups.farmacia.modelo.Empleado;
 import ec.edu.ups.farmacia.modelo.EstadoPedido;
 import ec.edu.ups.farmacia.modelo.FormaPago;
 import ec.edu.ups.farmacia.modelo.Kardex;
 import ec.edu.ups.farmacia.modelo.Pedido;
+import ec.edu.ups.farmacia.modelo.Producto;
+import ec.edu.ups.farmacia.modelo.Proveedor;
+import ec.edu.ups.farmacia.modelo.Rol;
 import ec.edu.ups.farmacia.modelo.Sucursal;
 import ec.edu.ups.farmacia.modelo.TipoPago;
+import ec.edu.ups.farmacia.modelo.Usuario;
 import jakarta.ejb.EJB;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
@@ -38,9 +47,16 @@ public class JakartaEE9Resource {
     private AdministradorFacade ejbAdministrador;
     @EJB
     private EmpleadoFacade ejbEmpleado;
-
+    @EJB
+    private CategoriaFacade ejbCategoria;
+    @EJB
+    private ProductoFacade ejbProducto;
+    @EJB
+    private ProveedorFacade ejbProveedor;
     @EJB
     private PedidoFacade ejbPedidoFacade;
+    @EJB
+    private UsuarioFacade ejbUsuario;
     @EJB
     private FormaPagoFacade ejFormaPagoFacade;
     @EJB
@@ -59,7 +75,14 @@ public class JakartaEE9Resource {
         ejbCliente.create(c);
         Empleado e = new Empleado(new GregorianCalendar(1987, 0, 31), "1", 500, s, 0, "0101967016", "Luis", "P", "lp@gmail.com", "Gualaceo", "0987644321");
         ejbEmpleado.create(e);
-        
+        Categoria ca = new Categoria(1, "Cola");
+        ejbCategoria.create(ca);
+        Proveedor po = new Proveedor(ca, 0, "010000", "123", "pepito@", "Tecnico 123", "123456789");
+        ejbProveedor.create(po);
+        Producto pr= new Producto(1, "COLA 50", 5, 10.0, "50 ML", ca, s);
+        ejbProducto.create(pr);
+        Usuario u = new Usuario(1, "123", Rol.ADMINISTRADOR, a);
+        ejbUsuario.create(u);
         Pedido  p = new Pedido(1, null, 10.0, 15.0, EstadoPedido.ACEPTADO, null, 15.0, null, null);
         ejbPedidoFacade.create(p);
         FormaPago f = new FormaPago(1, TipoPago.TARJETA_DEBITO, "Adrian Cabrera", "8978923", 15.0, 5);

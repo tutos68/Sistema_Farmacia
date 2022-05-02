@@ -21,6 +21,77 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    private String contrasenia;
+    private Rol rol;
+    private Empleado empleado;
+    private Administrador administrador;
+    private Cliente cliente;
+
+    public Usuario() {
+    }
+
+    public Usuario(int id, String contrasenia, Rol rol, Empleado empleado) {
+        this.id = id;
+        this.contrasenia = contrasenia;
+        this.rol = rol;
+        this.empleado = empleado;
+    }
+
+    public Usuario(int id, String contrasenia, Rol rol, Administrador administrador) {
+        this.id = id;
+        this.contrasenia = contrasenia;
+        this.rol = rol;
+        this.administrador = administrador;
+    }
+
+    public Usuario(int id, String contrasenia, Rol rol, Cliente cliente) {
+        this.id = id;
+        this.contrasenia = contrasenia;
+        this.rol = rol;
+        this.cliente = cliente;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
+    }
+
+    public Rol getRol() {
+        return rol;
+    }
+
+    public void setRol(Rol rol) {
+        this.rol = rol;
+    }
+
+    public Empleado getEmpleado() {
+        return empleado;
+    }
+
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
+    }
+
+    public Administrador getAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(Administrador administrador) {
+        this.administrador = administrador;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+    
+    
 
     public int getId() {
         return id;
@@ -52,7 +123,11 @@ public class Usuario implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.ups.farmacia.modelo.Usuario[ id=" + id + " ]";
+        return "Usuario{" + "id=" + id + ", contrasenia=" + contrasenia + ", rol=" + rol + ", empleado=" + empleado + ", administrador=" + administrador + ", cliente=" + cliente + '}';
     }
+
+    
+    
+
     
 }
