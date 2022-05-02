@@ -5,10 +5,10 @@
 package ec.edu.ups.farmacia.modelo;
 
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 /**
  *
@@ -21,7 +21,7 @@ public class FormaPago implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int codigo;
-    private FormaPago formaPago;
+    private TipoPago tipoPago;
     private String nombreTitular;
     private String numeroTarjeta;
     private double vuelto;
@@ -30,14 +30,16 @@ public class FormaPago implements Serializable {
     public FormaPago() {
     }
 
-    public FormaPago(int codigo, FormaPago formaPago, String nombreTitular, String numeroTarjeta, double vuelto, int meses) {
+    public FormaPago(int codigo, TipoPago tipoPago, String nombreTitular, String numeroTarjeta, double vuelto, int meses) {
         this.codigo = codigo;
-        this.formaPago = formaPago;
+        this.tipoPago = tipoPago;
         this.nombreTitular = nombreTitular;
         this.numeroTarjeta = numeroTarjeta;
         this.vuelto = vuelto;
         this.meses = meses;
     }
+
+    
 
     public int getCodigo() {
         return codigo;
@@ -47,14 +49,15 @@ public class FormaPago implements Serializable {
         this.codigo = codigo;
     }
 
-    public FormaPago getFormaPago() {
-        return formaPago;
+    public TipoPago getTipoPago() {
+        return tipoPago;
     }
 
-    public void setFormaPago(FormaPago formaPago) {
-        this.formaPago = formaPago;
+    public void setTipoPago(TipoPago tipoPago) {
+        this.tipoPago = tipoPago;
     }
 
+ 
     public String getNombreTitular() {
         return nombreTitular;
     }
@@ -109,7 +112,8 @@ public class FormaPago implements Serializable {
 
     @Override
     public String toString() {
-        return "FormaPago{" + "codigo=" + codigo + ", formaPago=" + formaPago + ", nombreTitular=" + nombreTitular + ", numeroTarjeta=" + numeroTarjeta + ", vuelto=" + vuelto + ", meses=" + meses + '}';
+        return "FormaPago{" + "codigo=" + codigo + ", tipoPago=" + tipoPago + ", nombreTitular=" + nombreTitular + ", numeroTarjeta=" + numeroTarjeta + ", vuelto=" + vuelto + ", meses=" + meses + '}';
     }
 
+ 
 }

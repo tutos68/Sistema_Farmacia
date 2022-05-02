@@ -7,10 +7,10 @@ package ec.edu.ups.farmacia.modelo;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
 /**
  *
@@ -56,7 +56,7 @@ public class Pedido implements Serializable {
         this.usuario = usuario;
         this.latitud = latitud;
         this.longitud = longitud;
-        this.detalle = new Detalle();//Composicion
+        //this.detalle = new Detalle();//Composicion
         this.estado = estado;
         this.tiempoEspera = tiempoEspera;
         this.costoEnvio = costoEnvio;
