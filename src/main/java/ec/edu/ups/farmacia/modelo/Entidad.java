@@ -11,6 +11,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 import jakarta.persistence.Table;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 
 /**
  *
@@ -18,6 +20,7 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "entidad")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Entidad implements Serializable {
 
     private static final long serialVersionUID = 1L;
