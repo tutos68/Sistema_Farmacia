@@ -6,6 +6,7 @@ package ec.edu.ups.farmacia.modelo;
 
 import java.io.Serializable;
 import jakarta.persistence.Entity;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
@@ -15,8 +16,11 @@ import java.util.GregorianCalendar;
  *
  * @author edwin
  */
+@NamedQuery(name="getByLevel",
+            query = "SELECT c FROM Cliente c WHERE c.id >= :level")
 @Entity
 @Table(name = "cliente")
+
 public class Cliente extends Entidad implements Serializable {
     
     @Temporal(TemporalType.DATE)

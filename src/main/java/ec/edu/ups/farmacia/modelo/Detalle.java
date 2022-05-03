@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 /**
  *
@@ -21,6 +23,65 @@ public class Detalle implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+    private Producto producto;
+    private int cantidad;
+    private double precio;
+    private double subtotal;
+    @ManyToOne
+    @JoinColumn(name = "cabeceraa_id", nullable = true, referencedColumnName = "id")
+    private CabeceraVenta cabeceraVenta;
+
+    public Detalle() {
+    }
+
+    public Detalle(int id, Producto producto, int cantidad, double precio, double subtotal, CabeceraVenta cabeceraVenta) {
+        this.id = id;
+        this.producto = producto;
+        this.cantidad = cantidad;
+        this.precio = precio;
+        this.subtotal = subtotal;
+        this.cabeceraVenta = cabeceraVenta;
+    }
+
+    public Detalle(int id, Producto producto, int cantidad, double precio, double subtotal) {
+        this.id = id;
+        this.producto = producto;
+        this.cantidad = cantidad;
+        this.precio = precio;
+        this.subtotal = subtotal;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
+    }
+
+    public int getCantidad() {
+        return cantidad;
+    }
+
+    public void setCantidad(int cantidad) {
+        this.cantidad = cantidad;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
 
     public int getId() {
         return id;
@@ -28,6 +89,14 @@ public class Detalle implements Serializable {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public CabeceraVenta getCabeceraVenta() {
+        return cabeceraVenta;
+    }
+
+    public void setCabeceraVenta(CabeceraVenta cabeceraVenta) {
+        this.cabeceraVenta = cabeceraVenta;
     }
 
     @Override
@@ -52,7 +121,7 @@ public class Detalle implements Serializable {
 
     @Override
     public String toString() {
-        return "ec.edu.ups.farmacia.modelo.Detalle[ id=" + id + " ]";
+        return "Detalle{" + "id=" + id + ", producto=" + producto + ", cantidad=" + cantidad + ", precio=" + precio + ", subtotal=" + subtotal + '}';
     }
-    
+
 }

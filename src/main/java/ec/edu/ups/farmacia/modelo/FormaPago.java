@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 /**
  *
@@ -26,7 +28,9 @@ public class FormaPago implements Serializable {
     private String numeroTarjeta;
     private double vuelto;
     private int meses;
-
+    //@OneToOne
+    //@JoinColumn
+    //private FacturaCabecera facturaCabecera;
     public FormaPago() {
     }
 
