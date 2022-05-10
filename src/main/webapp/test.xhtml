@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+       <h3> JSF 2.0</h3>
+        <p>Name: #{bean.name}</p>
+        <p>Param "name" (request): #{param.name}</p>
+        <p>Return method: #{bean.method(3)}</p>
+        <p>Return method2: #{bean.method2()}</p>
+        <p>Array[1]: #{bean.array[1]}</p>
+        <p>List[1]: #{bean.list[1]}</p>
+        <p>Map["uno"]:#{bean.map.uno}</p>
+        <p>Se accede a Bean2: #{bean.bean2.property}</p>
+    </body>
+</html>
