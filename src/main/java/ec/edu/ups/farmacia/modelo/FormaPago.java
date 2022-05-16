@@ -22,7 +22,7 @@ public class FormaPago implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int codigo;
+    private int id;
     private TipoPago tipoPago;
     private String nombreTitular;
     private String numeroTarjeta;
@@ -34,8 +34,8 @@ public class FormaPago implements Serializable {
     public FormaPago() {
     }
 
-    public FormaPago(int codigo, TipoPago tipoPago, String nombreTitular, String numeroTarjeta, double vuelto, int meses) {
-        this.codigo = codigo;
+    public FormaPago(int id, TipoPago tipoPago, String nombreTitular, String numeroTarjeta, double vuelto, int meses) {
+        this.id = id;
         this.tipoPago = tipoPago;
         this.nombreTitular = nombreTitular;
         this.numeroTarjeta = numeroTarjeta;
@@ -45,12 +45,12 @@ public class FormaPago implements Serializable {
 
     
 
-    public int getCodigo() {
-        return codigo;
+    public int getId() {
+        return id;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public TipoPago getTipoPago() {
@@ -97,7 +97,7 @@ public class FormaPago implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) codigo;
+        hash += (int) id;
         return hash;
     }
 
@@ -108,7 +108,7 @@ public class FormaPago implements Serializable {
             return false;
         }
         FormaPago other = (FormaPago) object;
-        if (this.codigo != other.codigo) {
+        if (this.id != other.id) {
             return false;
         }
         return true;
@@ -116,7 +116,7 @@ public class FormaPago implements Serializable {
 
     @Override
     public String toString() {
-        return "FormaPago{" + "codigo=" + codigo + ", tipoPago=" + tipoPago + ", nombreTitular=" + nombreTitular + ", numeroTarjeta=" + numeroTarjeta + ", vuelto=" + vuelto + ", meses=" + meses + '}';
+        return "FormaPago{" + "id=" + id + ", tipoPago=" + tipoPago + ", nombreTitular=" + nombreTitular + ", numeroTarjeta=" + numeroTarjeta + ", vuelto=" + vuelto + ", meses=" + meses + '}';
     }
 
  

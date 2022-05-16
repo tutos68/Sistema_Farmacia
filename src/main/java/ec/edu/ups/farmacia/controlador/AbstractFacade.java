@@ -5,14 +5,16 @@
 package ec.edu.ups.farmacia.controlador;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.criteria.CriteriaQuery;
+import java.util.List;
 
 /**
  *
  * @author edwin
  * @param <T>
  */
-public abstract class AbstractFacade<T>{
-    
+public abstract class AbstractFacade<T> {
+
     private Class<T> entityClass;
 
     public AbstractFacade(Class<T> entityClass) {
@@ -36,5 +38,11 @@ public abstract class AbstractFacade<T>{
 
     public T find(Object id) {
         return getEntityManager().find(entityClass, id);
+    }
+
+    public List<T> findAll() {
+        CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
+        cq.select(cq.from(entityClass));
+        return getEntityManager().createQuery(cq).getResultList();
     }
 }

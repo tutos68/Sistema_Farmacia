@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 
 /**
  *
@@ -26,8 +27,20 @@ public class Usuario implements Serializable {
     private Empleado empleado;
     private Administrador administrador;
     private Cliente cliente;
+    @Transient
+    private boolean editable;//se añade este atribtuo editable el cual me va a permitir 
+    //activar o desactivar la tabla para que esten cajas de texto en formato input o output
+    //Sin embargo este atributo no necesito guardarlo en la BD por ello pongo la anotacion Transient
 
     public Usuario() {
+    }
+
+    public boolean isEditable() {
+        return editable;
+    }
+
+    public void setEditable(boolean editable) {
+        this.editable = editable;
     }
 
     public Usuario(int id, String contrasenia, Rol rol, Empleado empleado) {

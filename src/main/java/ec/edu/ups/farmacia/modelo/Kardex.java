@@ -20,7 +20,7 @@ public class Kardex implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int codigo;
+    private int id;
     private CabeceraCompra compra;
     private CabeceraVenta venta;
     private double PrecioPonderado;
@@ -28,19 +28,19 @@ public class Kardex implements Serializable {
     public Kardex() {
     }
 
-    public Kardex(int codigo, CabeceraCompra compra, CabeceraVenta venta, double PrecioPonderado) {
-        this.codigo = codigo;
+    public Kardex(int id, CabeceraCompra compra, CabeceraVenta venta, double PrecioPonderado) {
+        this.id = id;
         this.compra = compra;
         this.venta = venta;
         this.PrecioPonderado = PrecioPonderado;
     }
 
-    public int getCodigo() {
-        return codigo;
+    public int getId() {
+        return id;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public CabeceraCompra getCompra() {
@@ -70,7 +70,7 @@ public class Kardex implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) codigo;
+        hash += (int) id;
         return hash;
     }
 
@@ -81,7 +81,7 @@ public class Kardex implements Serializable {
             return false;
         }
         Kardex other = (Kardex) object;
-        if (this.codigo != other.codigo) {
+        if (this.id != other.id) {
             return false;
         }
         return true;
@@ -89,7 +89,7 @@ public class Kardex implements Serializable {
 
     @Override
     public String toString() {
-        return "Kardex{" + "codigo=" + codigo + ", compra=" + compra + ", venta=" + venta + ", PrecioPonderado=" + PrecioPonderado + '}';
+        return "Kardex{" + "id=" + id + ", compra=" + compra + ", venta=" + venta + ", PrecioPonderado=" + PrecioPonderado + '}';
     }
 
  

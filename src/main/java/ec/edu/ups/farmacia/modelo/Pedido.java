@@ -22,7 +22,7 @@ public class Pedido implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int codigo;
+    private int id;
     private Usuario usuario;
     private double latitud;
     private double longitud;
@@ -36,8 +36,8 @@ public class Pedido implements Serializable {
     public Pedido() {
     }
 
-    public Pedido(int codigo, Usuario usuario, double latitud, double longitud, Detalle detalle, EstadoPedido estado, Date tiempoEspera, double costoEnvio, List<Detalle> detalles, FormaPago formaPago) {
-        this.codigo = codigo;
+    public Pedido(int id, Usuario usuario, double latitud, double longitud, Detalle detalle, EstadoPedido estado, Date tiempoEspera, double costoEnvio, List<Detalle> detalles, FormaPago formaPago) {
+        this.id = id;
         this.usuario = usuario;
         this.latitud = latitud;
         this.longitud = longitud;
@@ -51,12 +51,12 @@ public class Pedido implements Serializable {
     
     
 
-    public Pedido(int codigo, Usuario usuario, double latitud, double longitud, EstadoPedido estado, Date tiempoEspera, double costoEnvio, List<Detalle> detalles, FormaPago formaPago) {
-        this.codigo = codigo;
+    public Pedido(int id, Usuario usuario, double latitud, double longitud, EstadoPedido estado, Date tiempoEspera, double costoEnvio, List<Detalle> detalles, FormaPago formaPago) {
+        this.id = id;
         this.usuario = usuario;
         this.latitud = latitud;
         this.longitud = longitud;
-        //this.detalle = new Detalle();//Composicion
+        this.detalle = new Detalle();//Composicion
         this.estado = estado;
         this.tiempoEspera = tiempoEspera;
         this.costoEnvio = costoEnvio;
@@ -136,12 +136,12 @@ public class Pedido implements Serializable {
         this.formaPago = formaPago;
     }
     
-    public int getCodigo() {
-        return codigo;
+    public int getId() {
+        return id;
     }
 
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
+    public void setId(int id) {
+        this.id = id;
     }
 
  
@@ -149,7 +149,7 @@ public class Pedido implements Serializable {
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (int) codigo;
+        hash += (int) id;
         return hash;
     }
 
@@ -160,7 +160,7 @@ public class Pedido implements Serializable {
             return false;
         }
         Pedido other = (Pedido) object;
-        if (this.codigo != other.codigo) {
+        if (this.id != other.id) {
             return false;
         }
         return true;
@@ -168,7 +168,7 @@ public class Pedido implements Serializable {
 
     @Override
     public String toString() {
-        return "Pedido{" + "codigo=" + codigo + ", usuario=" + usuario + ", latitud=" + latitud + ", longitud=" + longitud + ", detalle=" + detalle + ", estado=" + estado + ", tiempoEspera=" + tiempoEspera + ", costoEnvio=" + costoEnvio + ", detalles=" + detalles + ", formaPago=" + formaPago + '}';
+        return "Pedido{" + "id=" + id + ", usuario=" + usuario + ", latitud=" + latitud + ", longitud=" + longitud + ", detalle=" + detalle + ", estado=" + estado + ", tiempoEspera=" + tiempoEspera + ", costoEnvio=" + costoEnvio + ", detalles=" + detalles + ", formaPago=" + formaPago + '}';
     }
  
     
