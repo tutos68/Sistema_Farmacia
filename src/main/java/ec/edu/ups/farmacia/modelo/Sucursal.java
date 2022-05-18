@@ -9,14 +9,21 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 /**
  *
  * @author edwin
  */
 @Entity
+
 @Table(name = "Sucursal")
+@NamedQueries({
+    @NamedQuery(name = "sucursal.findAll", query = "SELECT s FROM Sucursal s"),
+})
 public class Sucursal implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -28,6 +35,8 @@ public class Sucursal implements Serializable {
     private String telefono;
     private double latitud;
     private double longitud;
+     @Transient
+    private boolean editable;
 
     public Sucursal() {
     }
@@ -89,6 +98,13 @@ public class Sucursal implements Serializable {
         this.longitud = longitud;
     }
 
+    public boolean isEditable() {
+        return editable;
+    }
+
+    public void setEditable(boolean editable) {
+        this.editable = editable;
+    }
     @Override
     public int hashCode() {
         int hash = 7;

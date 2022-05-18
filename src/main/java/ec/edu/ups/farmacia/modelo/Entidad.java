@@ -13,6 +13,7 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Transient;
 
 /**
  *
@@ -35,6 +36,8 @@ public class Entidad implements Serializable {
     private String correo;
     private String direccion;
     private String telefono;
+    @Transient
+    private boolean editable;
 
     public Entidad() {
     }
@@ -115,6 +118,16 @@ public class Entidad implements Serializable {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
+
+    public boolean isEditable() {
+        return editable;
+    }
+
+    public void setEditable(boolean editable) {
+        this.editable = editable;
+    }
+    
+    
 
     @Override
     public int hashCode() {
