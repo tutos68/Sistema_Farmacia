@@ -4,7 +4,8 @@
  */
 package ec.edu.ups.beans;
 
-import static com.sun.tools.javac.tree.TreeInfo.name;
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Named;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,6 +15,8 @@ import java.util.Map;
  *
  * @author pcuser
  */
+@Named
+@RequestScoped
 public class Bean {
     private String name = "Soy Mr Bean";
     private String[]array={"cero","uno","dos"};

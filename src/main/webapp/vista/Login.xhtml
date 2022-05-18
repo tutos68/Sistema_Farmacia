@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui" 
+      template="/WEB-INF/template.xhtml">
+    <h:head>
+        <title>TODO supply a title</title>
+        <h:outputStylesheet name="./css/Login.css"/>
+    </h:head>
+    <h:body>
+        <h2>Iniciar Sesión</h2>
+        <div class="card">
+           
+                <h:form>
+                    <div class="p-field">
+                        <p:outputLabel for="username1" styleClass="p-d-block">Usuario</p:outputLabel>
+                        <p:inputText id="username1" styleClass="p-d-block"/>
+                    </div>
+                    <div class="p-field">
+                        <p:outputLabel for="username1" styleClass="p-d-block">Contraceña</p:outputLabel>
+                        <p:password id="toggle" value="#{passwordView.password6}" toggleMask="true" redisplay="true"/>
+                    </div>
+                    <div class="p-field">
+                        <p:button value="Iniciar" />
+                        <p:button value="Cancelar" styleClass="ui-button-secondary" />
+                    </div>
+                    <div class="p-field">
+                        <p:button value="Registrarse" styleClass="ui-button-success ui-button-flat" />
+                    </div>
+                </h:form>
+
+
+           
+        </div>
+    </h:body>
+    <footer>
+
+    </footer>
+</html>
