@@ -50,4 +50,69 @@ public class SucursalBean implements Serializable {
         list = sucursalFacade.findAll();
         return null;
     }
+
+    public SucursalFacade getSucursalFacade() {
+        return sucursalFacade;
+    }
+
+    public void setSucursalFacade(SucursalFacade sucursalFacade) {
+        this.sucursalFacade = sucursalFacade;
+    }
+
+    public List<Sucursal> getList() {
+        return list;
+    }
+
+    public void setList(List<Sucursal> list) {
+        this.list = list;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getNombreClave() {
+        return nombreClave;
+    }
+
+    public void setNombreClave(String nombreClave) {
+        this.nombreClave = nombreClave;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public double getLatitud() {
+        return latitud;
+    }
+
+    public void setLatitud(double latitud) {
+        this.latitud = latitud;
+    }
+
+    public double getLongitud() {
+        return longitud;
+    }
+
+    public void setLongitud(double longitud) {
+        this.longitud = longitud;
+    }
+    
 }
