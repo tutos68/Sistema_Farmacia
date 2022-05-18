@@ -11,45 +11,41 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
        xmlns:p="http://primefaces.org/ui"
        template="/WEB-INF/template.xhtml">
     <h:head>
-        <title>Lista de Sucursales</title>
+        <title>Lista de Usuarios</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <h:outputStylesheet name="./css/Login.css"/>
     </h:head>
-    <ui:include src="../menu/menu.xhtml" />
-    <h:body>
+<h:body>
         <div class="card">
-            <p:dataTable id="products" var="product" value="">
+            <p:dataTable id="usuarios" var="user" value="">
                 <f:facet name="header">
                     <div class="p-d-flex p-jc-between p-ai-center">
-                        Lista de Sucursales
+                        Lista de Usuarios
 
                         <div>
                             <p:commandButton id="toggler" type="button" value="Columns" icon="pi pi-align-justify"/>
-                            <p:columnToggler datasource="products" trigger="toggler"/>
+                            <p:columnToggler datasource="users" trigger="toggler"/>
                         </div>
                     </div>
                 </f:facet>
 
-                <p:column headerText="Code">
+                <p:column headerText="Id">
                     <h:outputText value="" />
                 </p:column>
 
-                <p:column headerText="Name">
+                <p:column headerText="Contraseña">
                     <h:outputText value="" />
                 </p:column>
 
-                <p:column headerText="Category">
+                <p:column headerText="Rol">
                     <h:outputText value="" />
                 </p:column>
 
-                <p:column headerText="Quantity">
+                <p:column headerText="Administrador">
                     <h:outputText value="" />
                 </p:column>
 
-                <p:column headerText="Price">
-                    <h:outputText value="">
-                        <f:convertNumber type="currency" currencySymbol="$"/>
-                    </h:outputText>
-                </p:column>
+ 
             </p:dataTable>
         </div>
     </h:body>
