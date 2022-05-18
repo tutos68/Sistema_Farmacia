@@ -19,6 +19,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         <h:form>
             <div class="card">
                 <h2>Datos de Sucursal</h2>
+                <hr></hr>
                 <div class="p-grid ui-fluid">
 
                     <div class="p-col-12 p-md-4">
@@ -65,9 +66,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 
                 </div>
                 <h5></h5>
-                <h:commandButton value="Guardar" action="#{sucursalBean.add}"/>
-                <h:commandButton value="Cancelar"/>
-
+                <div style="margin:20px 0">
+                    <p:commandButton  style="margin-right: 20px" value="Guardar"  type="button" styleClass="ui-button-raised"  action="#{sucursalBean.add}" />   
+                    <p:commandButton   value="Cancelar"  styleClass="ui-button-raised ui-button-danger"/>
+                </div>
             </div>
         </h:form>
     </h:body>
