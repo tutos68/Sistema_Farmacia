@@ -1,0 +1,90 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:h="http://java.sun.com/jsf/html"
+                 xmlns:f="http://java.sun.com/jsf/core"
+                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                 xmlns:p="http://primefaces.org/ui" 
+                 >
+    <h:body>
+        <div class="card">
+            <h:form>
+                <p:growl id="messages"/>
+
+                <p:menubar>
+                    <p:submenu label="Cliente" icon="pi pi-user">
+                        <p:menuitem  value="Nuevo Cliente" icon="pi pi-fw pi-plus"/>
+                        <p:divider />
+                        <p:menuitem value="Listar Clientes" icon="pi pi-fw pi-trash"/>
+                        <p:divider />
+                        <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
+                    </p:submenu>
+                    <p:divider layout="vertical"/>
+                    <p:submenu label="Empleado" icon="pi pi-user">
+                        <p:menuitem value="Nuevo Empleado" icon="pi pi-fw pi-plus"/>
+                        <p:divider />
+                        <p:menuitem value="Listar Empleados" icon="pi pi-fw pi-trash"/>
+                        <p:divider />
+                        <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
+                    </p:submenu>
+
+                    <p:divider layout="vertical"/>
+                    <p:submenu label="Sucursal" icon="pi pi-user">
+                        <p:menuitem value="Nueva Sucursal" icon="pi pi-fw pi-plus"/>
+                        <p:divider />
+                        <p:menuitem value="Listar Sucursales" icon="pi pi-fw pi-trash"/>
+                        <p:divider />
+                        <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
+                    </p:submenu>
+
+                    <p:divider layout="vertical"/>
+                    <p:submenu label="Productos" icon="pi pi-user">
+                        <p:menuitem value="Nuevo Producto" icon="pi pi-fw pi-plus"/>
+                        <p:divider />
+                        <p:menuitem value="Listar Productos" icon="pi pi-fw pi-trash"/>
+                        <p:divider />
+                        <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
+                    </p:submenu>
+
+                    <p:divider layout="vertical"/>
+                    <p:submenu label="Facturas" icon="pi pi-user">
+
+                        <p:submenu label="Factura Compra" icon="pi pi-fw pi-plus">
+                            <p:menuitem value="Nueva Factura" icon="pi pi-fw pi-bookmark"/>
+                            <p:menuitem value="Listar Facturas" icon="pi pi-fw pi-video"/>
+                        </p:submenu>
+                        <p:divider />
+                        <p:submenu label="Factura Venta" icon="pi pi-fw pi-plus">
+                            <p:menuitem value="Nueva Factura" icon="pi pi-fw pi-bookmark"/>
+                            <p:menuitem value="Listar Facturas" icon="pi pi-fw pi-video"/>
+                        </p:submenu>
+
+                        <p:divider />
+                        <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
+                    </p:submenu>
+
+                     <p:divider layout="vertical"/>
+                    <p:submenu label="Pedidos" icon="pi pi-user">
+                        <p:menuitem value="Nuevo Pedido" icon="pi pi-fw pi-plus"/>
+                        <p:divider />
+                        <p:menuitem value="Listar Pedidos" icon="pi pi-fw pi-trash"/>
+                        <p:divider />
+                        <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
+                    </p:submenu>
+
+                    <p:divider layout="vertical"/>
+
+                    <p:menuitem value="Salir" icon="pi pi-fw pi-power-off"/>
+
+                    <f:facet name="Opciones">
+                        <div class="ui-input-icon-left p-mr-2">
+                            <i class="pi pi-fw pi-search" />
+                            <p:inputText placeholder="Search"/>
+                        </div>
+                        <p:button value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
+                    </f:facet>
+                </p:menubar>
+
+            </h:form>
+
+        </div>
+    </h:body>
+</ui:composition>
