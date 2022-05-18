@@ -2,27 +2,34 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package ec.edu.ups.farmacia.modelo;
+package ec.edu.ups.beans;
 
-import java.io.Serializable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import ec.edu.ups.farmacia.controlador.ProductoFacade;
+import ec.edu.ups.farmacia.modelo.Categoria;
+import ec.edu.ups.farmacia.modelo.Producto;
+import ec.edu.ups.farmacia.modelo.Sucursal;
+import jakarta.annotation.PostConstruct;
+import jakarta.ejb.EJB;
+import jakarta.enterprise.context.SessionScoped;
+import jakarta.inject.Named;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
-import jakarta.persistence.Transient;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
- * @author ASUS_GAMING
+ * @author Adrian
  */
-@Entity
-public class Producto implements Serializable {
+@Named
+@SessionScoped
+public class ProductoBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @EJB
+    private ProductoFacade productoFacade;
+    private List<Producto> list = new ArrayList<>();
     private int id;
     private String nombreProducto;
     private int stock;
@@ -34,28 +41,37 @@ public class Producto implements Serializable {
     @OneToOne
     @JoinColumn(name = "sucursal_id", nullable = false, referencedColumnName = "id")
     private Sucursal sucursal;
-    @Transient
-    private boolean editable;
 
-    public boolean isEditable() {
-        return editable;
+    @PostConstruct
+    public void init() {
+        list = productoFacade.findAll();
+    }
+    public String add() {
+        productoFacade.create(new Producto(id, nombreProducto, stock, precio, descripcion, categoria,sucursal));
+        list = productoFacade.findAll();
+        return null;
+    }
+    
+    public String delete(Producto p) {
+        productoFacade.remove(p);
+        list = productoFacade.findAll();
+        return null;
     }
 
-    public void setEditable(boolean editable) {
-        this.editable = editable;
+    public ProductoFacade getProductoFacade() {
+        return productoFacade;
     }
 
-    public Producto() {
+    public void setProductoFacade(ProductoFacade productoFacade) {
+        this.productoFacade = productoFacade;
     }
 
-    public Producto(int id, String nombreProducto, int stock, double precio, String descripcion, Categoria categoria, Sucursal sucursal) {
-        this.id = id;
-        this.nombreProducto = nombreProducto;
-        this.stock = stock;
-        this.precio = precio;
-        this.descripcion = descripcion;
-        this.categoria = categoria;
-        this.sucursal = sucursal;
+    public List<Producto> getList() {
+        return list;
+    }
+
+    public void setList(List<Producto> list) {
+        this.list = list;
     }
 
     public int getId() {
@@ -113,32 +129,6 @@ public class Producto implements Serializable {
     public void setSucursal(Sucursal sucursal) {
         this.sucursal = sucursal;
     }
-
-    @Override
-    public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + this.id;
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Producto other = (Producto) obj;
-        return this.id == other.id;
-    }
-
-    @Override
-    public String toString() {
-        return "Producto{" + "id=" + id + ", nombreProducto=" + nombreProducto + ", stock=" + stock + ", precio=" + precio + ", descripcion=" + descripcion + ", categoria=" + categoria + ", sucursal=" + sucursal + '}';
-    }
-
+    
+    
 }
