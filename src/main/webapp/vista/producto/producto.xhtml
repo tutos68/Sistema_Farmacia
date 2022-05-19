@@ -12,7 +12,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
        template="/WEB-INF/template.xhtml">
     <h:head>
         <title>Productos</title>
-        <h:outputStylesheet name="./css/Login.css"/>
+        <!--<h:outputStylesheet name="./css/Login.css"/>-->
     </h:head>
     <ui:include src="../menu/menu.xhtml" />
     <h:body>
@@ -56,22 +56,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                         </div>
                     </div>
 
-                    <div class="p-col-12 p-md-4">
+                    <div class="p-field p-col-12 p-md-4">
                         <p:outputLabel value="Categoria"/>
                         <div class="ui-inputgroup">
-                            <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                            <p:inputText value="#{productoBean.categoria}" placeholder="Categoria" size="50"/>
+                            <p:selectOneMenu id="option" value="#{categoriaBean.categoriaNombre()}" label="Escoga una categoría" style="width: 30%" alwaysDisplayLabel="true">
+                                <f:selectItems value="#{categoriaBean.categoriaNombre()}"/>
+                            </p:selectOneMenu>
                         </div>
                     </div>
+ 
 
-
-                    <div class="p-col-12 p-md-4">
-                        <p:outputLabel value="Sucursal:"/>
+                    <div class="p-field p-col-12 p-md-4">
+                        <p:outputLabel value="Sucursal"/>
                         <div class="ui-inputgroup">
-                            <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                                <p:inputText value="#{productoBean.sucursal}" placeholder="Sucursal" size="50"/>
+                            <p:selectOneMenu id="labeled1" value="#{sucursalBean.sucursalNombre()}" label="Escoga una sucursal" style="width: 30%" alwaysDisplayLabel="true">
+                                <f:selectItems value="#{sucursalBean.sucursalNombre()}"/>
+                            </p:selectOneMenu>
                         </div>
-                    </div>
+                    </div> 
                 </div>
                 <h5></h5>
                 <div style="margin:20px 0">

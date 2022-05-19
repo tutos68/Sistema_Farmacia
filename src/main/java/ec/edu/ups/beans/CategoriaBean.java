@@ -28,19 +28,19 @@ public class CategoriaBean implements Serializable {
     private List<Categoria> list = new ArrayList<>();
     private int id;
     private String nombre;
-    
-    
+
     @PostConstruct
-    public void init(){
+    public void init() {
         list = categoriaFacade.findAll();
     }
-    
-    public String add(){
+
+    public String add() {
         categoriaFacade.create(new Categoria(id, nombre));
         list = categoriaFacade.findAll();
         return null;
     }
-     public String delete(Categoria c) {
+
+    public String delete(Categoria c) {
         categoriaFacade.remove(c);
         list = categoriaFacade.findAll();
         return null;
@@ -56,6 +56,17 @@ public class CategoriaBean implements Serializable {
 
     public List<Categoria> getList() {
         return list;
+    }
+
+    public List<String> categoriaNombre() {
+        List<String> listaNombres = new ArrayList<>();
+        String n;
+        for (Categoria c : list) {
+            n = c.getNombre();
+            listaNombres.add(n);
+        }
+
+        return listaNombres;
     }
 
     public void setList(List<Categoria> list) {
@@ -77,6 +88,5 @@ public class CategoriaBean implements Serializable {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-     
-     
+
 }

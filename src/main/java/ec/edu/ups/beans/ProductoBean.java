@@ -4,6 +4,7 @@
  */
 package ec.edu.ups.beans;
 
+import ec.edu.ups.farmacia.controlador.CategoriaFacade;
 import ec.edu.ups.farmacia.controlador.ProductoFacade;
 import ec.edu.ups.farmacia.modelo.Categoria;
 import ec.edu.ups.farmacia.modelo.Producto;
@@ -29,32 +30,70 @@ public class ProductoBean implements Serializable {
     private static final long serialVersionUID = 1L;
     @EJB
     private ProductoFacade productoFacade;
+    @EJB
+    private CategoriaFacade categoriaFacade;
     private List<Producto> list = new ArrayList<>();
     private int id;
     private String nombreProducto;
     private int stock;
     private double precio;
     private String descripcion;
-    @OneToOne
-    @JoinColumn(name = "categoria_id", nullable = false, referencedColumnName = "id")
     private Categoria categoria;
-    @OneToOne
-    @JoinColumn(name = "sucursal_id", nullable = false, referencedColumnName = "id")
+    
+    
     private Sucursal sucursal;
+    private CategoriaBean ct;
+    private String nombreCategoria;
 
     @PostConstruct
     public void init() {
         list = productoFacade.findAll();
     }
+
     public String add() {
-        productoFacade.create(new Producto(id, nombreProducto, stock, precio, descripcion, categoria,sucursal));
+ 
+        productoFacade.create(new Producto(id, nombreProducto, stock, precio, descripcion, categoria, sucursal));
         list = productoFacade.findAll();
         return null;
     }
-    
+
+    public CategoriaFacade getCategoriaFacade() {
+        return categoriaFacade;
+    }
+
+    public void setCategoriaFacade(CategoriaFacade categoriaFacade) {
+        this.categoriaFacade = categoriaFacade;
+    }
+
+    public CategoriaBean getCt() {
+        return ct;
+    }
+
+    public void setCt(CategoriaBean ct) {
+        this.ct = ct;
+    }
+
+    public String getNombreCategoria() {
+        return nombreCategoria;
+    }
+
+    public void setNombreCategoria(String nombreCategoria) {
+        this.nombreCategoria = nombreCategoria;
+    }
+
     public String delete(Producto p) {
         productoFacade.remove(p);
         list = productoFacade.findAll();
+        return null;
+    }
+
+    public Categoria obtenerCategoriaporNombre(String nombreCategoria) {
+        this.nombreCategoria=nombreCategoria;
+        for (Categoria c : categoriaFacade.findAll()) {
+            if (c.getNombre().equals(nombreCategoria)) {
+                return c;
+            }
+        }
         return null;
     }
 
@@ -129,6 +168,5 @@ public class ProductoBean implements Serializable {
     public void setSucursal(Sucursal sucursal) {
         this.sucursal = sucursal;
     }
-    
-    
+
 }

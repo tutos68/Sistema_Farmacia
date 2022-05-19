@@ -62,6 +62,18 @@ public class SucursalBean implements Serializable {
     public List<Sucursal> getList() {
         return list;
     }
+    
+    
+    public List<String> sucursalNombre() {
+        List<String> listaNombres = new ArrayList<>();
+        String n;
+        for (Sucursal s : list) {
+            n = s.getNombreClave();
+            listaNombres.add(n);
+        }
+        return listaNombres;
+    }
+
 
     public void setList(List<Sucursal> list) {
         this.list = list;
