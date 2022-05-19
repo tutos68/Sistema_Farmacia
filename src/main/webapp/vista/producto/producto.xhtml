@@ -59,17 +59,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <div class="p-field p-col-12 p-md-4">
                         <p:outputLabel value="Categoria"/>
                         <div class="ui-inputgroup">
-                            <p:selectOneMenu id="option" value="#{categoriaBean.categoriaNombre()}" label="Escoga una categoría" style="width: 30%" alwaysDisplayLabel="true">
+                            <p:selectOneMenu id="labeled" value="#{categoriaBean.categoriaNombre()}"   style="width: 30%"  >
+                                <f:selectItem itemLabel="Escoga una categoría" itemValue=""/>
                                 <f:selectItems value="#{categoriaBean.categoriaNombre()}"/>
                             </p:selectOneMenu>
                         </div>
                     </div>
+
  
+
 
                     <div class="p-field p-col-12 p-md-4">
                         <p:outputLabel value="Sucursal"/>
                         <div class="ui-inputgroup">
-                            <p:selectOneMenu id="labeled1" value="#{sucursalBean.sucursalNombre()}" label="Escoga una sucursal" style="width: 30%" alwaysDisplayLabel="true">
+                            <p:selectOneMenu id="labeled1" value="#{sucursalBean.sucursalNombre()}"  style="width: 30%"  >
+                                <f:selectItem itemLabel="Escoga una sucursal" itemValue=""/>
                                 <f:selectItems value="#{sucursalBean.sucursalNombre()}"/>
                             </p:selectOneMenu>
                         </div>
