@@ -27,6 +27,15 @@ public class Proveedor extends Entidad implements Serializable {
         super(id, identificador, nombre, correo, direccion, telefono);
         this.categoria = categoria;
     }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
+    }
+    
     
     
     

@@ -12,44 +12,55 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
        template="/WEB-INF/template.xhtml">
     <h:head>
         <title>Lista de Sucursales</title>
-        <h:outputStylesheet name="./css/Login.css"/>
     </h:head>
     <ui:include src="../menu/menu.xhtml" />
     <h:body>
         <div class="card">
-            <p:dataTable id="products" var="product" value="">
+            <p:dataTable id="products" var="s" value="#{sucursalBean.list}" styleClass="tabla">
                 <f:facet name="header">
                     <div class="p-d-flex p-jc-between p-ai-center">
-                        Lista de Sucursales
+                        <h1>Lista de Sucursales</h1>
 
                         <div>
-                            <p:commandButton id="toggler" type="button" value="Columns" icon="pi pi-align-justify"/>
+                            <p:commandButton id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
                             <p:columnToggler datasource="products" trigger="toggler"/>
                         </div>
                     </div>
                 </f:facet>
-
-                <p:column headerText="Code">
-                    <h:outputText value="" />
+                <p:column headerText="ID">
+                    <f:facet name="header">Id</f:facet>#{s.id} 
                 </p:column>
 
-                <p:column headerText="Name">
-                    <h:outputText value="" />
+                <p:column headerText="Direccion">
+                    <h:inputText value="#{s.direccion}" size="10" rendered="#{s.editable}" />
+                    <h:outputText value="#{s.direccion}" rendered="#{not s.editable}" />
                 </p:column>
 
-                <p:column headerText="Category">
-                    <h:outputText value="" />
+                <p:column headerText="Nombre_Clave">
+                    <h:inputText value="#{s.nombreClave}" size="10" rendered="#{s.editable}" />
+                    <h:outputText value="#{s.nombreClave}" rendered="#{not s.editable}" />
                 </p:column>
 
-                <p:column headerText="Quantity">
-                    <h:outputText value="" />
+                <p:column headerText="Latitud">
+                    <h:inputText value="#{s.latitud}" size="10" rendered="#{s.editable}" />
+                    <h:outputText value="#{s.latitud}" rendered="#{not s.editable}" />
                 </p:column>
 
-                <p:column headerText="Price">
-                    <h:outputText value="">
-                        <f:convertNumber type="currency" currencySymbol="$"/>
-                    </h:outputText>
+                <p:column headerText="Longitud">
+                    <h:inputText value="#{s.longitud}" size="10" rendered="#{s.editable}" />
+                    <h:outputText value="#{s.longitud}" rendered="#{not s.editable}" />
                 </p:column>
+
+                <p:column headerText="Telefono">
+                    <h:inputText value="#{s.telefono}" size="10" rendered="#{s.editable}" />
+                    <h:outputText value="#{s.telefono}" rendered="#{not s.editable}" />
+                </p:column>
+
+                <p:column headerText="Eliminar">
+                    <h:commandLink value="Eliminar" action="#{sucursalBean.delete(s)}" />
+                </p:column>
+
+
             </p:dataTable>
         </div>
     </h:body>

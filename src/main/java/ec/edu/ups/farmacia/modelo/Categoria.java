@@ -9,6 +9,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Transient;
 
 /**
  *
@@ -19,11 +20,21 @@ public class Categoria implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int  id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String nombre;
+    @Transient
+    private boolean editable;
 
     public Categoria() {
+    }
+
+    public boolean isEditable() {
+        return editable;
+    }
+
+    public void setEditable(boolean editable) {
+        this.editable = editable;
     }
 
     public Categoria(int id, String nombre) {
@@ -73,8 +84,5 @@ public class Categoria implements Serializable {
     public String toString() {
         return "Categoria{" + "id=" + id + ", nombre=" + nombre + '}';
     }
-    
-    
-    
-    
+
 }

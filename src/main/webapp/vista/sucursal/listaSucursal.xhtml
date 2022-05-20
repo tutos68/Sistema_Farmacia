@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Lista de Sucursales</title>
+        <style>
+            .tabla {
+                border-collapse: collapse;
+            }
+
+            .cabeceraTabla {
+                text-align: center;
+                background: none repeat scroll 0 0 #E5E5E5;
+                border-bottom: 1px solid #BBBBBB;
+                padding: 8px;
+            }
+
+            .filaPar {
+                text-align: center;
+                background: none repeat scroll 0 0 #FFFFFFF;
+                border-top: 1px solid #BBBBBB;
+            }
+
+            .filaImpar {
+                text-align: center;
+                background: none repeat scroll 0 0 #F9F9F9;
+                border-top: 1px solid #BBBBBB;
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h3>Sucursales</h3>
+        <h:form>
+
+            <h:dataTable id="products" var="s" value="#{sucursalBean.list}" styleClass="tabla"
+                         headerClass="cabeceraTabla" rowClasses="filaPar,filaImpar">
+
+                <h:column  >
+                    <f:facet name="header">Id</f:facet>#{s.id} 
+                </h:column>
+
+                <h:column>
+                    <f:facet name="header">Direccion</f:facet>#{s.direccion} 
+                    <h:inputText value="#{s.direccion}" size="10" rendered="#{s.editable}" />
+                    <h:outputText value="#{s.direccion}" rendered="#{not s.editable}" />
+                </h:column>
+
+                <h:column  >
+                    <f:facet name="header">Nombre Clave</f:facet>#{s.nombreClave} 
+                    <h:inputText value="#{s.nombreClave}" size="10" rendered="#{s.editable}" />
+                    <h:outputText value="#{s.nombreClave}" rendered="#{not s.editable}" />
+                </h:column>
+
+                <h:column  >
+                    <f:facet name="header">Latitud</f:facet>#{s.latitud} 
+                    <h:inputText value="#{s.latitud}" size="10" rendered="#{s.editable}" />
+                    <h:outputText value="#{s.latitud}" rendered="#{not s.editable}" />
+                </h:column>
+
+                <h:column  >
+                    <f:facet name="header">Longitud</f:facet>#{s.longitud} 
+                    <h:inputText value="#{s.longitud}" size="10" rendered="#{s.editable}" />
+                    <h:outputText value="#{s.longitud}" rendered="#{not s.editable}" />
+                </h:column>
+
+                <h:column  >
+                    <f:facet name="header">Telefono</f:facet>#{s.telefono} 
+                    <h:inputText value="#{s.telefono}" size="10" rendered="#{s.editable}" />
+                    <h:outputText value="#{s.telefono}" rendered="#{not s.editable}" />
+                </h:column>
+
+                <h:column  >
+                    <h:commandLink value="Eliminar" action="#{sucursalBean.delete(s)}" />
+                </h:column>
+
+
+            </h:dataTable>
+        </h:form>
+
+    </h:body>
+</html>

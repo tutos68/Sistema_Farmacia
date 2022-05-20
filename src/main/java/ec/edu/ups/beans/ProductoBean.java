@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package ec.edu.ups.beans;
 
 import ec.edu.ups.farmacia.controlador.CategoriaFacade;
@@ -39,8 +35,7 @@ public class ProductoBean implements Serializable {
     private double precio;
     private String descripcion;
     private Categoria categoria;
-    
-    
+
     private Sucursal sucursal;
     private CategoriaBean ct;
     private String nombreCategoria;
@@ -51,9 +46,41 @@ public class ProductoBean implements Serializable {
     }
 
     public String add() {
- 
         productoFacade.create(new Producto(id, nombreProducto, stock, precio, descripcion, categoria, sucursal));
-        list = productoFacade.findAll();
+        list = productoFacade.findAll();//llamo al findall para que se me actualice la lista
+        return null;
+    }
+
+    public String delete(Producto p) {
+        productoFacade.remove(p);
+        list = productoFacade.findAll();//llamo al findall para que se me actualice la lista
+        return null;
+    }
+
+    public String edit(Producto p) {
+        p.setEditable(true); //habilita la caja
+        return null;
+    }
+
+    public String save(Producto p) {
+        productoFacade.edit(p);
+        list = productoFacade.findAll(); //actualizo la lista
+        p.setEditable(false); //desabilita la caja
+        return null;
+    }
+
+    public Producto[] getList() { //este metodo tambien se lo modifica
+        return list.toArray(new Producto[0]);// Lo que necesita el JSF dentro del table es un
+        //arreglo no una lista por lo que convierto de lista a arreglo
+    }                                        //un arreglo de productos
+
+    public Categoria obtenerCategoriaporNombre(String nombreCategoria) {
+        this.nombreCategoria = nombreCategoria;
+        for (Categoria c : categoriaFacade.findAll()) {
+            if (c.getNombre().equals(nombreCategoria)) {
+                return c;
+            }
+        }
         return null;
     }
 
@@ -81,32 +108,12 @@ public class ProductoBean implements Serializable {
         this.nombreCategoria = nombreCategoria;
     }
 
-    public String delete(Producto p) {
-        productoFacade.remove(p);
-        list = productoFacade.findAll();
-        return null;
-    }
-
-    public Categoria obtenerCategoriaporNombre(String nombreCategoria) {
-        this.nombreCategoria=nombreCategoria;
-        for (Categoria c : categoriaFacade.findAll()) {
-            if (c.getNombre().equals(nombreCategoria)) {
-                return c;
-            }
-        }
-        return null;
-    }
-
     public ProductoFacade getProductoFacade() {
         return productoFacade;
     }
 
     public void setProductoFacade(ProductoFacade productoFacade) {
         this.productoFacade = productoFacade;
-    }
-
-    public List<Producto> getList() {
-        return list;
     }
 
     public void setList(List<Producto> list) {
