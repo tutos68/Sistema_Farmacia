@@ -129,7 +129,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 
 
                     <div class="p-col-12 p-md-4">
-                        <p:outputLabel value="Nombre:"/>
+                        <p:outputLabel value="Direcion:"/>
                         <div class="ui-inputgroup">
                             <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
                             <p:inputText placeholder="Direccion:"/>
@@ -137,18 +137,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     </div>
 
                     <div class="p-col-12 p-md-4">
-                        <p:outputLabel value="Nombre:"/>
+                        <p:outputLabel value="Correo:"/>
                         <div class="ui-inputgroup">
                             <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
                             <p:inputText placeholder="Correo:"/>
                         </div>
                     </div>
-
                     <div class="p-field p-col-12 p-md-4">
-                        <p:outputLabel for="multiselect" value="Fecha de Nacimiento"/>
-                        <p:datePicker id="multiselect" selectionMode="multiple" value="#{calendarView.multi}" readonlyInput="true"/>
+                        <p:outputLabel for="navigator" value="Fecha de Nacimiento"/>
+                        <p:datePicker id="navigator" value="" monthNavigator="true" yearNavigator="true" showWeek="true"/>
                     </div>
-
                 </div>
                 <h5></h5>
                 <p:button value="Guardar" />

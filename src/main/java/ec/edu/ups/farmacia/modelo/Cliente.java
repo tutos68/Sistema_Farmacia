@@ -28,7 +28,7 @@ public class Cliente extends Entidad implements Serializable {
 
     public Cliente() {
     }
-
+    
     public Cliente(GregorianCalendar fechaNacimiento, int id, String identificador, String nombre, String apellido, String correo, String direccion, String telefono) {
         super(id, identificador, nombre, apellido, correo, direccion, telefono);
         this.fechaNacimiento = fechaNacimiento;
