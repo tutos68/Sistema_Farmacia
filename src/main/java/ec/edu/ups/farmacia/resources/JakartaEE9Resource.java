@@ -13,29 +13,11 @@ import ec.edu.ups.farmacia.controlador.ProductoFacade;
 import ec.edu.ups.farmacia.controlador.ProveedorFacade;
 import ec.edu.ups.farmacia.controlador.SucursalFacade;
 import ec.edu.ups.farmacia.controlador.UsuarioFacade;
-import ec.edu.ups.farmacia.modelo.Administrador;
-import ec.edu.ups.farmacia.modelo.CabeceraVenta;
-import ec.edu.ups.farmacia.modelo.Categoria;
-import ec.edu.ups.farmacia.modelo.Cliente;
-import ec.edu.ups.farmacia.modelo.Detalle;
-import ec.edu.ups.farmacia.modelo.Empleado;
-import ec.edu.ups.farmacia.modelo.EstadoPedido;
-import ec.edu.ups.farmacia.modelo.FormaPago;
-import ec.edu.ups.farmacia.modelo.Kardex;
-import ec.edu.ups.farmacia.modelo.Pedido;
-import ec.edu.ups.farmacia.modelo.Producto;
-import ec.edu.ups.farmacia.modelo.Proveedor;
-import ec.edu.ups.farmacia.modelo.Rol;
 import ec.edu.ups.farmacia.modelo.Sucursal;
-import ec.edu.ups.farmacia.modelo.TipoPago;
-import ec.edu.ups.farmacia.modelo.Usuario;
 import jakarta.ejb.EJB;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.core.Response;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.List;
 
 /**
  *

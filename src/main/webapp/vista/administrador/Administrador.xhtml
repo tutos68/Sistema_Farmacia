@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui"
+       template="/WEB-INF/template.xhtml">
+    <h:head>
+        <title>TODO supply a title</title>
+        <h:outputStylesheet name="./css/Login.css"/>
+    </h:head>
+    <ui:include src="../menu/menu.xhtml" />
+    <h:body>
+
+        <h:form>
+            <div class="card">
+                <h2>Datos personales del Administrador</h2>
+                <div class="p-grid ui-fluid">
+                    <div class="p-col-12 p-md-4">
+                        <p:outputLabel  value="Cedula:"/>
+                        <div class="ui-inputgroup">
+                            <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                            <p:inputText placeholder="Cedula:" value="#{administradorBean.identificador}"/>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-4">
+                        <p:outputLabel  value="Apellido"/>
+                        <div class="ui-inputgroup">
+
+                            <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                            <p:inputText placeholder="Apellido" value="#{administradorBean.apellido}"/>
+                        </div>
+                    </div>
+                    <div class="p-col-12 p-md-4">
+                        <p:outputLabel value="Nombre:"/>
+                        <div class="ui-inputgroup">
+
+                            <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                            <p:inputText placeholder="Nombre:" value="#{administradorBean.nombre}"/>
+                        </div>
+                    </div>
+
+                    <div class="p-col-12 p-md-4">
+                        <p:outputLabel  value="Telefono:"/>
+                        <div class="ui-inputgroup">
+                            <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                            <p:inputText placeholder="Telefono:" value="#{administradorBean.telefono}"/>
+                        </div>
+                    </div>
+
+
+                    <div class="p-col-12 p-md-4">
+                        <p:outputLabel value="Direcion:"/>
+                        <div class="ui-inputgroup">
+                            <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                            <p:inputText placeholder="Direccion:" value="#{administradorBean.direccion}"/>
+                        </div>
+                    </div>
+
+                    <div class="p-col-12 p-md-4">
+                        <p:outputLabel value="Correo:"/>
+                        <div class="ui-inputgroup">
+                            <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                            <p:inputText placeholder="Correo:" value="#{administradorBean.correo}"/>
+                        </div>
+                    </div>
+                </div>
+                <h5></h5>
+                <p:commandButton  style="margin-right: 20px" value="Guardar" styleClass="ui-button-raised" action="#{administradorBean.add}" />   
+                <p:commandButton   value="Cancelar"  styleClass="ui-button-raised ui-button-danger"/>
+
+            </div>
+        </h:form>
+
+    </h:body>
+</html>
+

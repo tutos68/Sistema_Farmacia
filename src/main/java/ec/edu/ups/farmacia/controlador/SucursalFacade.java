@@ -15,7 +15,7 @@ import jakarta.persistence.PersistenceContext;
  */
 @Stateless
 public class SucursalFacade  extends AbstractFacade<Sucursal> {
-    @PersistenceContext(name = "Farmacia")
+    @PersistenceContext()
     private EntityManager em;
     
     public SucursalFacade() {

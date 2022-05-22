@@ -41,6 +41,10 @@
                         <p:divider />
                         <p:menuitem value="Listar Productos" icon="pi pi-fw pi-trash"  url="../producto/listProducto.xhtml"/>
                         <p:divider />
+                        <p:menuitem value="Nueva Categoria" icon="pi pi-fw pi-plus"  url="../categoria/categoria.xhtml"/>
+                        <p:divider />
+                        <p:menuitem value="Listar Categorias" icon="pi pi-fw pi-trash"  url="../categoria/listCategoria.xhtml"/>
+                        <p:divider />
                         <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
                     </p:submenu>
 
@@ -61,7 +65,7 @@
                         <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
                     </p:submenu>
 
-                     <p:divider layout="vertical"/>
+                    <p:divider layout="vertical"/>
                     <p:submenu label="Pedidos" icon="pi pi-user">
                         <p:menuitem value="Nuevo Pedido" icon="pi pi-fw pi-plus"/>
                         <p:divider />
@@ -69,7 +73,14 @@
                         <p:divider />
                         <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
                     </p:submenu>
-
+                    <p:divider layout="vertical"/>
+                    <p:submenu label="Administrador" icon="pi pi-user">
+                        <p:menuitem value="Nuevo Admin" icon="pi pi-fw pi-plus" url="../administrador/Administrador.xhtml"/>
+                        <p:divider />
+                        <p:menuitem value="Listar Admins" icon="pi pi-fw pi-trash"/>
+                        <p:divider />
+                        <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
+                    </p:submenu>
                     <p:divider layout="vertical"/>
 
                     <p:menuitem value="Salir" icon="pi pi-fw pi-power-off"/>

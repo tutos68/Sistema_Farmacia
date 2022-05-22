@@ -17,38 +17,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
     <ui:include src="../menu/menu.xhtml" />
     <h:body>
         <div class="card">
-            <p:dataTable id="products" var="categorias" value="">
+            <p:dataTable id="products" var="c" value="#{categoriaBean.list}">
                 <f:facet name="header">
                     <div class="p-d-flex p-jc-between p-ai-center">
                         Lista de Categorias
                         <div>
                             <p:commandButton id="toggler" type="button" value="Columns" icon="pi pi-align-justify"/>
-                            <p:columnToggler datasource="categorias" trigger="toggler"/>
+                            <p:columnToggler datasource="products" trigger="toggler"/>
                         </div>
                     </div>
                 </f:facet>
 
-                <p:column headerText="Code">
-                    <h:outputText value="" />
+                <p:column headerText="ID">
+                    <h:outputText value="#{c.id}" />
                 </p:column>
 
-                <p:column headerText="Name">
-                    <h:outputText value="" />
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{c.nombre}" />
                 </p:column>
 
-                <p:column headerText="Category">
-                    <h:outputText value="" />
-                </p:column>
+      
 
-                <p:column headerText="Quantity">
-                    <h:outputText value="" />
-                </p:column>
-
-                <p:column headerText="Price">
-                    <h:outputText value="">
-                        <f:convertNumber type="currency" currencySymbol="$"/>
-                    </h:outputText>
-                </p:column>
+               
             </p:dataTable>
         </div>
     </h:body>

@@ -29,7 +29,6 @@ public class CategoriaBean implements Serializable {
     public void init() {//este metodo init se va a ejecutar despues 
         list = categoriaFacade.findAll();//de que se ha creado o visualizado el JSF o el bean
     }                                    // esto se lo hace ya que puede que no se haya renderizado toda la vista y ya quiera llamar a buscar la info
-      
 
     public String add() {
         categoriaFacade.create(new Categoria(id, nombre));
@@ -63,10 +62,9 @@ public class CategoriaBean implements Serializable {
         this.categoriaFacade = categoriaFacade;
     }
 
-    public Categoria[] getList() { //este metodo tambien se lo modifica
-        return list.toArray(new Categoria[0]);// Lo que necesita el JSF dentro del table es un
-                                              //arreglo no una lista por lo que convierto de lista a arreglo
-    }                                         //un arreglo de categorias 
+    public List<Categoria> getList() {
+        return list;
+    }                                    //un arreglo de categorias 
 
     public List<String> categoriaNombre() {
         List<String> listaNombres = new ArrayList<>();

@@ -18,10 +18,11 @@ import java.util.List;
 @Named
 @SessionScoped
 public class SucursalBean implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
     @EJB
-    private SucursalFacade sucursalFacade;;//mando mi fachada
+    private SucursalFacade sucursalFacade;
+    ;//mando mi fachada
     private List<Sucursal> list = new ArrayList<>();// lista de Sucursales , se usa el List por el findAll()
     private int id;
     private String direccion;
@@ -34,20 +35,19 @@ public class SucursalBean implements Serializable {
     public void init() {//este metodo init se va a ejecutar despues 
         list = sucursalFacade.findAll();//de que se ha creado o visualizado el JSF o el bean
     }                                   // esto se lo hace ya que puede que no se haya renderizado toda la vista y ya quiera llamar a buscar la info
-                                        //lo cual puede arrojar un error    
-    
+    //lo cual puede arrojar un error    
+
     public String add() {
         sucursalFacade.create(new Sucursal(id, direccion, nombreClave, telefono, latitud, longitud));
         list = sucursalFacade.findAll();//llamo al findall para que se me actualice la lista
         return null;
     }
-    
+
     public String edit(Sucursal s) {
-	s.setEditable(true);//habilita la caja
-	return null;
+        s.setEditable(true);//habilita la caja
+        return null;
     }
-    
-    
+
     public String delete(Sucursal s) {
         sucursalFacade.remove(s);
         list = sucursalFacade.findAll();//llamo al findall para que se me actualice la lista
@@ -57,12 +57,10 @@ public class SucursalBean implements Serializable {
     public String save(Sucursal s) {
         sucursalFacade.edit(s);
         list = sucursalFacade.findAll();//actualizo la lista
-	s.setEditable(false);//desabilita la caja
-	return null;
+        s.setEditable(false);//desabilita la caja
+        return null;
     }
-    
-    
-    
+
     public SucursalFacade getSucursalFacade() {
         return sucursalFacade;
     }
@@ -74,12 +72,11 @@ public class SucursalBean implements Serializable {
     public List<Sucursal> getList() {
         return list;
     }
-    
-     public Sucursal[] getList1() {//este metodo tambien se lo modifica
-	return list.toArray(new Sucursal[0]);// Lo que necesita el JSF dentro del table es un
+
+    public Sucursal[] getList1() {//este metodo tambien se lo modifica
+        return list.toArray(new Sucursal[0]);// Lo que necesita el JSF dentro del table es un
     }                                        //un arreglo de usuarios        
 
-    
     public List<String> sucursalNombre() {
         List<String> listaNombres = new ArrayList<>();
         String n;
@@ -88,12 +85,6 @@ public class SucursalBean implements Serializable {
             listaNombres.add(n);
         }
         return listaNombres;
-    }
-
- 
-    
-    public void setList(List<Sucursal> list) {
-        this.list = list;
     }
 
     public int getId() {
@@ -143,5 +134,5 @@ public class SucursalBean implements Serializable {
     public void setLongitud(double longitud) {
         this.longitud = longitud;
     }
-    
+
 }

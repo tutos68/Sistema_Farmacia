@@ -4,6 +4,7 @@
  */
 package ec.edu.ups.farmacia.modelo;
 
+import jakarta.persistence.Column;
 import java.io.Serializable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -22,8 +23,7 @@ import jakarta.persistence.Transient;
 
 @Table(name = "Sucursal")
 @NamedQueries({
-    @NamedQuery(name = "sucursal.findAll", query = "SELECT s FROM Sucursal s"),
-})
+    @NamedQuery(name = "sucursal.findAll", query = "SELECT s FROM Sucursal s")})
 public class Sucursal implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,7 +35,7 @@ public class Sucursal implements Serializable {
     private String telefono;
     private double latitud;
     private double longitud;
-     @Transient
+    @Transient
     private boolean editable;
 
     public Sucursal() {
@@ -105,6 +105,7 @@ public class Sucursal implements Serializable {
     public void setEditable(boolean editable) {
         this.editable = editable;
     }
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -132,6 +133,4 @@ public class Sucursal implements Serializable {
         return "Sucursal{" + "id=" + id + ", direccion=" + direccion + ", nombreClave=" + nombreClave + ", telefono=" + telefono + ", latitud=" + latitud + ", longitud=" + longitud + '}';
     }
 
-    
-    
 }
