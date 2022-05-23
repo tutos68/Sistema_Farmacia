@@ -6,7 +6,11 @@
                  >
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
           rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"/>
-
+    <h:head>
+        <title>Menu</title>
+        <f:event type="preRenderView" listener="#{permisos.verificarSesion}" />
+    </h:head>
+    
     <h:body>
 
         <div class="card">
@@ -87,7 +91,7 @@
                     </p:submenu>
                     <p:divider layout="vertical"/>
 
-                    <p:menuitem value="Salir" icon="pi pi-fw pi-power-off"/>
+                    <p:menuitem value="Salir" actionListener="#{menu.cerrarSesion}" url="../loginDemo.xhtml" icon="pi pi-fw pi-power-off" />
                     <p:divider layout="vertical"/>
                     
                 </p:menubar>

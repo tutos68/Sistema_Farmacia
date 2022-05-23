@@ -30,4 +30,6 @@ public class Permisos implements Serializable{
              System.out.println("No entro");
          }
      }
+    
+
 }
