@@ -1,0 +1,31 @@
+<ui:composition  xmlns="http://www.w3.org/1999/xhtml"
+                 xmlns:h="http://java.sun.com/jsf/html"
+                 xmlns:f="http://java.sun.com/jsf/core"
+                 xmlns:ui="http://java.sun.com/jsf/facelets"
+                 xmlns:p="http://primefaces.org/ui" 
+                 >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"/>
+    <h:head>
+        <title>Menu</title>
+        <f:event type="preRenderView" listener="#{permisos.verificarSesion}" />
+    </h:head>
+    
+    <h:body>
+
+        <div class="card">
+            <h:form>
+                <p:growl id="messages"/>
+
+                <p:menubar model="#{menuDinamico.model}"/>
+                   
+                 
+                    
+
+            </h:form>
+
+        </div>
+
+
+    </h:body>
+</ui:composition>
