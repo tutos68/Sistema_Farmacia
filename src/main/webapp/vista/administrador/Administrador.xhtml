@@ -12,6 +12,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
        template="/WEB-INF/template.xhtml">
     <h:head>
         <title>Administrador</title>
+        <f:event type="preRenderView" listener="#{permisos.verificarSesion}" />
         <h:outputStylesheet name="./css/Login.css"/>
     </h:head>
     <ui:include src="../menu/menu.xhtml" />

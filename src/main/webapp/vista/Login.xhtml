@@ -33,14 +33,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                                 <h3 class="text-center">Usuario</h3>
                             </div>
                             <div class="row">
-                                <p:inputText id="username1" styleClass="p-d-block" value="#{usuarioBean.usuario}"/>
+                                <p:inputText id="username1" styleClass="p-d-block" value="#{usuarioCLave.usuario.usuario}"/>
                             </div> 
 
                             <div class="row">
                                 <h3 class="text-center">Contraseña</h3>
                             </div>
                             <div class="row">
-                                <p:password id="toggle" value="#{usuarioBean.contrasenia}" redisplay="true"/>
+                                <p:password id="toggle" value="#{usuarioCLave.usuario.contrasenia}" redisplay="true"/>
                             </div> <br/>
                             <div class="container">
                                 <div class="row">
@@ -48,7 +48,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 
                                     </div>
                                     <div class="col">
-                                        <p:commandButton value="Iniciar" action="#{usuarioBean.iniciarSesion}"  />
+                                        <p:commandButton value="Iniciar" action="#{usuarioCLave.iniciarSesion}"  />
                                     </div>
                                     <div class="col">
                                         <p:commandButton value="Cancelar" styleClass="ui-button-secondary" />

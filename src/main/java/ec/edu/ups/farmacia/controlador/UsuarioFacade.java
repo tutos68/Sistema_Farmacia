@@ -29,24 +29,26 @@ public class UsuarioFacade extends AbstractFacade<Usuario> {
     protected EntityManager getEntityManager() {
         return em;
     }
-
+    
+    
     public Usuario iniciarUsuario(Usuario usuario) {
         Usuario u = null;
-       // try {
+        try {
             String consulta = "SELECT u FROM Usuario u WHERE u.usuario = ?1 AND u.contrasenia = ?2";
             Query query = em.createQuery(consulta);
-            query.setParameter(1, u.getUsuario());
-            query.setParameter(2, u.getContrasenia());
-
+            query.setParameter(1, usuario.getUsuario());
+            query.setParameter(2, usuario.getContrasenia());
+            
             List<Usuario> lista = query.getResultList();
-            System.out.println(lista + " Ya valio maso" );
-           // if (!lista.isEmpty()) {
-
-             //   u = lista.get(0);
-            //}
-        //} catch (Exception e) {
-           // System.out.println("Ya valio maso " + e);
-        //}
+            System.out.println(usuario.getUsuario());
+            System.out.println(usuario.getContrasenia());
+            if (!lista.isEmpty()) {
+                System.out.println(lista.get(0) + " Hola mundo" );
+                return usuario = lista.get(0);
+            }
+        }catch (Exception e) {
+           System.out.println("Ya valio maso " + e);
+        }
         return u;
     }
 }
