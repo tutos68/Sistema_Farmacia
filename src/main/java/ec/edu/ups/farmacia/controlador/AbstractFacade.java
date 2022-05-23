@@ -44,5 +44,5 @@ public abstract class AbstractFacade<T> {
         CriteriaQuery cq = getEntityManager().getCriteriaBuilder().createQuery();
         cq.select(cq.from(entityClass));
         return getEntityManager().createQuery(cq).getResultList();
-    }
+    }    
 }

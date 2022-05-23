@@ -4,12 +4,16 @@
                  xmlns:ui="http://java.sun.com/jsf/facelets"
                  xmlns:p="http://primefaces.org/ui" 
                  >
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+          rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"/>
+
     <h:body>
+
         <div class="card">
             <h:form>
                 <p:growl id="messages"/>
 
-                <p:menubar>
+                <p:menubar >
                     <p:submenu label="Cliente" icon="pi pi-user">
                         <p:menuitem  value="Nuevo Cliente" icon="pi pi-fw pi-plus"  url="../cliente/Cliente.xhtml"/>
                         <p:divider />
@@ -77,25 +81,21 @@
                     <p:submenu label="Administrador" icon="pi pi-user">
                         <p:menuitem value="Nuevo Admin" icon="pi pi-fw pi-plus" url="../administrador/Administrador.xhtml"/>
                         <p:divider />
-                        <p:menuitem value="Listar Admins" icon="pi pi-fw pi-trash"/>
+                        <p:menuitem value="Listar Admins" icon="pi pi-fw pi-trash" url="../administrador/listAdministrador.xhtml"/>
                         <p:divider />
                         <p:menuitem value="Export" icon="pi pi-fw pi-external-link"/>
                     </p:submenu>
                     <p:divider layout="vertical"/>
 
                     <p:menuitem value="Salir" icon="pi pi-fw pi-power-off"/>
-
-                    <f:facet name="Opciones">
-                        <div class="ui-input-icon-left p-mr-2">
-                            <i class="pi pi-fw pi-search" />
-                            <p:inputText placeholder="Search"/>
-                        </div>
-                        <p:button value="Logout" icon="pi pi-fw pi-sign-out" styleClass="ui-button-info"/>
-                    </f:facet>
+                    <p:divider layout="vertical"/>
+                    
                 </p:menubar>
 
             </h:form>
 
         </div>
+
+
     </h:body>
 </ui:composition>

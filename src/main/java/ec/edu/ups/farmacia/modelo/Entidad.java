@@ -32,7 +32,7 @@ public class Entidad implements Serializable {
     private String identificador;
     private String nombre;
     private String apellido;
-    @Column(name = "correo", nullable = false, unique = true)
+    @Column(name = "correo")
     private String correo;
     private String direccion;
     private String telefono;

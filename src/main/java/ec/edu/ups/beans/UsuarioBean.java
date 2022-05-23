@@ -5,10 +5,8 @@
 package ec.edu.ups.beans;
 
 import ec.edu.ups.farmacia.controlador.UsuarioFacade;
-import ec.edu.ups.farmacia.modelo.Administrador;
-import ec.edu.ups.farmacia.modelo.Cliente;
-import ec.edu.ups.farmacia.modelo.Empleado;
-import ec.edu.ups.farmacia.modelo.Rol;
+import ec.edu.ups.farmacia.modelo.Entidad;
+
 import ec.edu.ups.farmacia.modelo.Usuario;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
@@ -31,11 +29,11 @@ public class UsuarioBean implements Serializable {
     private UsuarioFacade usuarioFacade; //mando mi fachada
     private List<Usuario> list = new ArrayList<>(); // lista de Usuarios , se usa el List por el findAll()
     private int id;
+    private Usuario u;
+    private String usuario;
     private String contrasenia;
-    private Rol rol;
-    private Empleado empleado;
-    private Administrador administrador;
-    private Cliente cliente;
+    private String rol;
+    private Entidad entidad;
 
     @PostConstruct
     public void init() {
@@ -43,7 +41,7 @@ public class UsuarioBean implements Serializable {
     }
 
     public String add() { //administrador
-        usuarioFacade.create(new Usuario(id, contrasenia, rol, administrador));
+        usuarioFacade.create(new Usuario(id, usuario, contrasenia, rol, entidad));
         list = usuarioFacade.findAll();//llamo al findall para que se me actualice la lista
         return null;
     }
@@ -99,36 +97,38 @@ public class UsuarioBean implements Serializable {
         this.contrasenia = contrasenia;
     }
 
-    public Rol getRol() {
+    public String getRol() {
         return rol;
     }
 
-    public void setRol(Rol rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
 
-    public Empleado getEmpleado() {
-        return empleado;
+    public Entidad getEntidad() {
+        return entidad;
     }
 
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
+    public void setEntidad(Entidad entidad) {
+        this.entidad = entidad;
     }
 
-    public Administrador getAdministrador() {
-        return administrador;
+    public String getUsuario() {
+        return usuario;
     }
 
-    public void setAdministrador(Administrador administrador) {
-        this.administrador = administrador;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
+    public String iniciarSesion() {
+        String redireccion = null;
+        try {
+            usuarioFacade.iniciarUsuario(u);
+            redireccion = "/administrador/Administrador.xhtml";
+        } catch (Exception e) {
+        }
+        return redireccion;
     }
 
 }

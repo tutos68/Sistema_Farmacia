@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui"
+       template="/WEB-INF/template.xhtml">
+    <h:head>
+        <title>TODO supply a title</title>
+        <h:outputStylesheet name="./css/Login.css"/>
+    </h:head>
+    <ui:include src="../menu/menu.xhtml" />
+    <h:body>
+        <div class="card">
+            <p:dataTable id="products" var="a" value="#{administradorBean.listu}">
+                <f:facet name="header">
+                    <div class="p-d-flex p-jc-between p-ai-center">
+                        Lista de Administradores
+
+                        <div>
+                            <p:commandButton id="toggler" type="button" value="Columns" icon="pi pi-align-justify"/>
+                            <p:columnToggler datasource="products" trigger="toggler"/>
+                        </div>
+                    </div>
+                </f:facet>
+
+                <p:column headerText="ID">
+                    <h:outputText value="#{a.entidad.id}" />
+                </p:column>
+
+                <p:column headerText="Cedula">
+                    <h:outputText value="#{a.entidad.identificador}" />
+                </p:column>
+
+                <p:column headerText="Apellido">
+                    <h:outputText value="#{a.entidad.apellido}" />
+                </p:column>
+                <p:column headerText="Apellido">
+                    <h:outputText value="#{a.entidad.nombre}" />
+                </p:column>
+
+                <p:column headerText="Telefono">
+                    <h:outputText value="#{a.entidad.telefono}" />
+                </p:column>
+
+                <p:column headerText="Direccion">
+                    <h:outputText value="#{a.entidad.direccion}" />
+                </p:column>
+                <p:column headerText="Correo">
+                    <h:outputText value="#{a.entidad.correo}" />
+                </p:column>
+
+                <p:column headerText="Usuario">
+                    <h:outputText value="#{a.usuario}" />
+                </p:column>
+
+                <p:column headerText="Eliminar">
+                    <p:commandButton value="Eliminar" action="#{administradorBean.delete(a)}"/>
+                </p:column>
+                <p:column headerText="Editar/Guardar">
+                    <p:commandButton value="Editar" action="#{administradorBean.edit(a)}"  rendered="#{not a.editable}" />
+                    <p:commandButton value="Guardar" action="#{administradorBean.edit(a)}" rendered="#{a.editable}"   />
+                </p:column>
+            </p:dataTable>
+        </div>
+    </h:body>
+</html>
