@@ -4,19 +4,6 @@ import jakarta.enterprise.context.RequestScoped;
 import jakarta.faces.application.FacesMessage;
 import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
-import java.io.IOException;
-import java.net.Authenticator;
-import java.net.CookieHandler;
-import java.net.ProxySelector;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.time.Duration;
-import java.util.Optional;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.Executor;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.SSLParameters;
 import org.primefaces.PrimeFaces;
 
 /**
@@ -55,6 +42,7 @@ public class UserLoginView {
             loggedIn = true;
             message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenido", username);
             
+            redireccionar();
             
         } else {
             loggedIn = false;
@@ -63,6 +51,14 @@ public class UserLoginView {
 
         FacesContext.getCurrentInstance().addMessage(null, message);
         PrimeFaces.current().ajax().addCallbackParam("loggedIn", loggedIn);
+        
     }
+    
+    
+    
+    public String redireccionar (){
+        return "http://localhost:8080/Sistema_Farmacia/vista/cliente/Cliente.xhtml";
+    }
+    
 
 }
