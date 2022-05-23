@@ -64,7 +64,12 @@ public class CategoriaBean implements Serializable {
 
     public List<Categoria> getList() {
         return list;
-    }                                    //un arreglo de categorias 
+    }                               
+    
+//    public Categoria[] getList() { //este metodo tambien se lo modifica
+//        return list.toArray(new Categoria[0]);// Lo que necesita el JSF dentro del table es un
+//                                              //arreglo no una lista por lo que convierto de lista a arreglo
+//    }                                         //un arreglo de categorias //un arreglo de categorias 
 
     public List<String> categoriaNombre() {
         List<String> listaNombres = new ArrayList<>();

@@ -9,15 +9,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
        xmlns:h="http://xmlns.jcp.org/jsf/html"
        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
        xmlns:p="http://primefaces.org/ui"
-       template="/WEB-INF/template.xhtml">
+       template="../WEB-INF/template.xhtml">
     <h:head>
         <title>Lista de Usuarios</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <h:outputStylesheet name="./css/Login.css"/>
     </h:head>
-<h:body>
+    <ui:include src="../menu/menu.xhtml" />
+    <h:body>
         <div class="card">
-            <p:dataTable id="usuarios" var="user" value="">
+            <p:dataTable id="users" var="u" value="#{usuarioBean.list}">
                 <f:facet name="header">
                     <div class="p-d-flex p-jc-between p-ai-center">
                         Lista de Usuarios
@@ -30,22 +30,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 </f:facet>
 
                 <p:column headerText="Id">
-                    <h:outputText value="" />
+                    <h:outputText value="#{u.id}" />
                 </p:column>
 
                 <p:column headerText="Contraseña">
-                    <h:outputText value="" />
+                    <h:outputText value="#{u.contrasenia}" />
                 </p:column>
 
                 <p:column headerText="Rol">
-                    <h:outputText value="" />
+                    <h:outputText value="#{u.rol}" />
                 </p:column>
 
                 <p:column headerText="Administrador">
-                    <h:outputText value="" />
+                    <h:outputText value="#{u.administrador}" />
                 </p:column>
 
- 
+
             </p:dataTable>
         </div>
     </h:body>

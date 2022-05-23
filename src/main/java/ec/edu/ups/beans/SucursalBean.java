@@ -21,8 +21,7 @@ public class SucursalBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EJB
-    private SucursalFacade sucursalFacade;
-    ;//mando mi fachada
+    private SucursalFacade sucursalFacade;//mando mi fachada
     private List<Sucursal> list = new ArrayList<>();// lista de Sucursales , se usa el List por el findAll()
     private int id;
     private String direccion;
