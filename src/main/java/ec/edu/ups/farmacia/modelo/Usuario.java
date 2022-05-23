@@ -10,6 +10,10 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Transient;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 /**
  *
@@ -22,46 +26,40 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    private String usuario;
     private String contrasenia;
-    private Rol rol;
-    private Empleado empleado;
-    private Administrador administrador;
-    private Cliente cliente;
+    private String rol;
+    @OneToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "entidad_id", nullable = false, referencedColumnName = "id")
+    private Entidad entidad;
     @Transient
-    private boolean editable;//se añade este atribtuo editable el cual me va a permitir 
-    //activar o desactivar la tabla para que esten cajas de texto en formato input o output
-    //Sin embargo este atributo no necesito guardarlo en la BD por ello pongo la anotacion Transient
+    private boolean editable;
 
     public Usuario() {
     }
 
-    public boolean isEditable() {
-        return editable;
-    }
-
-    public void setEditable(boolean editable) {
-        this.editable = editable;
-    }
-
-    public Usuario(int id, String contrasenia, Rol rol, Empleado empleado) {
+    public Usuario(int id, String usuario, String contrasenia, String rol, Entidad entidad) {
         this.id = id;
+        this.usuario = usuario;
         this.contrasenia = contrasenia;
         this.rol = rol;
-        this.empleado = empleado;
+        this.entidad = entidad;
     }
 
-    public Usuario(int id, String contrasenia, Rol rol, Administrador administrador) {
-        this.id = id;
-        this.contrasenia = contrasenia;
-        this.rol = rol;
-        this.administrador = administrador;
+    public int getId() {
+        return id;
     }
 
-    public Usuario(int id, String contrasenia, Rol rol, Cliente cliente) {
+    public void setId(int id) {
         this.id = id;
-        this.contrasenia = contrasenia;
-        this.rol = rol;
-        this.cliente = cliente;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getContrasenia() {
@@ -72,75 +70,55 @@ public class Usuario implements Serializable {
         this.contrasenia = contrasenia;
     }
 
-    public Rol getRol() {
+    public String getRol() {
         return rol;
     }
 
-    public void setRol(Rol rol) {
+    public void setRol(String rol) {
         this.rol = rol;
     }
 
-    public Empleado getEmpleado() {
-        return empleado;
+    public Entidad getEntidad() {
+        return entidad;
     }
 
-    public void setEmpleado(Empleado empleado) {
-        this.empleado = empleado;
+    public void setEntidad(Entidad entidad) {
+        this.entidad = entidad;
     }
 
-    public Administrador getAdministrador() {
-        return administrador;
+    public boolean isEditable() {
+        return editable;
     }
 
-    public void setAdministrador(Administrador administrador) {
-        this.administrador = administrador;
-    }
-
-    public Cliente getCliente() {
-        return cliente;
-    }
-
-    public void setCliente(Cliente cliente) {
-        this.cliente = cliente;
-    }
-    
-    
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setEditable(boolean editable) {
+        this.editable = editable;
     }
 
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (int) id;
+        int hash = 7;
+        hash = 17 * hash + this.id;
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Usuario)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Usuario other = (Usuario) object;
-        if (this.id != other.id) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final Usuario other = (Usuario) obj;
+        return this.id == other.id;
     }
 
     @Override
     public String toString() {
-        return "Usuario{" + "id=" + id + ", contrasenia=" + contrasenia + ", rol=" + rol + ", empleado=" + empleado + ", administrador=" + administrador + ", cliente=" + cliente + '}';
+        return "Usuario{" + "id=" + id + ", usuario=" + usuario + ", contrasenia=" + contrasenia + ", rol=" + rol + ", entidad=" + entidad + ", editable=" + editable + '}';
     }
 
-    
-    
-
-    
 }

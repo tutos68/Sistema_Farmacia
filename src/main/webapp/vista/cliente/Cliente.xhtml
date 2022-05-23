@@ -91,69 +91,84 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 font-weight: bold;
             }
         </style>
-        <h:form>
-            <div class="card">
-                <h2>Datos personales del Cliente</h2>
-                <div class="p-grid ui-fluid">
-                    <div class="p-col-12 p-md-4">
-                        <p:outputLabel  value="Cedula:"/>
-                        <div class="ui-inputgroup">
-                            <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                            <p:inputText placeholder="Cedula:"/>
-                        </div>
-                    </div>
-                    <div class="p-col-12 p-md-4">
-                        <p:outputLabel  value="Apellido"/>
-                        <div class="ui-inputgroup">
-
-                            <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                            <p:inputText placeholder="Apellido"/>
-                        </div>
-                    </div>
-                    <div class="p-col-12 p-md-4">
-                        <p:outputLabel value="Nombre:"/>
-                        <div class="ui-inputgroup">
-
-                            <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                            <p:inputText placeholder="Nombre:"/>
-                        </div>
-                    </div>
-
-                    <div class="p-col-12 p-md-4">
-                        <p:outputLabel  value="Telefono:"/>
-                        <div class="ui-inputgroup">
-                            <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                            <p:inputText placeholder="Telefono:"/>
-                        </div>
-                    </div>
-
-
-                    <div class="p-col-12 p-md-4">
-                        <p:outputLabel value="Direcion:"/>
-                        <div class="ui-inputgroup">
-                            <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                            <p:inputText placeholder="Direccion:"/>
-                        </div>
-                    </div>
-
-                    <div class="p-col-12 p-md-4">
-                        <p:outputLabel value="Correo:"/>
-                        <div class="ui-inputgroup">
-                            <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                            <p:inputText placeholder="Correo:"/>
-                        </div>
-                    </div>
-                    <div class="p-field p-col-12 p-md-4">
-                        <p:outputLabel for="navigator" value="Fecha de Nacimiento"/>
-                        <p:datePicker id="navigator" value="" monthNavigator="true" yearNavigator="true" showWeek="true"/>
-                    </div>
+        <div class="container">
+            <div class="row">
+                <div class="col">
                 </div>
-                <h5></h5>
-                <p:button value="Guardar" />
-                <p:button value="Cancelar"/>
+                <div class="col">
+                    <h:form>
+                        <p:growl id="messages"/>
+                        <div class="card">
+                            <h2>Datos personales del Cliente</h2>
+                            <div class="p-grid ui-fluid">
+                                <div class="p-col-12 p-md-4">
+                                    <p:outputLabel  value="Cedula:"/>
+                                    <div class="ui-inputgroup">
+                                        <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                                        <p:inputText placeholder="Cedula:"/>
+                                    </div>
 
+                                    <p:outputLabel  value="Apellido"/>
+                                    <div class="ui-inputgroup">
+
+                                        <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                                        <p:inputText placeholder="Apellido"/>
+                                    </div>
+
+                                    <p:outputLabel value="Nombre:"/>
+                                    <div class="ui-inputgroup">
+
+                                        <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                                        <p:inputText placeholder="Nombre:"/>
+                                    </div>
+
+                                    <p:outputLabel  value="Telefono:"/>
+                                    <div class="ui-inputgroup">
+                                        <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                                        <p:inputText placeholder="Telefono:"/>
+                                    </div>
+
+                                    <p:outputLabel value="Direcion:"/>
+                                    <div class="ui-inputgroup">
+                                        <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                                        <p:inputText placeholder="Direccion:"/>
+                                    </div>
+
+                                    <p:outputLabel value="Correo:"/>
+                                    <div class="ui-inputgroup">
+                                        <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                                        <p:inputText placeholder="Correo:"/>
+                                    </div>
+
+                                    <p:outputLabel for="navigator" value="Fecha de Nacimiento:"/>
+                                    <div class="ui-inputgroup">
+                                        <p:datePicker id="navigator" value="" monthNavigator="true" yearNavigator="true" showWeek="true"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
+
+                                    </div>
+                                    <div class="col">
+                                        <p:button value="Guardar" />
+                                    </div>
+                                    <div class="col">
+                                        <p:button value="Cancelar"/>
+                                    </div>
+                                    <div class="col">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+                <div class="col">
+
+                </div>
             </div>
-        </h:form>
-
+        </div>
     </h:body>
 </html>

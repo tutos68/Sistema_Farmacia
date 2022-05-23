@@ -10,34 +10,73 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:p="http://primefaces.org/ui" 
       template="/WEB-INF/template.xhtml">
+
     <h:head>
         <title>TODO supply a title</title>
         <h:outputStylesheet name="./css/Login.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" 
+              rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous"/>
+
     </h:head>
     <h:body>
-        <h2>Iniciar Sesión</h2>
-        <div class="card">
-           
-                <h:form>
-                    <div class="p-field">
-                        <p:outputLabel for="username1" styleClass="p-d-block">Usuario</p:outputLabel>
-                        <p:inputText id="username1" styleClass="p-d-block"/>
-                    </div>
-                    <div class="p-field">
-                        <p:outputLabel for="username1" styleClass="p-d-block">Contraceña</p:outputLabel>
-                        <p:password id="toggle" value="#{passwordView.password6}" toggleMask="true" redisplay="true"/>
-                    </div>
-                    <div class="p-field">
-                        <p:button value="Iniciar" />
-                        <p:button value="Cancelar" styleClass="ui-button-secondary" />
-                    </div>
-                    <div class="p-field">
-                        <p:button value="Registrarse" styleClass="ui-button-success ui-button-flat" />
-                    </div>
-                </h:form>
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                </div>
+                <div class="col">
+                    <div class="container">
+                        <div class="row">
+                            <h2 class="text-center">Iniciar Sesión</h2>
+                        </div>
+                        <h:form>
+                            <div class="row">
+                                <h3 class="text-center">Usuario</h3>
+                            </div>
+                            <div class="row">
+                                <p:inputText id="username1" styleClass="p-d-block" value="#{usuarioBean.usuario}"/>
+                            </div> 
 
+                            <div class="row">
+                                <h3 class="text-center">Contraseña</h3>
+                            </div>
+                            <div class="row">
+                                <p:password id="toggle" value="#{usuarioBean.contrasenia}" redisplay="true"/>
+                            </div> <br/>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col">
 
-           
+                                    </div>
+                                    <div class="col">
+                                        <p:commandButton value="Iniciar" action="#{usuarioBean.iniciarSesion}"  />
+                                    </div>
+                                    <div class="col">
+                                        <p:commandButton value="Cancelar" styleClass="ui-button-secondary" />
+                                    </div>
+                                    <div class="col">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <div class="row">
+                                <div class="col">
+
+                                </div>
+                                <div class="col">
+                                    <p:button value="Registrarse" styleClass="ui-button-success ui-button-flat" />
+                                </div>
+                                <div class="col"> 
+                                </div>
+                            </div>
+
+                        </h:form>
+                    </div>
+
+                </div>
+                <div class="col"> 
+                </div>      
+            </div>
         </div>
     </h:body>
     <footer>
