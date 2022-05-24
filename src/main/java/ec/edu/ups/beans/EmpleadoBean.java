@@ -12,13 +12,9 @@ import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
-import jakarta.persistence.Temporal;
-import jakarta.validation.constraints.Future;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -28,9 +24,9 @@ import java.util.List;
 @Named
 @SessionScoped
 public class EmpleadoBean implements Serializable {
-    
+
     @EJB
-    private EmpleadoFacade EJBEmpleadoFacade;
+    private EmpleadoFacade empleadoFacade;
     @EJB
     private SucursalFacade EJBSucursalFacade;
     private List<Empleado> listaEmpleado = new ArrayList<>();
@@ -47,7 +43,29 @@ public class EmpleadoBean implements Serializable {
     private String cargo = "EMPLEADO";
     private double sueldo;
     private Date fechaIngreso;
-    
+
+    @PostConstruct
+    public void init() {
+        this.empleado = new Empleado();
+        this.sucursal = new Sucursal();
+        listaEmpleado = empleadoFacade.findAll();
+        listaSucursals = EJBSucursalFacade.findAll();
+    }
+
+    public void registrar() {
+        try {
+            //empleado.setSucursal(sucursal);
+            empleadoFacade.create(new Empleado(fechaIngreso, cargo, sueldo, sucursal, id, identificador, nombre, apellido, correo, direccion, telefono));
+        } catch (Exception e) {
+            System.out.println("No ingreso" + e);
+        }
+    }
+
+    public String add() {
+        empleadoFacade.create(new Empleado(fechaIngreso, cargo, sueldo, sucursal, id, identificador, nombre, apellido, correo, direccion, telefono));
+        listaEmpleado = empleadoFacade.findAll();//llamo al findall para que se me actualice la lista
+        return null;
+    }
 
     public List<Empleado> getListaEmpleado() {
         return listaEmpleado;
@@ -152,22 +170,5 @@ public class EmpleadoBean implements Serializable {
     public void setFechaIngreso(Date fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
-    
-    
-    @PostConstruct
-    public void  init(){
-        this.empleado = new Empleado();
-        this.sucursal = new Sucursal();
-        listaEmpleado = EJBEmpleadoFacade.findAll();
-        listaSucursals = EJBSucursalFacade.findAll();
-    }
-    
-    public void registrar(){
-        try {
-            //empleado.setSucursal(sucursal);
-            EJBEmpleadoFacade.create(new Empleado(fechaIngreso, cargo, sueldo, sucursal, id, identificador, nombre, apellido, correo, direccion, telefono));
-        } catch (Exception e) {
-            System.out.println("No ingreso"+ e);
-        }
-    }
+
 }
