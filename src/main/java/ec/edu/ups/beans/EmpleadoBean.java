@@ -5,14 +5,19 @@
 package ec.edu.ups.beans;
 
 import ec.edu.ups.farmacia.controlador.EmpleadoFacade;
+import ec.edu.ups.farmacia.controlador.SucursalFacade;
 import ec.edu.ups.farmacia.modelo.Empleado;
 import ec.edu.ups.farmacia.modelo.Sucursal;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
+import jakarta.persistence.Temporal;
+import jakarta.validation.constraints.Future;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -23,11 +28,15 @@ import java.util.List;
 @Named
 @SessionScoped
 public class EmpleadoBean implements Serializable {
-
-    private static final long serialVersionUID = 1L;
+    
     @EJB
-    private EmpleadoFacade empleadoFacade;
-    private List<Empleado> list = new ArrayList<>();// lista de Clientes , se usa el List por el findAll()
+    private EmpleadoFacade EJBEmpleadoFacade;
+    @EJB
+    private SucursalFacade EJBSucursalFacade;
+    private List<Empleado> listaEmpleado = new ArrayList<>();
+    private List<Sucursal> listaSucursals = new ArrayList<>();
+    private Sucursal sucursal;
+    private Empleado empleado;
     private int id;
     private String identificador;
     private String nombre;
@@ -35,54 +44,41 @@ public class EmpleadoBean implements Serializable {
     private String correo;
     private String direccion;
     private String telefono;
-    private GregorianCalendar fechaIngreso;
-    private String cargo;
+    private String cargo = "EMPLEADO";
     private double sueldo;
-    private Sucursal sucursal;
+    private Date fechaIngreso;
+    
 
-    @PostConstruct
-    public void init() {//este metodo init se va a ejecutar despues 
-        list = empleadoFacade.findAll();//de que se ha creado o visualizado el JSF o el bean
+    public List<Empleado> getListaEmpleado() {
+        return listaEmpleado;
     }
 
-    public String add() {
-        empleadoFacade.create(new Empleado(fechaIngreso, cargo, sueldo, sucursal, id, identificador, nombre, apellido, correo, direccion, telefono));
-        list = empleadoFacade.findAll();
-        return null;
+    public void setListaEmpleado(List<Empleado> listaEmpleado) {
+        this.listaEmpleado = listaEmpleado;
     }
 
-    public String delete(Empleado e) {
-        empleadoFacade.remove(e);
-        list = empleadoFacade.findAll();
-        return null;
+    public List<Sucursal> getListaSucursals() {
+        return listaSucursals;
     }
 
-    public String edit(Empleado e) {
-        e.setEditable(true);
-        return null;
+    public void setListaSucursals(List<Sucursal> listaSucursals) {
+        this.listaSucursals = listaSucursals;
     }
 
-    public String save(Empleado e) {
-        empleadoFacade.edit(e);
-        list = empleadoFacade.findAll();
-        e.setEditable(false);
-        return null;
+    public Sucursal getSucursal() {
+        return sucursal;
     }
 
-    public EmpleadoFacade getEmpleadoFacade() {
-        return empleadoFacade;
+    public void setSucursal(Sucursal sucursal) {
+        this.sucursal = sucursal;
     }
 
-    public void setEmpleadoFacade(EmpleadoFacade empleadoFacade) {
-        this.empleadoFacade = empleadoFacade;
+    public Empleado getEmpleado() {
+        return empleado;
     }
 
-    public List<Empleado> getList() {
-        return list;
-    }
-
-    public void setList(List<Empleado> list) {
-        this.list = list;
+    public void setEmpleado(Empleado empleado) {
+        this.empleado = empleado;
     }
 
     public int getId() {
@@ -141,22 +137,6 @@ public class EmpleadoBean implements Serializable {
         this.telefono = telefono;
     }
 
-    public GregorianCalendar getFechaIngreso() {
-        return fechaIngreso;
-    }
-
-    public void setFechaIngreso(GregorianCalendar fechaIngreso) {
-        this.fechaIngreso = fechaIngreso;
-    }
-
-    public String getCargo() {
-        return cargo;
-    }
-
-    public void setCargo(String cargo) {
-        this.cargo = cargo;
-    }
-
     public double getSueldo() {
         return sueldo;
     }
@@ -165,12 +145,29 @@ public class EmpleadoBean implements Serializable {
         this.sueldo = sueldo;
     }
 
-    public Sucursal getSucursal() {
-        return sucursal;
+    public Date getFechaIngreso() {
+        return fechaIngreso;
     }
 
-    public void setSucursal(Sucursal sucursal) {
-        this.sucursal = sucursal;
+    public void setFechaIngreso(Date fechaIngreso) {
+        this.fechaIngreso = fechaIngreso;
     }
-
+    
+    
+    @PostConstruct
+    public void  init(){
+        this.empleado = new Empleado();
+        this.sucursal = new Sucursal();
+        listaEmpleado = EJBEmpleadoFacade.findAll();
+        listaSucursals = EJBSucursalFacade.findAll();
+    }
+    
+    public void registrar(){
+        try {
+            //empleado.setSucursal(sucursal);
+            EJBEmpleadoFacade.create(new Empleado(fechaIngreso, cargo, sueldo, sucursal, id, identificador, nombre, apellido, correo, direccion, telefono));
+        } catch (Exception e) {
+            System.out.println("No ingreso"+ e);
+        }
+    }
 }
