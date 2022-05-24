@@ -15,14 +15,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         <h:outputStylesheet name="./css/Login.css"/>
     </h:head>
     <!-- comment --><ui:include src="../menu/menuDinamico.xhtml" />
-     <ui:include src="../menu/menuDinamico.xhtml" />
+    <ui:include src="../menu/menuDinamico.xhtml" />
     <h:body>
         <div class="container">
             <div class="row">
                 <div class="col">
                 </div>
                 <div class="col">
-                    <h:form style="margin:20px">
+                    <h:form style="margin:20px;border-style: solid;border-width: 2" >
                         <div class="card">
                             <h2>DATOS ADMINISTRADOR</h2>
                             <div class="p-grid ui-fluid">
@@ -84,24 +84,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                                     </div>
                                 </div>
                             </div>
-                            <h5></h5>
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col">
-
+                
+                            
+                                    <div style="margin:10px 20px">
+                                        <p:commandButton  style="margin-right: 20px"  value="Guardar" styleClass="ui-button-raised" action="#{administradorBean.add}" />   
+                                        <p:commandButton   value="Cancelar"  styleClass="ui-button-raised ui-button-danger"/>
                                     </div>
-                                    <div class="col">
-                                        <p:commandButton   value="Guardar" styleClass="ui-button-raised" action="#{administradorBean.add}" />   
-
-                                    </div>
-                                    <div class="col">
-                                        <p:button   value="Cancelar"  styleClass="ui-button-raised ui-button-danger"/>
-                                    </div>
-                                    <div class="col">
-
-                                    </div>
-                                </div>
-                            </div>
+                                
                         </div>
                     </h:form>
                 </div>
@@ -112,5 +101,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
             </div>
         </div>
     </h:body>
+    <ui:include src="../menu/footer.xhtml" />
 </html>
 

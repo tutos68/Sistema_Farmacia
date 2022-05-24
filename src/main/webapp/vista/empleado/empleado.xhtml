@@ -97,7 +97,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 <div class="col">
                 </div>
                 <div class="col" >
-                    <h:form style="margin:20px"> 
+                    <h:form style="margin:20px;border-style: solid;border-width: 2" >
                         <div class="card"   >
                             <h2>Datos personales del Empleado</h2>
                             <div class="p-grid ui-fluid">
@@ -161,6 +161,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                                         <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
                                         <p:datePicker pattern="dd-MM-yyyy" id="navigator" value="#{empleadoBean.fechaIngreso}" monthNavigator="true" yearNavigator="true" showWeek="true"/>
                                     </div>
+                                    <p:outputLabel value="Usuario:"/>
+                                    <div class="ui-inputgroup">
+                                        <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                                        <p:inputText placeholder="Usuario:" value="#{administradorBean.usuario}" />
+                                    </div>
+
+                                    <p:outputLabel value="Contraseña:"/>
+                                    <div class="ui-inputgroup">
+                                        <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                                        <p:password id="clave1" placeholder="Contraseña:" value="#{usuarioBean.contrasenia}"  match="clave2" promptLabel="Ingrese una Contraceña" validatorMessage="Las Claves no coinciden" feedback="true"/>
+                                    </div>
+
+                                    <p:outputLabel value="Repetir Contraseña:"/>
+                                    <div class="ui-inputgroup">
+                                        <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                                        <p:password id="clave2" placeholder="Repetir Contraseña:" value="Repetir Contraceña"/>
+                                    </div>
+
                                 </div>
                             </div>
                             <div style="margin:10px 20px">
@@ -170,11 +188,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                             </div>
                         </div>
                     </h:form>
-                      </div>
-                    <div class="col">
-                    </div>
+                </div>
+                <div class="col">
                 </div>
             </div>
+        </div>
     </h:body>
+    <ui:include src="../menu/footer.xhtml" />
 </html>
 
