@@ -9,9 +9,9 @@ import java.io.Serializable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
-import java.util.GregorianCalendar;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import java.util.Date;
 
 /**
  *
@@ -22,7 +22,7 @@ import jakarta.persistence.OneToOne;
 public class Empleado extends Entidad implements Serializable {
 
     @Temporal(TemporalType.DATE)
-    private GregorianCalendar fechaIngreso;
+    private Date fechaIngreso;
     private String cargo;
     private double sueldo;
     @OneToOne
@@ -32,7 +32,7 @@ public class Empleado extends Entidad implements Serializable {
     public Empleado() {
     }
 
-    public Empleado(GregorianCalendar fechaIngreso, String cargo, double sueldo, Sucursal sucursal, int id, String identificador, String nombre, String apellido, String correo, String direccion, String telefono) {
+    public Empleado(Date fechaIngreso, String cargo, double sueldo, Sucursal sucursal, int id, String identificador, String nombre, String apellido, String correo, String direccion, String telefono) {
         super(id, identificador, nombre, apellido, correo, direccion, telefono);
         this.fechaIngreso = fechaIngreso;
         this.cargo = cargo;
@@ -40,11 +40,11 @@ public class Empleado extends Entidad implements Serializable {
         this.sucursal = sucursal;
     }
 
-    public GregorianCalendar getFechaIngreso() {
+    public Date getFechaIngreso() {
         return fechaIngreso;
     }
 
-    public void setFechaIngreso(GregorianCalendar fechaIngreso) {
+    public void setFechaIngreso(Date fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
     }
 

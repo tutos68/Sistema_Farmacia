@@ -99,7 +99,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                         <p:outputLabel  value="Cedula:"/>
                         <div class="ui-inputgroup">
                             <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                            <p:inputText placeholder="Cedula:"/>
+                            <p:inputText placeholder="Cedula:" value="#{empleadoBean.identificador}"/>
                         </div>
                     </div>
                     <div class="p-col-12 p-md-4">
@@ -107,7 +107,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                         <div class="ui-inputgroup">
 
                             <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                            <p:inputText placeholder="Apellido"/>
+                            <p:inputText placeholder="Apellido" value="#{empleadoBean.apellido}"/>
                         </div>
                     </div>
                     <div class="p-col-12 p-md-4">
@@ -115,7 +115,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                         <div class="ui-inputgroup">
 
                             <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                            <p:inputText placeholder="Nombre:"/>
+                            <p:inputText placeholder="Nombre:" value="#{empleadoBean.nombre}"/>
                         </div>
                     </div>
 
@@ -123,7 +123,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                         <p:outputLabel  value="Telefono:"/>
                         <div class="ui-inputgroup">
                             <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                            <p:inputText placeholder="Telefono:"/>
+                            <p:inputText placeholder="Telefono:" value="#{empleadoBean.telefono}" />
                         </div>
                     </div>
 
@@ -132,7 +132,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                         <p:outputLabel value="Direccion:"/>
                         <div class="ui-inputgroup">
                             <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                            <p:inputText placeholder="Direccion:"/>
+                            <p:inputText placeholder="Direccion:" value="#{empleadoBean.direccion}" />
                         </div>
                     </div>
 
@@ -140,23 +140,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                         <p:outputLabel value="Sueldo:"/>
                         <div class="ui-inputgroup">
                             <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                            <p:inputText placeholder="Sueldo:"/>
+                            <p:inputText placeholder="Sueldo:" value="#{empleadoBean.sueldo}" />
                         </div>
                     </div>
                     
-                    <div class="p-col-12 p-md-4">
-                        <p:outputLabel value="Cargo:"/>
-                        <div class="ui-inputgroup">
-                            <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                            <p:inputText placeholder="Cargo:"/>
-                        </div>
-                    </div>
                     
                     <div class="p-col-12 p-md-4">
                         <p:outputLabel value="Sucursal:"/>
                         <div class="ui-inputgroup">
                             <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                            <p:inputText placeholder="Sucursal:"/>
+                            <p:selectOneMenu id="labeled" value="#{empleadoBean.sucursal.id}"   style="width: 30%"  >    
+                                <f:selectItems value="#{empleadoBean.listaSucursals}" var="su" itemLabel="#{su.nombreClave}" itemValue="#{su.id}"/>
+                            </p:selectOneMenu>
                         </div>
                     </div>
                     
@@ -164,22 +159,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                         <p:outputLabel value="Correo:"/>
                         <div class="ui-inputgroup">
                             <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                            <p:inputText placeholder="Correo:"/>
+                            <p:inputText placeholder="Correo:" value="#{empleadoBean.correo}"/>
                         </div>
                     </div>
 
-                    
-                    
-                    
-                    
                     <div class="p-field p-col-12 p-md-4">
-                        <p:outputLabel for="multiselect" value="Fecha de Ingreso"/>
-                        <p:datePicker id="multiselect" selectionMode="multiple" value="" readonlyInput="true"/>
+                        <p:outputLabel for="navigator" value="Navigator"/>
+                        <p:datePicker pattern="dd-MM-yyyy" id="navigator" value="#{empleadoBean.fechaIngreso}" monthNavigator="true" yearNavigator="true" showWeek="true"/>
                     </div>
-
+                    
                 </div>
                 <h5></h5>
-                <p:button value="Guardar" />
+                <p:commandButton value="Guardar" actionListener="#{empleadoBean.registrar()}"/>
                 <p:button value="Cancelar"/>
 
             </div>
