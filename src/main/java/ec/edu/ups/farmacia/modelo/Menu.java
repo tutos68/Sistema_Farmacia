@@ -23,20 +23,21 @@ public class Menu implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private int id;
     private String nombre;
     private String tipo;
     private String tipoUsuario;
+    private String url;
     @ManyToOne
     @JoinColumn(name = "codigo_submenu")
     private Menu codigo_submenu;
     private boolean estado;
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -72,15 +73,12 @@ public class Menu implements Serializable {
         this.estado = estado;
     }
 
-    public Menu() {
+    public String getUrl() {
+        return url;
     }
 
-    public Menu(Long id, String nombre, String tipo, String tipoUsuario, Menu codigo_submenu) {
-        this.id = id;
-        this.nombre = nombre;
-        this.tipo = tipo;
-        this.tipoUsuario = tipoUsuario;
-        this.codigo_submenu = codigo_submenu;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Menu getCodigo_submenu() {
@@ -91,10 +89,22 @@ public class Menu implements Serializable {
         this.codigo_submenu = codigo_submenu;
     }
 
+    public Menu() {
+    }
+
+    public Menu(int id, String nombre, String tipo, String tipoUsuario, String url, Menu codigo_submenu) {
+        this.id = id;
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.tipoUsuario = tipoUsuario;
+        this.url = url;
+        this.codigo_submenu = codigo_submenu;
+    }
+
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 47 * hash + Objects.hashCode(this.id);
+        int hash = 5;
+        hash = 23 * hash + Objects.hashCode(this.id);
         return hash;
     }
 
@@ -115,7 +125,7 @@ public class Menu implements Serializable {
 
     @Override
     public String toString() {
-        return "Menu{" + "id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", tipoUsuario=" + tipoUsuario + ", codigo_submenu=" + codigo_submenu + ", estado=" + estado + '}';
+        return "Menu{" + "id=" + id + ", nombre=" + nombre + ", tipo=" + tipo + ", tipoUsuario=" + tipoUsuario + ", url=" + url + ", codigo_submenu=" + codigo_submenu + ", estado=" + estado + '}';
     }
 
 }

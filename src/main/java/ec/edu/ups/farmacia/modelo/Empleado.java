@@ -26,7 +26,7 @@ public class Empleado extends Entidad implements Serializable {
     private String cargo;
     private double sueldo;
     @OneToOne
-    @JoinColumn(name = "sucursal_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn(name = "sucursal_id", referencedColumnName = "id")
     private Sucursal sucursal;
 
     public Empleado() {

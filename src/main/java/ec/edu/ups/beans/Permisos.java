@@ -24,7 +24,7 @@ public class Permisos implements Serializable{
             Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
             
             if(us == null){
-                FacesContext.getCurrentInstance().getExternalContext().redirect("../administrador/permisos.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("../administrador/permisos.html");
             }
          } catch (Exception e) {
              System.out.println("No entro");
