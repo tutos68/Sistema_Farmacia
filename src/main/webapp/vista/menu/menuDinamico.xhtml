@@ -10,17 +10,18 @@
         <title>Menu</title>
         <f:event type="preRenderView" listener="#{permisos.verificarSesion}" />
     </h:head>
-    
+
     <h:body>
 
         <div class="card">
             <h:form>
                 <p:growl id="messages"/>
 
-                <p:menubar model="#{menuDinamico.model}"/>
-                   
-                 
-                    
+                <p:menubar model="#{menuDinamico.model}">
+                    <f:facet name="options">
+                        <p:commandButton actionListener="#{menuDinamico.cerrarSesion}"  action="../loginDemo.xhtml" icon="pi pi-fw pi-power-off" />
+                    </f:facet>
+                </p:menubar>
 
             </h:form>
 

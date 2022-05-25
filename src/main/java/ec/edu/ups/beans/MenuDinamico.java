@@ -62,6 +62,8 @@ public class MenuDinamico implements Serializable {
                         if (subMenu.getId() == m.getId()) {
                             DefaultMenuItem item = DefaultMenuItem.builder()
                                     .value(i.getNombre())
+                                    .url(i.getUrl())
+                                    .ajax(false)
                                     .build();
                             firstSubmenu.getElements().add(item);
                         }
@@ -72,6 +74,8 @@ public class MenuDinamico implements Serializable {
                 if (m.getCodigo_submenu() == null && m.getTipoUsuario().equals(us.getRol())) {
                     DefaultMenuItem item = DefaultMenuItem.builder()
                             .value(m.getNombre())
+                            .url(m.getUrl())
+                            .ajax(false)
                             .build();
                     model.getElements().add(item);
                 }

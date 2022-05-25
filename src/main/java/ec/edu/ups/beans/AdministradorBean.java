@@ -7,7 +7,6 @@ package ec.edu.ups.beans;
 import ec.edu.ups.farmacia.controlador.AdministradorFacade;
 import ec.edu.ups.farmacia.controlador.UsuarioFacade;
 import ec.edu.ups.farmacia.modelo.Administrador;
-import ec.edu.ups.farmacia.modelo.Entidad;
 import ec.edu.ups.farmacia.modelo.Usuario;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
