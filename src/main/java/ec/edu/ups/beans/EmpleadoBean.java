@@ -61,10 +61,13 @@ public class EmpleadoBean implements Serializable {
         }
     }
 
-    public String add() {
-        empleadoFacade.create(new Empleado(fechaIngreso, cargo, sueldo, sucursal, id, identificador, nombre, apellido, correo, direccion, telefono));
-        listaEmpleado = empleadoFacade.findAll();//llamo al findall para que se me actualice la lista
-        return null;
+    public void add() {
+        try {
+            empleadoFacade.create(new Empleado(fechaIngreso, cargo, sueldo, sucursal, id, identificador, nombre, apellido, correo, direccion, telefono));
+            listaEmpleado = empleadoFacade.findAll();//llamo al findall para que se me actualice la lista
+        } catch (Exception e) {
+            System.out.println("No ingreso" + e);
+        }
     }
 
     public List<Empleado> getListaEmpleado() {
