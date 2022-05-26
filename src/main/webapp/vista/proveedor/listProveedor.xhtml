@@ -11,15 +11,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
        xmlns:p="http://primefaces.org/ui"
        template="/WEB-INF/template.xhtml">
     <h:head>
-        <title>Lista de Clientes</title>
+        <title>Lista de Proveedores</title>
     </h:head>
     <ui:include src="../menu/menuDinamico.xhtml" />
     <h:body>
         <div class="card">
-            <p:dataTable id="products" var="a" value="#{clienteBean.list}">
+            <p:dataTable id="products" var="a" value="#{proveedorBean.list}">
                 <f:facet name="header">
                     <div class="p-d-flex p-jc-between p-ai-center">
-                        Lista de Clientes
+                        List of Products
 
                         <div>
                             <p:commandButton id="toggler" type="button" value="Columns" icon="pi pi-align-justify"/>
@@ -32,14 +32,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <h:outputText value="#{a.id}" />
                 </p:column>
 
-                <p:column headerText="Cedula">
+                <p:column headerText="RUC">
                     <h:outputText value="#{a.identificador}" />
                 </p:column>
 
-
-                <p:column headerText="Nombre Empresa">
-                    <h:outputText value="#{a.apellido}" />
-                </p:column>
                 <p:column headerText="Nombre Empresa">
                     <h:outputText value="#{a.nombre}" />
                 </p:column>
@@ -51,21 +47,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 <p:column headerText="Direccion">
                     <h:outputText value="#{a.direccion}" />
                 </p:column>
-
                 <p:column headerText="Correo">
                     <h:outputText value="#{a.correo}" />
                 </p:column>
 
-                <p:column headerText="Fecha de Nacimiento">
-                    <h:outputText  value="#{a.fechaNacimiento}"/>
-                </p:column>
 
                 <p:column headerText="Eliminar">
-                    <p:commandButton value="Eliminar" action="#{clienteBean.delete(a)}"/>
+                    <p:commandButton value="Eliminar" action="#{proveedorBean.delete(a)}"/>
                 </p:column>
                 <p:column headerText="Editar/Guardar">
-                    <p:commandButton value="Editar" action="#{clienteBean.edit(a)}"  rendered="#{not a.editable}" />
-                    <p:commandButton value="Guardar" action="#{clienteBean.edit(a)}" rendered="#{a.editable}"   />
+                    <p:commandButton value="Editar" action="#{proveedorBean.edit(a)}"  rendered="#{not a.editable}" />
+                    <p:commandButton value="Guardar" action="#{proveedorBean.edit(a)}" rendered="#{a.editable}"   />
                 </p:column>
             </p:dataTable>
         </div>

@@ -12,6 +12,7 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
@@ -35,7 +36,7 @@ public class ClienteBean implements Serializable {
     private String correo;
     private String direccion;
     private String telefono;
-    private GregorianCalendar fechaNacimiento;
+    private Date fechaNacimiento;
 
     @PostConstruct//Esto es una notacion de EJB que nos dice que
     public void init() {//este metodo init se va a ejecutar despues 
@@ -139,11 +140,11 @@ public class ClienteBean implements Serializable {
         this.telefono = telefono;
     }
 
-    public GregorianCalendar getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(GregorianCalendar fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 

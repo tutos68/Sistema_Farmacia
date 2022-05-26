@@ -6,9 +6,9 @@
     <persistence-unit name="Farmacia">
         <jta-data-source>jdbc/__Farmacia</jta-data-source>
         <properties>
-             <property name="jakarta.persistence.schema-generation.database.action" 
+            <property name="jakarta.persistence.schema-generation.database.action" 
                        value="create"/>
-             <property name="eclipselink.logging.level" value="FINEST"/>   
+            <property name="eclipselink.logging.level" value="FINEST"/>   
         </properties>    
     </persistence-unit>
 </persistence>

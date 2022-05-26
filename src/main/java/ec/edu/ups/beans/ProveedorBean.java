@@ -33,7 +33,7 @@ public class ProveedorBean implements Serializable {
     private String correo;
     private String direccion;
     private String telefono;
-    private Categoria categoria;
+    private String sitioWeb;
 
     @PostConstruct
     public void init() {//este metodo init se va a ejecutar despues 
@@ -41,7 +41,7 @@ public class ProveedorBean implements Serializable {
     }
 
     public String add() {
-        proveedorFacade.create(new Proveedor(categoria, id, identificador, nombre, correo, direccion, telefono));
+        proveedorFacade.create(new Proveedor(sitioWeb, id, identificador, nombre, correo, direccion, telefono));
         list = proveedorFacade.findAll();
         return null;
     }
@@ -128,12 +128,14 @@ public class ProveedorBean implements Serializable {
         this.telefono = telefono;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
+    public String getSitioWeb() {
+        return sitioWeb;
     }
 
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void setSitioWeb(String sitioWeb) {
+        this.sitioWeb = sitioWeb;
     }
+
+   
 
 }

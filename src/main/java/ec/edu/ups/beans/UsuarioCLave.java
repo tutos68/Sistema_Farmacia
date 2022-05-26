@@ -41,7 +41,7 @@ public class UsuarioCLave implements Serializable {
             Menu m1 = new Menu(1, "Cliente", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m1);
             menuFacade.create(new Menu(2, "Nuevo Cliente", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/cliente/cliente.xhtml", m1));
-            menuFacade.create(new Menu(3, "Lista Cliente", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/cliente/listCliente.xhtmll", m1));
+            menuFacade.create(new Menu(3, "Lista Cliente", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/cliente/listCliente.xhtml", m1));
             Menu m4 = new Menu(4, "Empleado", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m4);
             menuFacade.create(new Menu(5, "Nuevo Empleado", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/empleado/empleado.xhtml", m4));
@@ -54,7 +54,7 @@ public class UsuarioCLave implements Serializable {
             menuFacade.create(m10);
             menuFacade.create(new Menu(11, "Nuevo Producto", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/producto/producto.xhtml", m10));
             menuFacade.create(new Menu(12, "Nueva Categoria", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/categoria/categoria.xhtml", m10));
-            menuFacade.create(new Menu(13, "Listar Producto", "I", "ADMINISTRADOR", "//Sistema_Farmacia/vista/producto/listProducto.xhtml", m10));
+            menuFacade.create(new Menu(13, "Listar Producto", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/producto/listProducto.xhtml", m10));
             menuFacade.create(new Menu(14, "Listar Categoria", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/categoria/listCategoria.xhtml", m10));
             Menu m15 = new Menu(15, "Facturas", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m15);
@@ -70,12 +70,12 @@ public class UsuarioCLave implements Serializable {
             Menu m2 = new Menu(23, "Cliente", "S", "EMPLEADO", "/", null);
             menuFacade.create(m2);
             menuFacade.create(new Menu(24, "Nuevo Cliente", "I", "EMPLEADO", "/Sistema_Farmacia/vista/cliente/cliente.xhtml", m2));
-            menuFacade.create(new Menu(25, "Lista Cliente", "I", "EMPLEADO", "/Sistema_Farmacia/vista/cliente/listCliente.xhtmll", m2));
+            menuFacade.create(new Menu(25, "Lista Cliente", "I", "EMPLEADO", "/Sistema_Farmacia/vista/cliente/listCliente.xhtml", m2));
             Menu m6 = new Menu(26, "Productos", "S", "EMPLEADO", "/", null);
             menuFacade.create(m6);
             menuFacade.create(new Menu(27, "Nuevo Producto", "I", "EMPLEADO", "/Sistema_Farmacia/vista/producto/producto.xhtml", m6));
             menuFacade.create(new Menu(28, "Nueva Categoria", "I", "EMPLEADO", "/Sistema_Farmacia/vista/categoria/categoria.xhtml", m6));
-            menuFacade.create(new Menu(29, "Listar Producto", "I", "EMPLEADO", "//Sistema_Farmacia/vista/producto/listProducto.xhtml", m6));
+            menuFacade.create(new Menu(29, "Listar Producto", "I", "EMPLEADO", "/Sistema_Farmacia/vista/producto/listProducto.xhtml", m6));
             menuFacade.create(new Menu(30, "Listar Categoria", "I", "EMPLEADO", "/Sistema_Farmacia/vista/categoria/listCategoria.xhtml", m6));
             Menu m8 = new Menu(31, "Facturas", "S", "EMPLEADO", "/", null);
             menuFacade.create(m8);
@@ -84,6 +84,14 @@ public class UsuarioCLave implements Serializable {
             menuFacade.create(new Menu(34, "Nuevo Factura Venta", "I", "EMPLEADO", "/", m8));
             menuFacade.create(new Menu(35, "Listar Factura Venta", "I", "EMPLEADO", "/", m8));
 
+            Menu m9 = new Menu(36, "Proveedor", "S", "ADMINISTRADOR", "/", null);
+            menuFacade.create(m9);
+            menuFacade.create(new Menu(37, "Nuevo Proveedor", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/proveedor/proveedor.xhtml", m9));
+            menuFacade.create(new Menu(38, "Listar Proveedor", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/proveedor/listProveedor.xhtml", m9));
+            Menu m11 = new Menu(39, "Proveedor", "S", "EMPLEADO", "/", null);
+            menuFacade.create(m11);
+            menuFacade.create(new Menu(40, "Nuevo Proveedor", "I", "EMPLEADO", "/Sistema_Farmacia/vista/proveedor/proveedor.xhtml", m11));
+            menuFacade.create(new Menu(41, "Listar Proveedor", "I", "EMPLEADO", "/Sistema_Farmacia/vista/proveedor/listProveedor.xhtml", m11));
         }
     }
 

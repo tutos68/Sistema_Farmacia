@@ -16,25 +16,26 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Proveedor extends Entidad implements Serializable {
     
-    @OneToOne
-    @JoinColumn(name = "categoria_id", nullable = false, referencedColumnName = "id")
-    private Categoria categoria;
+   private String sitioWeb;
+  
 
     public Proveedor() {
     }
 
-    public Proveedor(Categoria categoria, int id, String identificador, String nombre, String correo, String direccion, String telefono) {
+    public Proveedor(String sitioWeb, int id, String identificador, String nombre, String correo, String direccion, String telefono) {
         super(id, identificador, nombre, correo, direccion, telefono);
-        this.categoria = categoria;
+        this.sitioWeb = sitioWeb;
     }
 
-    public Categoria getCategoria() {
-        return categoria;
+    public String getSitioWeb() {
+        return sitioWeb;
     }
 
-    public void setCategoria(Categoria categoria) {
-        this.categoria = categoria;
+    public void setSitioWeb(String sitioWeb) {
+        this.sitioWeb = sitioWeb;
     }
+
+  
     
     
     

@@ -17,7 +17,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
    <ui:include src="../menu/menuDinamico.xhtml" />
     <h:body>
         <div class="card">
-            <p:dataTable id="products" var="a" value="#{administradorBean.listu}">
+            <p:dataTable id="products" var="a" value="#{administradorBean.listaAdmin()}">
                 <f:facet name="header">
                     <div class="p-d-flex p-jc-between p-ai-center">
                         Lista de Administradores
@@ -40,7 +40,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 <p:column headerText="Apellido">
                     <h:outputText value="#{a.entidad.apellido}" />
                 </p:column>
-                <p:column headerText="Apellido">
+                
+                <p:column headerText="Nombre">
                     <h:outputText value="#{a.entidad.nombre}" />
                 </p:column>
 

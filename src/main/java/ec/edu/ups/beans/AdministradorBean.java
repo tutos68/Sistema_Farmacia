@@ -58,7 +58,6 @@ public class AdministradorBean implements Serializable {
             if (usuarios != null) {
                 usuarioFacade.create(usuarios);
                 administradorFacade.create(administrador);
-
                 list = administradorFacade.findAll();
                 listu = usuarioFacade.findAll();
             } else {
@@ -68,6 +67,19 @@ public class AdministradorBean implements Serializable {
             System.out.println("No sirve 2");
         }
         return null;
+    }
+
+    public List<Usuario> listaAdmin() {
+        List<Usuario> listasUU = usuarioFacade.findAll();
+        List<Usuario> listasUuU = new ArrayList<>();
+        for (Usuario usuario1 : listasUU) {
+
+            if (usuario1.getRol().equals("ADMINISTRADOR")) {
+               
+                listasUuU.add(usuario1);
+            }
+        }
+        return listasUuU;
     }
 
     public String delete(Usuario u) {

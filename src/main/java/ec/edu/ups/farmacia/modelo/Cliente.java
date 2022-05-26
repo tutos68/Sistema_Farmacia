@@ -10,38 +10,37 @@ import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
  *
  * @author edwin
  */
-@NamedQuery(name="getByLevel",
-            query = "SELECT c FROM Cliente c WHERE c.id >= :level")
+@NamedQuery(name = "getByLevel",
+        query = "SELECT c FROM Cliente c WHERE c.id >= :level")
 @Entity
 @Table(name = "cliente")
 
 public class Cliente extends Entidad implements Serializable {
-    
+
     @Temporal(TemporalType.DATE)
-    private GregorianCalendar fechaNacimiento;
+    private Date fechaNacimiento;
 
     public Cliente() {
     }
-    
-    public Cliente(GregorianCalendar fechaNacimiento, int id, String identificador, String nombre, String apellido, String correo, String direccion, String telefono) {
+
+    public Cliente(Date fechaNacimiento, int id, String identificador, String nombre, String apellido, String correo, String direccion, String telefono) {
         super(id, identificador, nombre, apellido, correo, direccion, telefono);
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public GregorianCalendar getFechaNacimiento() {
+    public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(GregorianCalendar fechaNacimiento) {
+    public void setFechaNacimiento(Date fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
-  
-    
-    
+
 }
