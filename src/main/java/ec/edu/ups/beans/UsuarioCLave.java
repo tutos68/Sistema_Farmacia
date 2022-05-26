@@ -41,7 +41,7 @@ public class UsuarioCLave implements Serializable {
             Menu m1 = new Menu(1, "Cliente", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m1);
             menuFacade.create(new Menu(2, "Nuevo Cliente", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/cliente/cliente.xhtml", m1));
-            menuFacade.create(new Menu(3, "Lista Cliente", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/cliente/listCliente.xhtml", m1));
+            menuFacade.create(new Menu(3, "Listar Cliente", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/cliente/listCliente.xhtml", m1));
             Menu m4 = new Menu(4, "Empleado", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m4);
             menuFacade.create(new Menu(5, "Nuevo Empleado", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/empleado/empleado.xhtml", m4));
@@ -70,7 +70,7 @@ public class UsuarioCLave implements Serializable {
             Menu m2 = new Menu(23, "Cliente", "S", "EMPLEADO", "/", null);
             menuFacade.create(m2);
             menuFacade.create(new Menu(24, "Nuevo Cliente", "I", "EMPLEADO", "/Sistema_Farmacia/vista/cliente/cliente.xhtml", m2));
-            menuFacade.create(new Menu(25, "Lista Cliente", "I", "EMPLEADO", "/Sistema_Farmacia/vista/cliente/listCliente.xhtml", m2));
+            menuFacade.create(new Menu(25, "Listar Cliente", "I", "EMPLEADO", "/Sistema_Farmacia/vista/cliente/listCliente.xhtml", m2));
             Menu m6 = new Menu(26, "Productos", "S", "EMPLEADO", "/", null);
             menuFacade.create(m6);
             menuFacade.create(new Menu(27, "Nuevo Producto", "I", "EMPLEADO", "/Sistema_Farmacia/vista/producto/producto.xhtml", m6));

@@ -9,10 +9,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
        xmlns:h="http://xmlns.jcp.org/jsf/html"
        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
        xmlns:p="http://primefaces.org/ui"
-      >
+       >
     <h:head>
         <title>Clientes</title>
-        <h:outputStylesheet name="./css/Login.css"/>
+        <h:outputScript name="limpiar.js" library="js" />
     </h:head>
     <ui:include src="../menu/menuDinamico.xhtml" />
     <h:body>
@@ -96,7 +96,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 <div class="col">
                 </div>
                 <div class="col">
-                    <h:form style="margin:20px;border-style: solid;border-width: 2" >
+                    <h:form id="formulario" style="margin:20px;border-style: solid;border-width: 2" >
                         <p:growl id="messages"/>
                         <div class="card">
                             <h2>Datos personalesCliente</h2>
@@ -153,8 +153,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 
                                     </div>
                                     <div style="margin:10px 20px">
-                                        <p:commandButton  style="margin-right: 20px" value="Guardar" styleClass="ui-button-raised" action="#{clienteBean.add}"  />
-                                        <p:commandButton value="Cancelar"  styleClass="ui-button-raised ui-button-danger"/>
+                                        <p:commandButton  style="margin-right: 20px" value="Guardar" styleClass="ui-button-raised" action="#{clienteBean.add}"  oncomplete="validar();"  />
+                                        <p:commandButton value="Cancelar"  styleClass="ui-button-raised ui-button-danger" onclick= 'validar();'/>
                                     </div>
                                     <div class="col">
 

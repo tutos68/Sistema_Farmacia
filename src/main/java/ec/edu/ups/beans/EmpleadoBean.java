@@ -6,8 +6,10 @@ package ec.edu.ups.beans;
 
 import ec.edu.ups.farmacia.controlador.EmpleadoFacade;
 import ec.edu.ups.farmacia.controlador.SucursalFacade;
+import ec.edu.ups.farmacia.controlador.UsuarioFacade;
 import ec.edu.ups.farmacia.modelo.Empleado;
 import ec.edu.ups.farmacia.modelo.Sucursal;
+import ec.edu.ups.farmacia.modelo.Usuario;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.SessionScoped;
@@ -29,11 +31,16 @@ public class EmpleadoBean implements Serializable {
     private EmpleadoFacade empleadoFacade;
     @EJB
     private SucursalFacade EJBSucursalFacade;
+    @EJB
+    private UsuarioFacade usuarioFacade;
     private List<Empleado> listaEmpleado = new ArrayList<>();
+    private List<Usuario> listUsuario = new ArrayList<>(); // lista de Usuarios , se usa el List por el findAll()
     private List<Sucursal> listaSucursals = new ArrayList<>();
     private Sucursal sucursal;
     private Empleado empleado;
     private int id;
+    private String usuario;
+    private String contrasenia;
     private String identificador;
     private String nombre;
     private String apellido;
@@ -46,10 +53,11 @@ public class EmpleadoBean implements Serializable {
 
     @PostConstruct
     public void init() {
-        this.empleado = new Empleado();
-        this.sucursal = new Sucursal();
+       // this.empleado = new Empleado();
+        //this.sucursal = new Sucursal();
         listaEmpleado = empleadoFacade.findAll();
         listaSucursals = EJBSucursalFacade.findAll();
+        listUsuario = usuarioFacade.findAll();
     }
 
     public void registrar() {
@@ -61,13 +69,38 @@ public class EmpleadoBean implements Serializable {
         }
     }
 
-    public void add() {
-        try {
-            empleadoFacade.create(new Empleado(fechaIngreso, cargo, sueldo, sucursal, id, identificador, nombre, apellido, correo, direccion, telefono));
-            listaEmpleado = empleadoFacade.findAll();//llamo al findall para que se me actualice la lista
-        } catch (Exception e) {
-            System.out.println("No ingreso" + e);
+ 
+
+    public String add() {
+        Empleado empleado = new Empleado(id, identificador, nombre, apellido,correo, direccion, telefono, fechaIngreso, cargo, sueldo, sucursal);
+        if (empleado != null) {
+            Usuario usuarios = new Usuario(id, usuario, contrasenia, cargo, empleado);
+            if (usuarios != null) {
+                usuarioFacade.create(usuarios);
+                empleadoFacade.create(empleado);
+                listaEmpleado = empleadoFacade.findAll();
+                listUsuario = usuarioFacade.findAll();
+            } else {
+                System.out.println("No sirve 1");
+            }
+        } else {
+            System.out.println("No sirve 2");
         }
+        return null;
+    }
+    
+       public List<Usuario> listaEmpleados() {
+        List<Usuario> listaU = usuarioFacade.findAll();
+        List<Usuario> listasUuU = new ArrayList<>();
+        for (Usuario usuario1 : listaU) {
+
+            if (usuario1.getRol().equals("EMPLEADO")) {
+
+                listasUuU.add(usuario1);
+                System.out.println("fdf "+usuario1);
+            }
+        }
+        return listasUuU;
     }
 
     public List<Empleado> getListaEmpleado() {
@@ -172,6 +205,62 @@ public class EmpleadoBean implements Serializable {
 
     public void setFechaIngreso(Date fechaIngreso) {
         this.fechaIngreso = fechaIngreso;
+    }
+
+    public EmpleadoFacade getEmpleadoFacade() {
+        return empleadoFacade;
+    }
+
+    public void setEmpleadoFacade(EmpleadoFacade empleadoFacade) {
+        this.empleadoFacade = empleadoFacade;
+    }
+
+    public SucursalFacade getEJBSucursalFacade() {
+        return EJBSucursalFacade;
+    }
+
+    public void setEJBSucursalFacade(SucursalFacade EJBSucursalFacade) {
+        this.EJBSucursalFacade = EJBSucursalFacade;
+    }
+
+    public UsuarioFacade getUsuarioFacade() {
+        return usuarioFacade;
+    }
+
+    public void setUsuarioFacade(UsuarioFacade usuarioFacade) {
+        this.usuarioFacade = usuarioFacade;
+    }
+
+    public List<Usuario> getListUsuario() {
+        return listUsuario;
+    }
+
+    public void setListUsuario(List<Usuario> listUsuario) {
+        this.listUsuario = listUsuario;
+    }
+
+    public String getCargo() {
+        return cargo;
+    }
+
+    public void setCargo(String cargo) {
+        this.cargo = cargo;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getContrasenia() {
+        return contrasenia;
+    }
+
+    public void setContrasenia(String contrasenia) {
+        this.contrasenia = contrasenia;
     }
 
 }

@@ -11,8 +11,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
        xmlns:p="http://primefaces.org/ui"
        template="/WEB-INF/template.xhtml">
     <h:head>
-        <title>TODO supply a title</title>
-        <h:outputStylesheet name="./css/Login.css"/>
+        <title>Lista de Productos</title>
+ 
     </h:head>
    <ui:include src="../menu/menuDinamico.xhtml" />
     <h:body>
@@ -20,10 +20,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
             <p:dataTable id="products" var="product" value="">
                 <f:facet name="header">
                     <div class="p-d-flex p-jc-between p-ai-center">
-                        List of Products
+                         <h1>Lista de Productis</h1>
 
                         <div>
-                            <p:commandButton id="toggler" type="button" value="Columns" icon="pi pi-align-justify"/>
+                            <p:commandButton  styleClass="ui-button-success" id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
                             <p:columnToggler datasource="products" trigger="toggler"/>
                         </div>
                     </div>

@@ -14,15 +14,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         <title>Lista de Categorias</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     </h:head>
-   <ui:include src="../menu/menuDinamico.xhtml" />
+    <ui:include src="../menu/menuDinamico.xhtml" />
     <h:body>
         <div class="card">
             <p:dataTable id="products" var="c" value="#{categoriaBean.list}">
                 <f:facet name="header">
                     <div class="p-d-flex p-jc-between p-ai-center">
-                        Lista de Categorias
+                        <h1> Lista de Categorias</h1>
                         <div>
-                            <p:commandButton id="toggler" type="button" value="Columns" icon="pi pi-align-justify"/>
+                            <p:commandButton styleClass="ui-button-success" id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
                             <p:columnToggler datasource="products" trigger="toggler"/>
                         </div>
                     </div>
@@ -36,7 +36,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <h:outputText value="#{c.nombre}" />
                 </p:column>
 
-
+                <p:column headerText="Eliminar">
+                <p:commandButton value="Eliminar" action="#{categoriaBean.delete(c)}" styleClass="ui-button-raised ui-button-danger"/>
+                </p:column>
+                <p:column headerText="Editar/Guardar">
+                    <p:commandButton value="Editar" action="#{categoriaBean.edit(c)}"  rendered="#{not a.editable}" />
+                    <p:commandButton value="Guardar" action="#{categoriaBean.edit(c)}" rendered="#{a.editable}"   />
+                </p:column>
 
 
             </p:dataTable>

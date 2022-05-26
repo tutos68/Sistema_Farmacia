@@ -11,44 +11,81 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
        xmlns:p="http://primefaces.org/ui"
        template="/WEB-INF/template.xhtml">
     <h:head>
-        <title>TODO supply a title</title>
-        <h:outputStylesheet name="./css/Login.css"/>
+        <title>Lista de Empleados</title>
     </h:head>
- <ui:include src="../menu/menuDinamico.xhtml" />
+    <ui:include src="../menu/menuDinamico.xhtml" />
     <h:body>
         <div class="card">
-            <p:dataTable id="products" var="product" value="">
+            <p:dataTable id="products" var="e" value="#{empleadoBean.listaEmpleados()}">
                 <f:facet name="header">
                     <div class="p-d-flex p-jc-between p-ai-center">
-                        List of Products
-
+                        <h1>Lista de Empleados</h1>
                         <div>
-                            <p:commandButton id="toggler" type="button" value="Columns" icon="pi pi-align-justify"/>
+                            <p:commandButton id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
                             <p:columnToggler datasource="products" trigger="toggler"/>
                         </div>
                     </div>
                 </f:facet>
 
-                <p:column headerText="Code">
-                    <h:outputText value="" />
+                <p:column headerText="ID">
+                   <h:outputText value="#{e.entidad.id}" />
+
                 </p:column>
 
-                <p:column headerText="Name">
-                    <h:outputText value="" />
+                <p:column headerText="Cedula">
+                     
+                    <h:outputText value="#{e.entidad.identificador}"    />
+                     
                 </p:column>
 
-                <p:column headerText="Category">
-                    <h:outputText value="" />
+                <p:column headerText="Apellido">
+                    <h:outputText value="#{e.entidad.apellido}"    />
+                    
                 </p:column>
 
-                <p:column headerText="Quantity">
-                    <h:outputText value="" />
+                <p:column headerText="Nombre">
+                    <h:outputText value="#{e.entidad.nombre}"   />
+                                        
                 </p:column>
 
-                <p:column headerText="Price">
-                    <h:outputText value="">
-                        <f:convertNumber type="currency" currencySymbol="$"/>
-                    </h:outputText>
+                <p:column headerText="Telefono">
+                    <h:outputText value="#{e.entidad.telefono}"    />
+                  
+                </p:column>
+
+                <p:column headerText="Direccion">
+                    <h:outputText value="#{e.entidad.direccion}"    />
+                               
+                </p:column>
+                 
+                <p:column headerText="Sueldo">
+                  
+                     
+                </p:column>
+                <p:column headerText="Sucursal">
+                  
+                    
+                </p:column>
+                <p:column headerText="Correo">
+                    <h:outputText value="#{e.entidad.correo}"   />
+                     
+                </p:column>
+                <p:column headerText="Fecha de Ingreso">
+                     
+                     
+                </p:column>
+
+                <p:column headerText="Usuario">
+                    <h:outputText value="#{e.usuario}"    />
+      
+                </p:column>
+
+                <p:column headerText="Eliminar">
+                    <p:commandButton value="Eliminar" styleClass="ui-button-raised ui-button-danger" action="#{administradorBean.delete(a)}"/>
+                </p:column>
+                <p:column headerText="Editar/Guardar">
+                    <p:commandButton value="Editar" action="#{empleadoBean.edit(e)}"  rendered="#{not e.editable}" />
+                    <p:commandButton value="Guardar" action="#{empleadoBean.edit(e)}" rendered="#{e.editable}"   />
                 </p:column>
             </p:dataTable>
         </div>

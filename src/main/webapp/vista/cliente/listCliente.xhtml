@@ -19,10 +19,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
             <p:dataTable id="products" var="a" value="#{clienteBean.list}">
                 <f:facet name="header">
                     <div class="p-d-flex p-jc-between p-ai-center">
-                        Lista de Clientes
-
+                        <h1>Lista de Clientes</h1>
                         <div>
-                            <p:commandButton id="toggler" type="button" value="Columns" icon="pi pi-align-justify"/>
+                            <p:commandButton styleClass="ui-button-success" id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
                             <p:columnToggler datasource="products" trigger="toggler"/>
                         </div>
                     </div>
@@ -37,10 +36,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 </p:column>
 
 
-                <p:column headerText="Nombre Empresa">
+                <p:column headerText="Apellido">
                     <h:outputText value="#{a.apellido}" />
                 </p:column>
-                <p:column headerText="Nombre Empresa">
+                <p:column headerText="Nombre">
                     <h:outputText value="#{a.nombre}" />
                 </p:column>
 
@@ -61,7 +60,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 </p:column>
 
                 <p:column headerText="Eliminar">
-                    <p:commandButton value="Eliminar" action="#{clienteBean.delete(a)}"/>
+                    <p:commandButton value="Eliminar" action="#{clienteBean.delete(a)}" styleClass="ui-button-raised ui-button-danger"/>
                 </p:column>
                 <p:column headerText="Editar/Guardar">
                     <p:commandButton value="Editar" action="#{clienteBean.edit(a)}"  rendered="#{not a.editable}" />

@@ -13,7 +13,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
     <h:head>
         <title>Lista de Sucursales</title>
     </h:head>
-  <ui:include src="../menu/menuDinamico.xhtml" />
+    <ui:include src="../menu/menuDinamico.xhtml" />
     <h:body>
         <div class="card">
             <p:dataTable id="products" var="s" value="#{sucursalBean.list}" styleClass="tabla">
@@ -22,7 +22,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                         <h1>Lista de Sucursales</h1>
 
                         <div>
-                            <p:commandButton id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
+                            <p:commandButton styleClass="ui-button-success" id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
                             <p:columnToggler datasource="products" trigger="toggler"/>
                         </div>
                     </div>
@@ -36,7 +36,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <h:outputText value="#{s.direccion}" rendered="#{not s.editable}" />
                 </p:column>
 
-                <p:column headerText="Nombre_Clave">
+                <p:column headerText="Nombre Clave">
                     <h:inputText value="#{s.nombreClave}" size="10" rendered="#{s.editable}" />
                     <h:outputText value="#{s.nombreClave}" rendered="#{not s.editable}" />
                 </p:column>
@@ -57,7 +57,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 </p:column>
 
                 <p:column headerText="Eliminar">
-                    <h:commandLink value="Eliminar" action="#{sucursalBean.delete(s)}" />
+                    <p:commandButton value="Eliminar" action="#{sucursalBean.delete(s)}" styleClass="ui-button-raised ui-button-danger"/>
+                </p:column>
+                <p:column headerText="Editar/Guardar">
+                    <p:commandButton value="Editar" action="#{sucursalBean.edit(s)}"  rendered="#{not s.editable}" />
+                    <p:commandButton value="Guardar" action="#{sucursalBean.edit(s)}" rendered="#{s.editable}"   />
                 </p:column>
 
 

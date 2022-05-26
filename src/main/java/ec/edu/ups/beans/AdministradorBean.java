@@ -77,6 +77,7 @@ public class AdministradorBean implements Serializable {
             if (usuario1.getRol().equals("ADMINISTRADOR")) {
                
                 listasUuU.add(usuario1);
+                System.out.println("adsfd "+usuario1);
             }
         }
         return listasUuU;

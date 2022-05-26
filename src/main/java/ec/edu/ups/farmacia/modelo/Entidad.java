@@ -21,7 +21,7 @@ import jakarta.persistence.Transient;
  */
 @Entity
 @Table(name = "entidad")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS) //esta anotacion me dice que voy a heredar esta clase con todos sus atributos y los hijos llevaran los mismos(una tabla por clase de entidad correcta)
 public class Entidad implements Serializable {
 
     private static final long serialVersionUID = 1L;

@@ -23,15 +23,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
             }
         </script>
     </h:head>
-    <h:body style="background-color: #ece3a5">
+    <h:body style="background-color: white;">
         <h:form>        
             <h1 style="text-align: center">Farmacia Farma Samma </h1>
             <h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="login">
-                <p:graphicImage   name= "/img/login.jpg" style="width: 30%; margin-left: 35%; border-style: solid; border-color: black"/>
+                <p:graphicImage   name= "/img/login.jpg" style="width: 25%; margin-left: auto; margin-right: auto; display: block; border-style: solid; border-color: black"/>
+                <br></br>
             </h:outputLink>
             <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
 
-            <p:dialog header="Login" widgetVar="dlg" resizable="false">
+            <p:dialog header="Inicio de Sesion" widgetVar="dlg" resizable="false">
                 <h:panelGrid columns="2" cellpadding="5">
                     <h:outputLabel for="username" value="Usuario:" />
                     <p:inputText id="username" value="#{usuarioCLave.usuario.usuario}" required="true" label="username" />
