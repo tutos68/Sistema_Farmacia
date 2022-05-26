@@ -40,7 +40,7 @@ public class UsuarioCLave implements Serializable {
         if (list.isEmpty()) {
             Menu m1 = new Menu(1, "Cliente", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m1);
-            menuFacade.create(new Menu(2, "Nuevo Cliente", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/cliente/Cliente.xhtml", m1));
+            menuFacade.create(new Menu(2, "Nuevo Cliente", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/cliente/cliente.xhtml", m1));
             menuFacade.create(new Menu(3, "Lista Cliente", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/cliente/listCliente.xhtmll", m1));
             Menu m4 = new Menu(4, "Empleado", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m4);
@@ -48,7 +48,7 @@ public class UsuarioCLave implements Serializable {
             menuFacade.create(new Menu(6, "Listar Empleado", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/empleado/listEmpleado.xhtml", m4));
             Menu m7 = new Menu(7, "Sucursal", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m7);
-            menuFacade.create(new Menu(8, "Nuevo Sucursal", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/sucursal/Sucursal.xhtml", m7));
+            menuFacade.create(new Menu(8, "Nuevo Sucursal", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/sucursal/sucursal.xhtml", m7));
             menuFacade.create(new Menu(9, "Listar Sucursal", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/sucursal/listSucursal.xhtml", m7));
             Menu m10 = new Menu(10, "Productos", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m10);
@@ -64,12 +64,12 @@ public class UsuarioCLave implements Serializable {
             menuFacade.create(new Menu(19, "Listar Factura Venta", "I", "ADMINISTRADOR", "/", m15));
             Menu m20 = new Menu(20, "Administrador", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m20);
-            menuFacade.create(new Menu(21, "Nuevo Administrador", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/administrador/Administrador.xhtml", m20));
+            menuFacade.create(new Menu(21, "Nuevo Administrador", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/administrador/administrador.xhtml", m20));
             menuFacade.create(new Menu(22, "Listar Administrador", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/administrador/listAdministrador.xhtml", m20));
 
             Menu m2 = new Menu(23, "Cliente", "S", "EMPLEADO", "/", null);
             menuFacade.create(m2);
-            menuFacade.create(new Menu(24, "Nuevo Cliente", "I", "EMPLEADO", "/Sistema_Farmacia/vista/cliente/Cliente.xhtml", m2));
+            menuFacade.create(new Menu(24, "Nuevo Cliente", "I", "EMPLEADO", "/Sistema_Farmacia/vista/cliente/cliente.xhtml", m2));
             menuFacade.create(new Menu(25, "Lista Cliente", "I", "EMPLEADO", "/Sistema_Farmacia/vista/cliente/listCliente.xhtmll", m2));
             Menu m6 = new Menu(26, "Productos", "S", "EMPLEADO", "/", null);
             menuFacade.create(m6);
@@ -103,7 +103,7 @@ public class UsuarioCLave implements Serializable {
             us = usuarioFacade.iniciarUsuario(usuario);
             if (us != null) {
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
-                redireccion = "administrador/Administrador?faces-redirect=true";
+                redireccion = "administrador/administrador?faces-redirect=true";
                 //return "http://localhost:8080/Sistema_Farmacia/vista/cliente/Cliente.xhtml";
             } else {
                 System.out.println("Entro mal");
