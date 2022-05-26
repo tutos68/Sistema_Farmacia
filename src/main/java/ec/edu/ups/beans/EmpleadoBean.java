@@ -53,8 +53,8 @@ public class EmpleadoBean implements Serializable {
 
     @PostConstruct
     public void init() {
-       // this.empleado = new Empleado();
-        //this.sucursal = new Sucursal();
+        this.empleado = new Empleado();
+        this.sucursal = new Sucursal();
         listaEmpleado = empleadoFacade.findAll();
         listaSucursals = EJBSucursalFacade.findAll();
         listUsuario = usuarioFacade.findAll();

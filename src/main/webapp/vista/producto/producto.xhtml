@@ -14,7 +14,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         <title>Productos</title>
         <h:outputScript name="limpiar.js" library="js" />
     </h:head>
-   <ui:include src="../menu/menuDinamico.xhtml" />
+    <ui:include src="../menu/menuDinamico.xhtml" />
     <h:body>
         <div class="container">
             <div class="row"    >
@@ -27,6 +27,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                             <h2>Datos Del Producto</h2>
                             <div class="p-grid ui-fluid">
                                 <div class="p-col-12 p-md-4">
+                                    <p:outputLabel value="Sucursal"/>
+                                    <div class="ui-inputgroup">
+                                        <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                                            <p:inputText value="#{productoBean.nombreProducto}" placeholder=""  disabled="true" />                             
+                                    </div>
                                     <p:outputLabel  value="Nombre"/>
                                     <div class="ui-inputgroup">
                                         <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
@@ -62,13 +67,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                                     </div>
 
 
-                                    <p:outputLabel value="Sucursal"/>
-                                    <div class="ui-inputgroup">
-                                        <p:selectOneMenu id="labeled1" value="#{sucursalBean.sucursalNombre()}"   >
-                                            <f:selectItem itemLabel="Escoja una sucursal" itemValue=""/>
-                                            <f:selectItems value="#{sucursalBean.sucursalNombre()}"/>
-                                        </p:selectOneMenu>
-                                    </div>
+
                                 </div>
                             </div>
                             <div style="margin:10px 20px">
