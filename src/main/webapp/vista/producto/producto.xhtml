@@ -29,9 +29,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                                 <div class="p-col-12 p-md-4">
                                     <p:outputLabel value="Sucursal"/>
                                     <div class="ui-inputgroup">
-                                        <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                                        <p:inputText  value="#{productoBean.nombreSucursal}" id ='sucursal'  placeholder="Sucursal" />
-                                        
+                                        <p:selectOneMenu id ='sucursal'   value="#{productoBean.nombreSucursal}"   >
+                                            <f:selectItem itemLabel="Escoja una sucursal" itemValue=""/>
+                                            <f:selectItems value="#{sucursalBean.sucursalNombre()}"   />
+                                        </p:selectOneMenu>
                                     </div>	
                                     <p:outputLabel  value="Nombre"/>
                                     <div class="ui-inputgroup">
@@ -61,8 +62,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 
                                     <p:outputLabel value="Categoria"/>
                                     <div class="ui-inputgroup">
-                                        <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                                        <p:inputText  value="#{productoBean.nombreCategoria}" id ='categoria'  placeholder="Categoria" />
+                                        <p:selectOneMenu id="categoria" value="#{productoBean.nombreCategoria}"   >
+                                            <f:selectItem itemLabel="Escoja una categoría" itemValue=""/>
+                                            <f:selectItems value="#{categoriaBean.categoriaNombre()}"  />
+                                        </p:selectOneMenu>
                                     </div>
 
 
