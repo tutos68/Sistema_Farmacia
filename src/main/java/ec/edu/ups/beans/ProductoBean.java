@@ -2,6 +2,7 @@ package ec.edu.ups.beans;
 
 import ec.edu.ups.farmacia.controlador.CategoriaFacade;
 import ec.edu.ups.farmacia.controlador.ProductoFacade;
+import ec.edu.ups.farmacia.controlador.SucursalFacade;
 import ec.edu.ups.farmacia.modelo.Categoria;
 import ec.edu.ups.farmacia.modelo.Producto;
 import ec.edu.ups.farmacia.modelo.Sucursal;
@@ -28,6 +29,8 @@ public class ProductoBean implements Serializable {
     private ProductoFacade productoFacade;
     @EJB
     private CategoriaFacade categoriaFacade;
+    @EJB
+    private SucursalFacade sucursalFacade;
     private List<Producto> list = new ArrayList<>();
     private int id;
     private String nombreProducto;
@@ -39,6 +42,8 @@ public class ProductoBean implements Serializable {
     private Sucursal sucursal;
     private CategoriaBean ct;
     private String nombreCategoria;
+    private SucursalBean sb;
+    private String nombreSucursal;
 
     @PostConstruct
     public void init() {
@@ -48,6 +53,16 @@ public class ProductoBean implements Serializable {
     public String add() {
         productoFacade.create(new Producto(id, nombreProducto, stock, precio, descripcion, categoria, sucursal));
         list = productoFacade.findAll();//llamo al findall para que se me actualice la lista
+        return null;
+    }
+
+    public String add2(String sucursal, String categoria) {
+        Categoria c = obtenerCategoriaporNombre(nombreCategoria);
+        System.out.println(c.toString());
+        Sucursal s = obtenerSucursalporNombre(nombreSucursal);
+        System.out.println(s.toString());
+        productoFacade.create(new Producto(id, nombreProducto, stock, precio, descripcion, c, s));
+        list = productoFacade.findAll();
         return null;
     }
 
@@ -75,12 +90,37 @@ public class ProductoBean implements Serializable {
     }                                        //un arreglo de productos
 
     public Categoria obtenerCategoriaporNombre(String nombreCategoria) {
-        this.nombreCategoria = nombreCategoria;
-        for (Categoria c : categoriaFacade.findAll()) {
+        List<Categoria> lista = new ArrayList<>();
+        lista = categoriaFacade.findAll();
+
+        for (Categoria c : lista) {
             if (c.getNombre().equals(nombreCategoria)) {
+                System.out.println("nombre categoria " + c.getNombre());
                 return c;
+
+            } else {
+                System.out.println("sfdsdfsd" + c.toString());
             }
         }
+        System.out.println("==== " + nombreCategoria);
+        return null;
+
+    }
+
+    public Sucursal obtenerSucursalporNombre(String nombreSucursal) {
+        List<Sucursal> lista = new ArrayList<>();
+        lista = sucursalFacade.findAll();
+
+        for (Sucursal s : lista) {
+            if (s.getNombreClave().equals(nombreSucursal)) {
+                System.out.println("nombre sucursal " + s.getNombreClave());
+                return s;
+
+            } else {
+                System.out.println("sfdsdfsd" + s.toString());
+            }
+        }
+        System.out.println("==== " + nombreSucursal);
         return null;
     }
 
@@ -174,6 +214,30 @@ public class ProductoBean implements Serializable {
 
     public void setSucursal(Sucursal sucursal) {
         this.sucursal = sucursal;
+    }
+
+    public SucursalBean getSb() {
+        return sb;
+    }
+
+    public void setSb(SucursalBean sb) {
+        this.sb = sb;
+    }
+
+    public String getNombreSucursal() {
+        return nombreSucursal;
+    }
+
+    public void setNombreSucursal(String nombreSucursal) {
+        this.nombreSucursal = nombreSucursal;
+    }
+
+    public SucursalFacade getSucursalFacade() {
+        return sucursalFacade;
+    }
+
+    public void setSucursalFacade(SucursalFacade sucursalFacade) {
+        this.sucursalFacade = sucursalFacade;
     }
 
 }
