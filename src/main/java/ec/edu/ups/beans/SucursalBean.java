@@ -42,9 +42,9 @@ public class SucursalBean implements Serializable {
         return null;
     }
 
-    public String edit(Sucursal s) {
+    public void edit(Sucursal s) {
         s.setEditable(true);//habilita la caja
-        return null;
+        
     }
 
     public String delete(Sucursal s) {

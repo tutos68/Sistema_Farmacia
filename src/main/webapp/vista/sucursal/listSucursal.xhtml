@@ -16,7 +16,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
     <ui:include src="../menu/menuDinamico.xhtml" />
     <h:body>
         <div class="card">
-            <p:dataTable id="products" var="s" value="#{sucursalBean.list}" styleClass="tabla">
+            <p:dataTable id="products" var="s" value="#{sucursalBean.list}" styleClass="tabla" editable="true">
                 <f:facet name="header">
                     <div class="p-d-flex p-jc-between p-ai-center">
                         <h1>Lista de Sucursales</h1>
@@ -32,39 +32,76 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 </p:column>
 
                 <p:column headerText="Direccion">
-                    <h:inputText value="#{s.direccion}" size="10" rendered="#{s.editable}" />
-                    <h:outputText value="#{s.direccion}" rendered="#{not s.editable}" />
+                    <p:cellEditor> 
+                        <f:facet name="output">
+                            <h:outputText value="#{s.direccion}"  />
+                        </f:facet> 
+                        <f:facet name="input">
+                            <h:inputText value="#{s.direccion}" size="10" />
+                        </f:facet> 
+                    </p:cellEditor>
                 </p:column>
 
                 <p:column headerText="Nombre Clave">
-                    <h:inputText value="#{s.nombreClave}" size="10" rendered="#{s.editable}" />
-                    <h:outputText value="#{s.nombreClave}" rendered="#{not s.editable}" />
+                    <p:cellEditor> 
+                        <f:facet name="output">
+                            <h:outputText value="#{s.nombreClave}"/>
+                        </f:facet> 
+                        <f:facet name="input">
+                            <h:inputText value="#{s.nombreClave}" size="10"  />
+                        </f:facet> 
+                    </p:cellEditor>
+
+
                 </p:column>
 
                 <p:column headerText="Latitud">
-                    <h:inputText value="#{s.latitud}" size="10" rendered="#{s.editable}" />
-                    <h:outputText value="#{s.latitud}" rendered="#{not s.editable}" />
+                    <p:cellEditor> 
+                        <f:facet name="output">
+                            <h:outputText value="#{s.latitud}"  />
+                        </f:facet> 
+                        <f:facet name="input">
+                            <h:inputText value="#{s.latitud}" size="10" />
+                        </f:facet> 
+                    </p:cellEditor>
+
+
                 </p:column>
 
                 <p:column headerText="Longitud">
-                    <h:inputText value="#{s.longitud}" size="10" rendered="#{s.editable}" />
-                    <h:outputText value="#{s.longitud}" rendered="#{not s.editable}" />
+                    <p:cellEditor> 
+                        <f:facet name="output">
+                            <h:outputText value="#{s.longitud}" />
+                        </f:facet> 
+                        <f:facet name="input">
+                            <h:inputText value="#{s.longitud}" size="10" />
+                        </f:facet> 
+                    </p:cellEditor>
+
+
                 </p:column>
 
                 <p:column headerText="Telefono">
-                    <h:inputText value="#{s.telefono}" size="10" rendered="#{s.editable}" />
-                    <h:outputText value="#{s.telefono}" rendered="#{not s.editable}" />
+                    <p:cellEditor> 
+                        <f:facet name="output">
+                            <h:outputText value="#{s.telefono}"  />
+                        </f:facet> 
+                        <f:facet name="input">
+                            <h:inputText value="#{s.telefono}" size="10"  />
+                        </f:facet> 
+                    </p:cellEditor>
+
+
                 </p:column>
 
                 <p:column headerText="Eliminar">
-                    <p:commandButton value="Eliminar" action="#{sucursalBean.delete(s)}" styleClass="ui-button-raised ui-button-danger"/>
+                    <p:commandButton value="Eliminar" action="#{sucursalBean.delete(s)}" update="products"/>
                 </p:column>
                 <p:column headerText="Editar/Guardar">
-                    <p:commandButton value="Editar" action="#{sucursalBean.edit(s)}"  rendered="#{not s.editable}" />
-                    <p:commandButton value="Guardar" action="#{sucursalBean.edit(s)}" rendered="#{s.editable}"   />
+                    <p:rowEditor/>
                 </p:column>
 
-
+                <p:ajax update="products" listener="#{sucursalBean.edit(s)}" event="rowEdit"/>
             </p:dataTable>
         </div>
     </h:body>
