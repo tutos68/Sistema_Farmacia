@@ -37,14 +37,16 @@ public class SucursalBean implements Serializable {
     //lo cual puede arrojar un error    
 
     public String add() {
+
         sucursalFacade.create(new Sucursal(id, direccion, nombreClave, telefono, latitud, longitud));
         list = sucursalFacade.findAll();//llamo al findall para que se me actualice la lista
+        this.limpiar();
         return null;
     }
 
     public void edit(Sucursal s) {
         s.setEditable(true);//habilita la caja
-        
+
     }
 
     public String delete(Sucursal s) {
@@ -132,6 +134,14 @@ public class SucursalBean implements Serializable {
 
     public void setLongitud(double longitud) {
         this.longitud = longitud;
+    }
+
+    public void limpiar() {
+        this.direccion = "";
+        this.latitud = 0;
+        this.longitud = 0;
+        this.nombreClave = "";
+        this.telefono = "";
     }
 
 }
