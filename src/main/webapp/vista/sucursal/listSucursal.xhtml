@@ -16,94 +16,84 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
     <ui:include src="../menu/menuDinamico.xhtml" />
     <h:body>
         <div class="card">
-            <p:dataTable id="products" var="s" value="#{sucursalBean.list}" styleClass="tabla" editable="true">
-                <f:facet name="header">
-                    <div class="p-d-flex p-jc-between p-ai-center">
-                        <h1>Lista de Sucursales</h1>
-
-                        <div>
-                            <p:commandButton styleClass="ui-button-success" id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
-                            <p:columnToggler datasource="products" trigger="toggler"/>
+            <h:form id="frmExclos">
+                <p:growl id="mensajeGeneral3" sticky="false" showDetail="true"/>
+                <p:dataTable id="products" var="s" value="#{sucursalBean.list}" styleClass="tabla" editable="true">
+                    <p:ajax listener="#{sucursalBean.edit(s)}"  event="rowEdit" update=":frmExclos:mensajeGeneral3"/>
+                  
+                    <f:facet name="header">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            <h1>Lista de Sucursales</h1>
+                            <div>
+                                <p:commandButton styleClass="ui-button-success" id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
+                                <p:columnToggler datasource="products" trigger="toggler"/>
+                            </div>
                         </div>
-                    </div>
-                </f:facet>
-                <p:column headerText="ID">
-                    <f:facet name="header">Id</f:facet>#{s.id} 
-                </p:column>
+                    </f:facet>
+                    <p:column headerText="ID">
+                        <f:facet name="header">Id</f:facet>#{s.id} 
+                    </p:column>
+                    <p:column headerText="Direccion">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{s.direccion}"  />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{s.direccion}" size="10" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Nombre Clave">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{s.nombreClave}"/>
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{s.nombreClave}" size="10"  />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Latitud">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{s.latitud}"  />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{s.latitud}" size="10" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Longitud">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{s.longitud}" />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{s.longitud}" size="10" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Telefono">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{s.telefono}"  />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{s.telefono}" size="10"  />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Eliminar">
+                        <p:commandButton value="Eliminar" action="#{sucursalBean.delete(s)}" update="products"/>
+                    </p:column>
+                    <p:column headerText="Editar">
+                        <p:rowEditor />
+                    </p:column>
 
-                <p:column headerText="Direccion">
-                    <p:cellEditor> 
-                        <f:facet name="output">
-                            <h:outputText value="#{s.direccion}"  />
-                        </f:facet> 
-                        <f:facet name="input">
-                            <h:inputText value="#{s.direccion}" size="10" />
-                        </f:facet> 
-                    </p:cellEditor>
-                </p:column>
-
-                <p:column headerText="Nombre Clave">
-                    <p:cellEditor> 
-                        <f:facet name="output">
-                            <h:outputText value="#{s.nombreClave}"/>
-                        </f:facet> 
-                        <f:facet name="input">
-                            <h:inputText value="#{s.nombreClave}" size="10"  />
-                        </f:facet> 
-                    </p:cellEditor>
-
-
-                </p:column>
-
-                <p:column headerText="Latitud">
-                    <p:cellEditor> 
-                        <f:facet name="output">
-                            <h:outputText value="#{s.latitud}"  />
-                        </f:facet> 
-                        <f:facet name="input">
-                            <h:inputText value="#{s.latitud}" size="10" />
-                        </f:facet> 
-                    </p:cellEditor>
-
-
-                </p:column>
-
-                <p:column headerText="Longitud">
-                    <p:cellEditor> 
-                        <f:facet name="output">
-                            <h:outputText value="#{s.longitud}" />
-                        </f:facet> 
-                        <f:facet name="input">
-                            <h:inputText value="#{s.longitud}" size="10" />
-                        </f:facet> 
-                    </p:cellEditor>
-
-
-                </p:column>
-
-                <p:column headerText="Telefono">
-                    <p:cellEditor> 
-                        <f:facet name="output">
-                            <h:outputText value="#{s.telefono}"  />
-                        </f:facet> 
-                        <f:facet name="input">
-                            <h:inputText value="#{s.telefono}" size="10"  />
-                        </f:facet> 
-                    </p:cellEditor>
-
-
-                </p:column>
-
-                <p:column headerText="Eliminar">
-                    <p:commandButton value="Eliminar" action="#{sucursalBean.delete(s)}" update="products"/>
-                </p:column>
-                <p:column headerText="Editar/Guardar">
-                    <p:rowEditor/>
-                </p:column>
-
-                <p:ajax update="products" listener="#{sucursalBean.edit(s)}" event="rowEdit"/>
-            </p:dataTable>
+                </p:dataTable>
+            </h:form> 
         </div>
+
     </h:body>
     <ui:include src="../menu/footer.xhtml" />
 </html>
