@@ -17,7 +17,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
     <h:body>
         <div class="card">
             <h:form id="frmExclos">
-                <p:growl id="mensajeGeneral3" sticky="false" showDetail="true"/>
+                <p:growl  id="mensajeGeneral3" sticky="false" showDetail="true"/>    
                 <p:dataTable id="products" var="s" value="#{sucursalBean.list}" styleClass="tabla" editable="true">
                     <p:ajax listener="#{sucursalBean.edit(s)}"  event="rowEdit" update=":frmExclos:mensajeGeneral3"/>
                   
@@ -39,7 +39,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                                 <h:outputText value="#{s.direccion}"  />
                             </f:facet> 
                             <f:facet name="input">
-                                <h:inputText value="#{s.direccion}" size="10" />
+                                <h:inputText value="#{s.direccion}" />
                             </f:facet> 
                         </p:cellEditor>
                     </p:column>
@@ -84,7 +84,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                         </p:cellEditor>
                     </p:column>
                     <p:column headerText="Eliminar">
-                        <p:commandButton value="Eliminar" action="#{sucursalBean.delete(s)}" update="products"/>
+                        <p:commandButton value="Eliminar" action="#{sucursalBean.delete(s)}" update="products" styleClass="ui-button-raised ui-button-danger"/>
                     </p:column>
                     <p:column headerText="Editar">
                         <p:rowEditor />

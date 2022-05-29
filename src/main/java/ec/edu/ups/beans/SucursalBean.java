@@ -47,6 +47,7 @@ public class SucursalBean implements Serializable {
     public void edit(Sucursal s) {
         System.out.println(s);
         sucursalFacade.edit(s);
+        s.setEditable(true); //habilita la caja
         list = sucursalFacade.findAll();
     }
 
@@ -61,6 +62,14 @@ public class SucursalBean implements Serializable {
         list = sucursalFacade.findAll();//actualizo la lista
         s.setEditable(false);//desabilita la caja
         return null;
+    }
+
+    public void limpiar() {
+        this.direccion = "";
+        this.latitud = 0;
+        this.longitud = 0;
+        this.nombreClave = "";
+        this.telefono = "";
     }
 
     public SucursalFacade getSucursalFacade() {
@@ -135,14 +144,6 @@ public class SucursalBean implements Serializable {
 
     public void setLongitud(double longitud) {
         this.longitud = longitud;
-    }
-
-    public void limpiar() {
-        this.direccion = "";
-        this.latitud = 0;
-        this.longitud = 0;
-        this.nombreClave = "";
-        this.telefono = "";
     }
 
 }

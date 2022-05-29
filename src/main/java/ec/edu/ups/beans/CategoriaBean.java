@@ -33,6 +33,7 @@ public class CategoriaBean implements Serializable {
     public String add() {
         categoriaFacade.create(new Categoria(id, nombre));
         list = categoriaFacade.findAll();//llamo al findall para que se me actualice la lista
+        this.limpiar();
         return null;
     }
 
@@ -42,9 +43,10 @@ public class CategoriaBean implements Serializable {
         return null;
     }
 
-    public String edit(Categoria c) {
+    public void edit(Categoria c) {
+        categoriaFacade.edit(c);
         c.setEditable(true); //habilita la caja
-        return null;
+        list = categoriaFacade.findAll();
     }
 
     public String save(Categoria c) {
@@ -52,6 +54,10 @@ public class CategoriaBean implements Serializable {
         list = categoriaFacade.findAll(); //actualizo la lista
         c.setEditable(false); //desabilita la caja
         return null;
+    }
+
+    public void limpiar() {
+        this.nombre = "";
     }
 
     public CategoriaFacade getCategoriaFacade() {
@@ -64,13 +70,12 @@ public class CategoriaBean implements Serializable {
 
     public List<Categoria> getList() {
         return list;
-    }                               
-    
+    }
+
 //    public Categoria[] getList() { //este metodo tambien se lo modifica
 //        return list.toArray(new Categoria[0]);// Lo que necesita el JSF dentro del table es un
 //                                              //arreglo no una lista por lo que convierto de lista a arreglo
 //    }                                         //un arreglo de categorias //un arreglo de categorias 
-
     public List<String> categoriaNombre() {
         List<String> listaNombres = new ArrayList<>();
         String n;

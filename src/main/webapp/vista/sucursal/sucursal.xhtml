@@ -15,7 +15,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         <h:outputScript name="limpiar.js" library="js" />
 
     </h:head>
-    <ui:include src="../menu/menu.xhtml"/>
+    <ui:include src="../menu/menuDinamico.xhtml"/>
     <h:body>
         <div class="container">
             <div class="row">
@@ -35,17 +35,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                                     </div>
 
 
-                                    <p:outputLabel for="txtNombre" value="Nombre:"/>
+                                    <p:outputLabel for="txtNombre" value="Nombre:"  />
                                     <div class="ui-inputgroup">
                                         <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
                                         <p:inputText value="#{sucursalBean.nombreClave}" placeholder="Nombre:"  required="true" id="txtNombre"  />
                                     </div>
 
 
-                                    <p:outputLabel value="Telefono:"/>
+                                    <p:outputLabel for="txtTelefono" value="Telefono:"/>
                                     <div class="ui-inputgroup">
                                         <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                                        <p:inputText value="#{sucursalBean.telefono}" placeholder="Telefono:"  />
+                                        <p:inputText value="#{sucursalBean.telefono}" placeholder="Telefono:" required="true"   id="txtTelefono"   />
                                     </div>
 
 
@@ -54,7 +54,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                                     <p:outputLabel value="Latitud:"/>
                                     <div class="ui-inputgroup">
                                         <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                                        <p:inputText value="#{sucursalBean.latitud}" placeholder="Latitud:"  />
+                                        <p:inputText value="#{sucursalBean.latitud}" placeholder="Latitud:"  required="true" />
                                     </div>
 
 
@@ -62,17 +62,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                                     <p:outputLabel  value="Longitud:"/>
                                     <div class="ui-inputgroup">
                                         <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                                        <p:inputText value="#{sucursalBean.longitud}" placeholder="Longitud:"  />
+                                        <p:inputText value="#{sucursalBean.longitud}" placeholder="Longitud:" required="true"  />
                                     </div>
                                 </div>
                             </div>
                             <div style="margin:10px 20px">
-                                <p:commandButton  style="margin-right: 20px"  update=":mensaje formulario"  value="Guardar" styleClass="ui-button-raised"  action="#{sucursalBean.add}" />   
+                                <p:commandButton  style="margin-right: 20px"  actionListener="#{growlView.showInfo}" update=":mensaje formulario"  value="Guardar" styleClass="ui-button-raised"  action="#{sucursalBean.add}" />   
                                 <p:commandButton   value="Cancelar"  styleClass="ui-button-raised ui-button-danger" type="reset"  update="formulario"/>           
                             </div>
                         </div>
                     </h:form>
-                   
+
 
 
                 </div>
