@@ -29,7 +29,7 @@ public class Usuario implements Serializable {
     private String usuario;
     private String contrasenia;
     private String rol;
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = CascadeType.PERSIST) //usualmente va en relaciones de onetoOne
     @JoinColumn(name = "entidad_id", nullable = false, referencedColumnName = "id")
     private Entidad entidad;
     @Transient

@@ -17,19 +17,20 @@ import java.io.Serializable;
  */
 @Named
 @RequestScoped
-public class Permisos implements Serializable{
+public class Permisos implements Serializable {
 
-    public void verificarSesion(){
-         try {
-            Usuario us = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
-            
-            if(us == null){
-                FacesContext.getCurrentInstance().getExternalContext().redirect("../administrador/permisos.html");
+    public void verificarSesion() {
+        try {
+            FacesContext context = FacesContext.getCurrentInstance();
+                        //Casteo
+            Usuario us = (Usuario) context.getExternalContext().getSessionMap().get("usuario"); // (get) con esto hago un seguimiento de la sesion iniciada
+
+            if (us == null) {
+                context.getExternalContext().redirect("../administrador/permisos.html"); //redirecciono al login 
             }
-         } catch (Exception e) {
-             System.out.println("No entro");
-         }
-     }
-    
+        } catch (Exception e) {
+            System.out.println("No entro");
+        }
+    }
 
 }

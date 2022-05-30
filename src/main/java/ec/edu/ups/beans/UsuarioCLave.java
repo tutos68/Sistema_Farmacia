@@ -108,9 +108,10 @@ public class UsuarioCLave implements Serializable {
         String redireccion = null;
         System.out.println(this.usuario.getUsuario());
         try {
-            us = usuarioFacade.iniciarUsuario(usuario);
+            us = usuarioFacade.iniciarUsuario(usuario); 
             if (us != null) {
-                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);
+                //Almacenar en la sesion de JSF
+                FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);// (put) con esto hago un seguimiento de la sesion iniciada
                 redireccion = "administrador/administrador?faces-redirect=true";
                 //return "http://localhost:8080/Sistema_Farmacia/vista/cliente/Cliente.xhtml";
             } else {

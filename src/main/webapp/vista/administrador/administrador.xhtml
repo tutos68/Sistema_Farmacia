@@ -73,13 +73,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                                     <p:outputLabel value="Contraseña:"/>
                                     <div class="ui-inputgroup">
                                         <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                                        <p:password id="clave1" placeholder="Contraseña:" value="#{administradorBean.contrasenia}"  match="clave2" promptLabel="Ingrese una Contraceña" validatorMessage="Las Claves no coinciden" feedback="true"/>
+                                        <p:password id="clave1" placeholder="Contraseña:" value="#{administradorBean.contrasenia}"  match="clave2" promptLabel="Ingrese una Contraseña" 
+                                                    validatorMessage="Las Claves no coinciden" feedback="true"  weakLabel="Débil" strongLabel="Fuerte"
+                                        goodLabel="Bueno"/>
                                     </div>
 
                                     <p:outputLabel value="Repetir Contraseña:"/>
                                     <div class="ui-inputgroup">
                                         <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                                        <p:password id="clave2" placeholder="Repetir Contraseña:" value="Repetir Contraceña"/>
+                                        <p:password id="clave2" placeholder="Repetir Contraseña:" value="Repetir Contraseña"/>
                                     </div>
                                 </div>
                             </div>
