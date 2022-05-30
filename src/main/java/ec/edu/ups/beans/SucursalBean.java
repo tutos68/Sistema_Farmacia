@@ -47,7 +47,7 @@ public class SucursalBean implements Serializable {
     public void edit(Sucursal s) {
         System.out.println(s);
         sucursalFacade.edit(s);
-        s.setEditable(true); //habilita la caja
+       // s.setEditable(true); //habilita la caja
         list = sucursalFacade.findAll();
     }
 
