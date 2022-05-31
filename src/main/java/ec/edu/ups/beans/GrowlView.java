@@ -28,7 +28,7 @@ public class GrowlView {
     }
 
     public void showWarn() {
-        addMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Message Content");
+        addMessage(FacesMessage.SEVERITY_WARN, "Advertencia", "Datos Eliminados");
     }
 
     public void showError() {

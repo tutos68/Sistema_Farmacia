@@ -112,7 +112,7 @@ public class UsuarioCLave implements Serializable {
             if (us != null) {
                 //Almacenar en la sesion de JSF
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);// (put) con esto hago un seguimiento de la sesion iniciada
-                redireccion = "administrador/administrador?faces-redirect=true";
+                redireccion = "cliente/cliente?faces-redirect=true";
                 //return "http://localhost:8080/Sistema_Farmacia/vista/cliente/Cliente.xhtml";
             } else {
                 System.out.println("Entro mal");

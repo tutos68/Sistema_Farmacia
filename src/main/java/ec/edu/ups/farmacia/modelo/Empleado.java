@@ -40,15 +40,6 @@ public class Empleado extends Entidad implements Serializable {
         this.sucursal = sucursal;
     }
 
-  
-    public Empleado(Date fechaIngreso, String cargo, double sueldo, Sucursal sucursal, int id, String identificador, String nombre, String apellido, String correo, String direccion, String telefono) {
-        super(id, identificador, nombre, apellido, correo, direccion, telefono);
-        this.fechaIngreso = fechaIngreso;
-        this.cargo = cargo;
-        this.sueldo = sueldo;
-        this.sucursal = sucursal;
-    }
-
     public Date getFechaIngreso() {
         return fechaIngreso;
     }
