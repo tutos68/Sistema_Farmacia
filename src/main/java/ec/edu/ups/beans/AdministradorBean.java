@@ -84,14 +84,14 @@ public class AdministradorBean implements Serializable {
 
     public String delete(Usuario u) {
         usuarioFacade.remove(u);
-        listu = usuarioFacade.findAll();
+        listu = usuarioFacade.findAll();//actualizo la lista
         return null;
     }
 
     public String edit(Usuario u) {
-        Administrador a = (Administrador) u.getEntidad();
+        Administrador a = (Administrador) u.getEntidad();//hago un casteo
         administradorFacade.edit(a);
-        listu = usuarioFacade.findAll();
+        listu = usuarioFacade.findAll();//actualizo la lista
         return null;
     }
 

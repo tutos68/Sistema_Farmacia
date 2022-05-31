@@ -24,7 +24,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <h:form style="margin:20px;border-style: solid;border-width: 2" >
                         <p:growl id="messages"/>
                         <div class="card">
-                            <h2>Datos personales del Proveedor</h2>
+                            <h2 style="text-align: center">Datos del Proveedor</h2>
                             <div class="p-grid ui-fluid">
                                 <div class="p-col-12 p-md-4">
                                     <p:outputLabel  value="RUC:"/>
@@ -65,17 +65,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 
                                 </div>
                             </div>
-                            <div class="container">
+                            <div class="container" style=" margin-bottom: 15px" >
                                 <div class="row">
                                     <div class="col">
-
                                     </div>
-                                    <div style="margin:10px 20px">
+                                    <div class="col">
                                         <p:commandButton  style="margin-right: 20px" value="Guardar" styleClass="ui-button-raised" action="#{proveedorBean.add}"  />
+                                    </div>
+                                    <div class="col">
                                         <p:commandButton value="Cancelar"  styleClass="ui-button-raised ui-button-danger"/>
                                     </div>
                                     <div class="col">
-
                                     </div>
                                 </div>
                             </div>
@@ -83,7 +83,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     </h:form>
                 </div>
                 <div class="col">
-
                 </div>
             </div>
         </div>

@@ -74,7 +74,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                             </f:facet> 
                         </p:cellEditor>
 
-                    </p:column>
+                    </p:column> 
 
                     <p:column headerText="Direccion">
                         <p:cellEditor> 
@@ -102,9 +102,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <p:column headerText="Sucursal">
                         <h:outputText value="#{e.entidad.sucursal.nombreClave}"    />
                     </p:column>
-                    
+
                     <p:column headerText="Correo">
-                         <p:cellEditor> 
+                        <p:cellEditor> 
                             <f:facet name="output">
                                 <h:outputText value="#{e.entidad.correo}"  />
                             </f:facet> 
@@ -112,9 +112,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                                 <h:inputText value="#{e.entidad.correo}" />
                             </f:facet> 
                         </p:cellEditor>
-                      
+
                     </p:column>
-                    
+
                     <p:column headerText="Fecha de Ingreso">
                         <h:outputText   value="#{e.entidad.fechaIngreso}">
                             <f:convertDateTime pattern="dd-MM-yyyy" />
@@ -122,7 +122,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     </p:column>
 
                     <p:column headerText="Usuario">
-                        
+
                         <h:outputText value="#{e.usuario}"    />
                     </p:column>
 

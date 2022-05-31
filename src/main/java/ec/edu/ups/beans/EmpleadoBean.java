@@ -58,9 +58,10 @@ public class EmpleadoBean implements Serializable {
         listaEmpleado = empleadoFacade.findAll();
         listaSucursals = EJBSucursalFacade.findAll();
         listUsuario = usuarioFacade.findAll();
+        listaEmpleados();
     }
 
-    public String delete(Usuario u) {
+    public String delete(Usuario u) { //el empleado se borra por el usuario ya que dentro de usuario esta la entidad y la misma hereda a usuario
         usuarioFacade.remove(u);
         listUsuario = usuarioFacade.findAll();
         return null;
