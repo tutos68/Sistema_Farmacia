@@ -4,8 +4,10 @@
  */
 package ec.edu.ups.beans;
 
+import ec.edu.ups.farmacia.controlador.AdministradorFacade;
 import ec.edu.ups.farmacia.controlador.MenuFacade;
 import ec.edu.ups.farmacia.controlador.UsuarioFacade;
+import ec.edu.ups.farmacia.modelo.Entidad;
 import ec.edu.ups.farmacia.modelo.Menu;
 import ec.edu.ups.farmacia.modelo.Usuario;
 import jakarta.annotation.PostConstruct;
@@ -29,6 +31,8 @@ public class UsuarioCLave implements Serializable {
     private UsuarioFacade usuarioFacade;
     @EJB
     private MenuFacade menuFacade;
+    @EJB
+    private AdministradorFacade administradorFacade;
     private Menu menu;
     private List<Menu> list = new ArrayList<>();
     private Usuario usuario;
@@ -92,6 +96,8 @@ public class UsuarioCLave implements Serializable {
             menuFacade.create(m11);
             menuFacade.create(new Menu(40, "Nuevo Proveedor", "I", "EMPLEADO", "/Sistema_Farmacia/vista/proveedor/proveedor.xhtml", m11));
             menuFacade.create(new Menu(41, "Listar Proveedor", "I", "EMPLEADO", "/Sistema_Farmacia/vista/proveedor/listProveedor.xhtml", m11));
+            
+            usuarioFacade.create(new Usuario(0, "TONNY", "4050", "ADMINISTRADOR", new Entidad(0, "0105723605", "Tonny", "Lema", "tlemaj1@est.ups.edu.ec", "Cuenca", "0969417469")));
         }
     }
 

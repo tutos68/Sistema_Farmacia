@@ -57,12 +57,7 @@ public class SucursalBean implements Serializable {
         return null;
     }
 
-    public String save(Sucursal s) {
-        sucursalFacade.edit(s);
-        list = sucursalFacade.findAll();//actualizo la lista
-        s.setEditable(false);//desabilita la caja
-        return null;
-    }
+
 
     public void limpiar() {
         this.direccion = "";

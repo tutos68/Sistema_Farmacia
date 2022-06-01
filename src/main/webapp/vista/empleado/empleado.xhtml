@@ -145,7 +145,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                                         <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
                                         <p:selectOneMenu id="txtSucursal" value="#{empleadoBean.sucursal.id}" required="true">    
                                             <f:selectItem itemLabel="Escoja una sucursal" itemValue=""/>
-                                            <f:selectItems value="#{empleadoBean.listaSucursals}" var="su" itemLabel="#{su.nombreClave}" itemValue="#{su.id}" />
+                                            <f:selectItems value="#{sucursalBean.list}" var="su" itemLabel="#{su.nombreClave}" itemValue="#{su.id}" />
                                         </p:selectOneMenu>
                                     </div>
 
