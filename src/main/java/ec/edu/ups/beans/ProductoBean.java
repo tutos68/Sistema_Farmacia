@@ -4,11 +4,14 @@ import ec.edu.ups.farmacia.controlador.CategoriaFacade;
 import ec.edu.ups.farmacia.controlador.ProductoFacade;
 import ec.edu.ups.farmacia.controlador.SucursalFacade;
 import ec.edu.ups.farmacia.modelo.Categoria;
+import ec.edu.ups.farmacia.modelo.Empleado;
 import ec.edu.ups.farmacia.modelo.Producto;
 import ec.edu.ups.farmacia.modelo.Sucursal;
+import ec.edu.ups.farmacia.modelo.Usuario;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.SessionScoped;
+import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
@@ -31,38 +34,35 @@ public class ProductoBean implements Serializable {
     private CategoriaFacade categoriaFacade;
     @EJB
     private SucursalFacade sucursalFacade;
+    private Usuario usuario;
+    private Categoria categoria;
+    private Sucursal sucursal;
+    private Producto producto;
     private List<Producto> list = new ArrayList<>();
+    private List<Categoria> listCategoria = new ArrayList<>();
     private int id;
     private String nombreProducto;
     private int stock;
     private double precio;
     private String descripcion;
-    private Categoria categoria;
-
-    private Sucursal sucursal;
-    private CategoriaBean ct;
-    private String nombreCategoria;
-    private SucursalBean sb;
-    private String nombreSucursal;
 
     @PostConstruct
     public void init() {
+        this.categoria = new Categoria();
+        this.producto = new Producto();
+        listCategoria = categoriaFacade.findAll();
         list = productoFacade.findAll();
     }
 
     public String add() {
-        productoFacade.create(new Producto(id, nombreProducto, stock, precio, descripcion, categoria, sucursal));
-        list = productoFacade.findAll();//llamo al findall para que se me actualice la lista
-        return null;
-    }
+        Usuario u = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");//
+        Empleado e = (Empleado) u.getEntidad();
+        System.out.println(e.getSucursal().getNombreClave());
+        productoFacade.create(new Producto(id, nombreProducto, stock, precio, descripcion, categoria, e.getSucursal()));
 
-    public String add2(String sucursal, String categoria) {
-        Categoria c = obtenerCategoriaporNombre(nombreCategoria);
-        System.out.println(c.toString());
-        Sucursal s = obtenerSucursalporNombre(nombreSucursal);
-        System.out.println(s.toString());
-        productoFacade.create(new Producto(id, nombreProducto, stock, precio, descripcion, c, s));
-        list = productoFacade.findAll();
+        //Sucursal s = (Sucursal) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
+        list = productoFacade.findAll();//llamo al findall para que se me actualice la lista
+        this.limpiar();
         return null;
     }
 
@@ -84,45 +84,17 @@ public class ProductoBean implements Serializable {
         return null;
     }
 
+    public void limpiar() {
+        this.nombreProducto = "";
+        this.stock = 0;
+        this.precio = 0.0;
+        this.descripcion = "";
+    }
+
     public Producto[] getList() { //este metodo tambien se lo modifica
         return list.toArray(new Producto[0]);// Lo que necesita el JSF dentro del table es un
         //arreglo no una lista por lo que convierto de lista a arreglo
     }                                        //un arreglo de productos
-
-    public Categoria obtenerCategoriaporNombre(String nombreCategoria) {
-        List<Categoria> lista = new ArrayList<>();
-        lista = categoriaFacade.findAll();
-
-        for (Categoria c : lista) {
-            if (c.getNombre().equals(nombreCategoria)) {
-                System.out.println("nombre categoria " + c.getNombre());
-                return c;
-
-            } else {
-                System.out.println("sfdsdfsd" + c.toString());
-            }
-        }
-        System.out.println("==== " + nombreCategoria);
-        return null;
-
-    }
-
-    public Sucursal obtenerSucursalporNombre(String nombreSucursal) {
-        List<Sucursal> lista = new ArrayList<>();
-        lista = sucursalFacade.findAll();
-
-        for (Sucursal s : lista) {
-            if (s.getNombreClave().equals(nombreSucursal)) {
-                System.out.println("nombre sucursal " + s.getNombreClave());
-                return s;
-
-            } else {
-                System.out.println("sfdsdfsd" + s.toString());
-            }
-        }
-        System.out.println("==== " + nombreSucursal);
-        return null;
-    }
 
     public CategoriaFacade getCategoriaFacade() {
         return categoriaFacade;
@@ -132,20 +104,12 @@ public class ProductoBean implements Serializable {
         this.categoriaFacade = categoriaFacade;
     }
 
-    public CategoriaBean getCt() {
-        return ct;
+    public List<Categoria> getListCategoria() {
+        return listCategoria;
     }
 
-    public void setCt(CategoriaBean ct) {
-        this.ct = ct;
-    }
-
-    public String getNombreCategoria() {
-        return nombreCategoria;
-    }
-
-    public void setNombreCategoria(String nombreCategoria) {
-        this.nombreCategoria = nombreCategoria;
+    public void setListCategoria(List<Categoria> listCategoria) {
+        this.listCategoria = listCategoria;
     }
 
     public ProductoFacade getProductoFacade() {
@@ -216,22 +180,6 @@ public class ProductoBean implements Serializable {
         this.sucursal = sucursal;
     }
 
-    public SucursalBean getSb() {
-        return sb;
-    }
-
-    public void setSb(SucursalBean sb) {
-        this.sb = sb;
-    }
-
-    public String getNombreSucursal() {
-        return nombreSucursal;
-    }
-
-    public void setNombreSucursal(String nombreSucursal) {
-        this.nombreSucursal = nombreSucursal;
-    }
-
     public SucursalFacade getSucursalFacade() {
         return sucursalFacade;
     }
@@ -239,5 +187,16 @@ public class ProductoBean implements Serializable {
     public void setSucursalFacade(SucursalFacade sucursalFacade) {
         this.sucursalFacade = sucursalFacade;
     }
-
+    
+    public List<Producto> listaProductos() {
+        List<Producto> listasUuU = new ArrayList<>();
+        Usuario u = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");//
+        Empleado e = (Empleado) u.getEntidad();
+        for (Producto p : list) {
+            if (p.getSucursal().getId() == e.getSucursal().getId()) {
+                listasUuU.add(p);
+            }
+        }
+        return listasUuU;
+    }
 }

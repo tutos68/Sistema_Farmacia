@@ -21,72 +21,49 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 <div class="col">
                 </div>
                 <div class="col" >
-
+                    <p:growl id="mensaje" showDetail="true"  />
                     <h:form id="formulario" style="margin:20px;border-style: solid;border-width: 2" >
                         <div class="card">
                             <h2 style="text-align: center">Datos del Producto</h2>
                             <div class="p-grid ui-fluid">
                                 <div class="p-col-12 p-md-4">
-                                    <p:outputLabel value="Sucursal"/>
-                                    <div class="ui-inputgroup">
-                                        <p:selectOneMenu id ='sucursal'   value="#{productoBean.nombreSucursal}"   >
-                                            <f:selectItem itemLabel="Escoja una sucursal" itemValue=""/>
-                                            <f:selectItems value="#{sucursalBean.sucursalNombre()}"   />
-                                        </p:selectOneMenu>
-                                    </div>	
-                                    <p:outputLabel  value="Nombre"/>
+                                    <p:outputLabel for="txtNombre" value="Nombre"/>
                                     <div class="ui-inputgroup">
                                         <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                                        <p:inputText value="#{productoBean.nombreProducto}" placeholder="Nombre del Producto" />
+                                        <p:inputText id="txtNombre" value="#{productoBean.nombreProducto}" placeholder="Nombre del Producto" required="true"/>
                                     </div>
 
-                                    <p:outputLabel value="Stock"/>
-                                    <div class="ui-inputgroup">
-
-                                        <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                                        <p:inputNumber value="#{productoBean.stock}" placeholder="Stock" size="50"/>
-                                    </div>
-
-                                    <p:outputLabel value="Precio:"/>
+                                    <p:outputLabel for="txtStock" value="Stock"/>
                                     <div class="ui-inputgroup">
                                         <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                                        <p:inputNumber value="#{productoBean.precio}" placeholder="Precio" size="50"/>
+                                        <p:inputNumber id="txtStock" value="#{productoBean.stock}" placeholder="Stock" required="true"/>
                                     </div>
 
-
-                                    <p:outputLabel value="Descripcion:"/>
+                                    <p:outputLabel for="txtPrecio" value="Precio:"/>
                                     <div class="ui-inputgroup">
                                         <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
-                                        <p:inputTextarea rows="6" cols="10" value="#{productoBean.descripcion}" placeholder="Descripcion"  />
+                                        <p:inputNumber id="txtPrecio" value="#{productoBean.precio}" placeholder="Precio" required="true"/>
                                     </div>
 
-                                    <p:outputLabel value="Categoria"/>
+                                    <p:outputLabel for="txtDescripcion" value="Descripcion:"/>
                                     <div class="ui-inputgroup">
-                                        <p:selectOneMenu id="categoria" value="#{productoBean.nombreCategoria}"   >
-                                            <f:selectItem itemLabel="Escoja una categoría" itemValue=""/>
-                                            <f:selectItems value="#{categoriaBean.categoriaNombre()}"  />
+                                        <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                                        <p:inputTextarea id="txtDescripcion"  rows="6" cols="10" value="#{productoBean.descripcion}" placeholder="Descripcion" required="true" />
+                                    </div>
+
+                                    <p:outputLabel  for="txtCategoria" value="Categoria"/>
+                                    <div class="ui-inputgroup">
+                                        <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                                        <p:selectOneMenu id="txtCategoria" value="#{productoBean.categoria.id}" required="true">    
+                                            <f:selectItem itemLabel="Escoja una categoria" itemValue=""/>
+                                            <f:selectItems value="#{categoriaBean.list}" var="c" itemLabel="#{c.nombre}" itemValue="#{c.id}" />
                                         </p:selectOneMenu>
                                     </div>
-
-
-
                                 </div>
-
                             </div>
-                            <div class="container" style=" margin-bottom: 15px" >
-                                <div class="row">
-                                    <div class="col">
-                                    </div>
-                                    <div class="col">
-                                        <p:commandButton  style="margin-right: 20px" value="Guardar"   styleClass="ui-button-raised"  action="#{productoBean.add2(param['formulario:sucursal'],param['formulario:categoria'])}" />   
-
-                                    </div>
-                                    <div class="col">
-                                        <p:commandButton   value="Cancelar"  styleClass="ui-button-raised ui-button-danger"/>
-                                    </div>
-                                    <div class="col">
-                                    </div>
-                                </div>
+                               <div style="margin:10px 20px">
+                                <p:commandButton  style="margin-right: 20px" actionListener="#{growlView.showInfo}" update=":mensaje formulario"  value="Guardar"  styleClass="ui-button-raised"  action="#{productoBean.add}"/>   
+                                <p:commandButton   value="Cancelar"  styleClass="ui-button-raised ui-button-danger" type="reset"  update="formulario"/>  
                             </div>
                         </div>
                     </h:form>

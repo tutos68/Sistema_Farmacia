@@ -72,4 +72,9 @@ public class Empleado extends Entidad implements Serializable {
         this.sucursal = sucursal;
     }
 
+    @Override
+    public String toString() {
+        return "Empleado{" + "fechaIngreso=" + fechaIngreso + ", cargo=" + cargo + ", sueldo=" + sueldo + ", sucursal=" + sucursal + '}';
+    }
+    
 }
