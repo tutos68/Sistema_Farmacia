@@ -28,7 +28,7 @@ public class Detalle implements Serializable {
     private double precio;
     private double subtotal;
     @ManyToOne
-    @JoinColumn(name = "cabeceraa_id", nullable = true, referencedColumnName = "id")
+    @JoinColumn//(name = "cabeceraa_id", nullable = true, referencedColumnName = "id")
     private CabeceraVenta cabeceraVenta;
 
     public Detalle() {

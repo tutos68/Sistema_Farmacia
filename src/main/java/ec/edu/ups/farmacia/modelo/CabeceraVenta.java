@@ -8,8 +8,10 @@ import jakarta.persistence.CascadeType;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import java.util.GregorianCalendar;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,10 +22,21 @@ import java.util.List;
 @Entity
 @Table(name = "venta")
 public class CabeceraVenta extends FacturaCabecera implements Serializable {
-
+     
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "cabeceraVenta")
     private List<Detalle> detalles;
+    @OneToOne
+    @JoinColumn
+    private Cliente cliente;
 
+    public CabeceraVenta(Cliente cliente, int id, GregorianCalendar fecha, double subtotal, double total, boolean estado) {
+        super(id, fecha, subtotal, total, estado);
+        this.cliente = cliente;
+    }
+
+    
+    
+    
     public CabeceraVenta(List<Detalle> detalles, int id, GregorianCalendar fecha, double subtotal, double total, boolean estado) {
         super(id, fecha, subtotal, total, estado);
         this.detalles = detalles;
@@ -36,6 +49,22 @@ public class CabeceraVenta extends FacturaCabecera implements Serializable {
         
     }
 
+    public CabeceraVenta(List<Detalle> detalles, Cliente cliente, int id, GregorianCalendar fecha, double subtotal, double total, boolean estado) {
+        super(id, fecha, subtotal, total, estado);
+        this.detalles = detalles;
+        this.cliente = cliente;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
+    
+    
     public CabeceraVenta() {
     }
     
@@ -47,6 +76,8 @@ public class CabeceraVenta extends FacturaCabecera implements Serializable {
         this.detalles = detalles;
     }
 
-  
+    public void addDetalle(Detalle d){
+        this.detalles.add(d);
+    }
     
 }
