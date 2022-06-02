@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui"
+       template="/WEB-INF/template.xhtml">
+    <h:head>
+        <title>Lista de Facturas de Ventas</title>
+    </h:head>
+    <ui:include src="../menu/menuDinamico.xhtml" />
+    <h:body>
+        <div class="card">
+            <h:form id="frmExclos">
+                <p:growl  id="mensajeGeneral3" sticky="false" showDetail="true"/>    
+                <p:dataTable id="products" var="s" value="#{ventaBean.list}" styleClass="tabla" editable="true">
+                    <p:ajax listener="#{ventaBean.edit(s)}"  event="rowEdit" update=":frmExclos:mensajeGeneral3"/>
+
+                    <f:facet name="header">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            <h1>Lista de Facturas de Ventas</h1>
+                            <div>
+                                <p:commandButton styleClass="ui-button-success" id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
+                                <p:columnToggler datasource="products" trigger="toggler"/>
+                            </div>
+                        </div>
+                    </f:facet>
+                    <p:column headerText="ID">
+                        <f:facet name="header">Id</f:facet>#{s.id} 
+                    </p:column>
+                    <p:column headerText="Nombre Cliente">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{s.cliente.nombre}"  />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{s.cliente.nombre}" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Cedula Cliente">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{s.cliente.identificador}"  />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{s.cliente.identificador}" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Fecha de Ingreso">
+                                <h:outputText value="#{ventaBena.fecha(s)}"  >
+                                    <f:convertDateTime  pattern="dd.MM.yyyy" />
+                                </h:outputText>
+                            </p:column>
+                    <p:column headerText="Subtotal">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{s.subtotal}"  />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{s.subtotal}" size="10" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Total">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{s.total}" />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{s.total}" size="10" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+
+
+                    <p:column headerText="Estado">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{s.estado}"  />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{s.estado}" size="10"  />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Ver Detalle">
+                        <p:commandButton value="Nuevo" action="#{ventaBean.asignar(s)}" oncomplete="PF('valor').show(); "
+                                         update=":frmExclos:detalle"/>
+
+                    </p:column>
+                    <p:column headerText="Editar">
+                        <p:rowEditor />
+                    </p:column>
+
+                </p:dataTable>
+
+
+                <p:dialog widgetVar="valor" modal="true" showEffect="clip" header="NuevoRegistro" resizable="false">
+                   
+                        <p:dataTable id="detalle" var="o" value="#{ventaBean.detalles}" styleClass="tabla" editable="true" >
+                            <p:column headerText="ID">
+                                <f:facet name="header">Id</f:facet>#{o.id} 
+                            </p:column>
+                            <p:column headerText="Producto">
+                                <p:cellEditor> 
+                                    <f:facet name="output">
+                                        <h:outputText value="#{o.producto.nombreProducto}"  />
+                                    </f:facet> 
+                                    <f:facet name="input">
+                                        <h:inputText value="#{o.producto.nombreProducto}" />
+                                    </f:facet> 
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="Cantidad">
+                                <p:cellEditor> 
+                                    <f:facet name="output">
+                                        <h:outputText value="#{o.cantidad}"/>
+                                    </f:facet> 
+                                    <f:facet name="input">
+                                        <h:inputText value="#{o.cantidad}" size="10"  />
+                                    </f:facet> 
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="Precio">
+                                <p:cellEditor> 
+                                    <f:facet name="output">
+                                        <h:outputText value="#{o.precio}"  />
+                                    </f:facet> 
+                                    <f:facet name="input">
+                                        <h:inputText value="#{o.precio}" size="10" />
+                                    </f:facet> 
+                                </p:cellEditor>
+                            </p:column>
+                            <p:column headerText="Subtotal">
+                                <p:cellEditor> 
+                                    <f:facet name="output">
+                                        <h:outputText value="#{o.subtotal}" />
+                                    </f:facet> 
+                                    <f:facet name="input">
+                                        <h:inputText value="#{o.subtotal}" size="10" />
+                                    </f:facet> 
+                                </p:cellEditor>
+                            </p:column>
+                        </p:dataTable>
+                    <p:commandButton  value="Cerrar" oncomplete="PF('valor').hide(); " />
+
+                </p:dialog>
+            </h:form> 
+        </div>
+
+
+
+    </h:body>
+    <ui:include src="../menu/footer.xhtml" />
+</html>

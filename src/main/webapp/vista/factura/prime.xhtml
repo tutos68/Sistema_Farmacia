@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      template="/WEB-INF/template.xhtml">
+    <h:head>
+        <title>Sucursales</title>
+        <h:outputScript name="limpiar.js" library="js" />
+
+    </h:head>
+    <ui:include src="../menu/menuDinamico.xhtml"/>
+    <h:body>
+
+        <h:form id="formulario" style="margin:20px;border-style: solid;border-width: 2" >
+            <div class="card">
+                <h2>Factura De Venta</h2>
+                <div class="p-grid ui-fluid">
+                    <div class="p-col-12 p-md-4">
+                        <p:outputLabel for="txtDireccion" value="Cedula del CLiente" />
+                        <div class="ui-inputgroup"  >
+                            <div class="ui-inputgroup-addon"><i class="pi pi-user"></i></div>
+                            <p:inputText id="txtDireccion" value="#{detalleBean.cedula}" placeholder="cedula" required="true"  />
+                        </div>
+                         <p:outputLabel value="#{detalleBean.mensaje}"/>
+                         <p:outputLabel value="#{detalleBean.datosCliente}"/>
+                         
+                    </div>
+                </div>
+                <div>
+                   
+                    
+                     
+                     
+                           
+                        
+                </div>
+               
+                <div style="margin:10px 20px">
+                    <p:commandButton  style="margin-right: 20px"   value="Buscar" styleClass="ui-button-raised"  action="#{detalleBean.clienteBusqueda}"  update="formulario"/>   
+                    <p:commandButton   value="Cancelar"  styleClass="ui-button-raised ui-button-danger" type="reset"  update="formulario"/> 
+                    <p:commandButton   value="Guardar Factura "  styleClass="ui-button-raised"  action="#{detalleBean.guardarFactura}" update="frmExclos"/>  
+                </div>
+            </div>
+        </h:form>        
+
+
+
+        <h:form id="nuevo">
+            <p:fieldset  legend="Agregar Detalle"  toggleable="true">
+                <p:panelGrid columns="1">
+                    <p:commandButton value="Nuevo" oncomplete="PF('valor').show();"/>
+                </p:panelGrid>
+
+            </p:fieldset>
+        </h:form>
+        <p:dialog widgetVar="valor" modal="true" showEffect="clip" header="NuevoRegistro" resizable="false">
+            <h:form id="detalle">
+
+                <p:panelGrid columns="2">
+                <p:outputLabel value="Nombre Producto" for="@next"/>
+                <p:autoComplete id="acSimple" value="#{detalleBean.autocompletado}"
+                                completeMethod="#{detalleBean.completeText}" scrollHeight="250"/>
+          
+                    
+                    
+                    
+
+                    <p:outputLabel value="Cantidad"/>
+                    <p:inputText value="#{detalleBean.cantidad}"/>
+
+                </p:panelGrid>
+
+                <p:panelGrid columns="1">
+                    <p:commandButton value="Agregar Nuevo Detalle" oncomplete="PF('valor').hide();" 
+                                     update="frmExclos" actionListener="#{detalleBean.add}"/>
+                </p:panelGrid>
+            </h:form>
+        </p:dialog>
+
+
+
+
+        <div class="card">
+            <h:form id="frmExclos">
+                <p:growl  id="mensajeGeneral3" sticky="false" showDetail="true"/>    
+                <p:dataTable id="products" var="s" value="#{detalleBean.list}" styleClass="tabla" editable="true">
+                    <p:ajax listener="#{detalleBean.edit(s)}"  event="rowEdit" update=":frmExclos:mensajeGeneral3"/>
+
+                    <f:facet name="header">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            <h6>Detalles</h6>
+                            <div>
+                                <p:commandButton styleClass="ui-button-success" id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
+                                <p:columnToggler datasource="products" trigger="toggler"/>
+                            </div>
+                        </div>
+                    </f:facet>
+                    <p:column headerText="ID">
+                        <f:facet name="header">Id</f:facet>#{s.id} 
+                    </p:column>
+                    <p:column headerText="Producto">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{s.producto.nombreProducto}"  />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{s.producto.nombreProducto}" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Cantidad">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{s.cantidad}"/>
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{s.cantidad}" size="10"  />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Precio">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{s.precio}"  />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{s.precio}" size="10" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Subtotal">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{s.subtotal}" />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{s.subtotal}" size="10" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Eliminar">
+                        <p:commandButton value="Eliminar" action="#{detalleBean.delete(s)}" update="products" styleClass="ui-button-raised ui-button-danger"/>
+                    </p:column>
+                    <p:column headerText="Editar">
+                        <p:rowEditor />
+                    </p:column>
+
+                </p:dataTable>
+
+                <p:panelGrid columns="2">
+                    <p:outputLabel value="Total"/>
+                    <p:outputLabel value="#{detalleBean.total}"/>
+
+                </p:panelGrid>
+            </h:form> 
+        </div>
+
+    </h:body>
+    <ui:include src="../menu/footer.xhtml" />
+</html>
