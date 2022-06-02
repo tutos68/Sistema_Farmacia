@@ -7,6 +7,7 @@ package ec.edu.ups.beans;
 import ec.edu.ups.farmacia.controlador.AdministradorFacade;
 import ec.edu.ups.farmacia.controlador.MenuFacade;
 import ec.edu.ups.farmacia.controlador.UsuarioFacade;
+import ec.edu.ups.farmacia.modelo.Administrador;
 import ec.edu.ups.farmacia.modelo.Entidad;
 import ec.edu.ups.farmacia.modelo.Menu;
 import ec.edu.ups.farmacia.modelo.Usuario;
@@ -62,8 +63,8 @@ public class UsuarioCLave implements Serializable {
             menuFacade.create(new Menu(14, "Listar Categoria", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/categoria/listCategoria.xhtml", m10));
             Menu m15 = new Menu(15, "Facturas", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m15);
-            menuFacade.create(new Menu(16, "Nuevo Factura Compra", "I", "ADMINISTRADOR", "/", m15));
-            menuFacade.create(new Menu(17, "Listar Facturas Compra", "I", "ADMINISTRADOR", "/", m15));
+            menuFacade.create(new Menu(16, "Nuevo Factura Compra", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/factura/facturaVenta.xhtml", m15));
+            menuFacade.create(new Menu(17, "Listar Facturas Compra", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/factura/listFactura.xhtml", m15));
             menuFacade.create(new Menu(18, "Nuevo Factura Venta", "I", "ADMINISTRADOR", "/", m15));
             menuFacade.create(new Menu(19, "Listar Factura Venta", "I", "ADMINISTRADOR", "/", m15));
             Menu m20 = new Menu(20, "Administrador", "S", "ADMINISTRADOR", "/", null);
@@ -79,12 +80,12 @@ public class UsuarioCLave implements Serializable {
             menuFacade.create(m6);
             menuFacade.create(new Menu(27, "Nuevo Producto", "I", "EMPLEADO", "/Sistema_Farmacia/vista/producto/producto.xhtml", m6));
             menuFacade.create(new Menu(28, "Nueva Categoria", "I", "EMPLEADO", "/Sistema_Farmacia/vista/categoria/categoria.xhtml", m6));
-            menuFacade.create(new Menu(29, "Listar Producto", "I", "EMPLEADO", "/Sistema_Farmacia/vista/producto/listProducto.xhtml", m6));
+            menuFacade.create(new Menu(29, "Listar Producto", "I", "EMPLEADO", "/Sistema_Farmacia/vista/producto/listProductos.xhtml", m6));
             menuFacade.create(new Menu(30, "Listar Categoria", "I", "EMPLEADO", "/Sistema_Farmacia/vista/categoria/listCategoria.xhtml", m6));
             Menu m8 = new Menu(31, "Facturas", "S", "EMPLEADO", "/", null);
             menuFacade.create(m8);
-            menuFacade.create(new Menu(32, "Nuevo Factura Compra", "I", "EMPLEADO", "/", m8));
-            menuFacade.create(new Menu(33, "Listar Facturas Compra", "I", "EMPLEADO", "/", m8));
+            menuFacade.create(new Menu(32, "Nuevo Factura Compra", "I", "EMPLEADO", "/Sistema_Farmacia/vista/factura/facturaVenta.xhtml", m8));
+            menuFacade.create(new Menu(33, "Listar Facturas Compra", "I", "EMPLEADO", "/Sistema_Farmacia/vista/factura/listFactura.xhtml", m8));
             menuFacade.create(new Menu(34, "Nuevo Factura Venta", "I", "EMPLEADO", "/", m8));
             menuFacade.create(new Menu(35, "Listar Factura Venta", "I", "EMPLEADO", "/", m8));
 
@@ -96,8 +97,10 @@ public class UsuarioCLave implements Serializable {
             menuFacade.create(m11);
             menuFacade.create(new Menu(40, "Nuevo Proveedor", "I", "EMPLEADO", "/Sistema_Farmacia/vista/proveedor/proveedor.xhtml", m11));
             menuFacade.create(new Menu(41, "Listar Proveedor", "I", "EMPLEADO", "/Sistema_Farmacia/vista/proveedor/listProveedor.xhtml", m11));
-            
-            usuarioFacade.create(new Usuario(0, "TONNY", "4050", "ADMINISTRADOR", new Entidad(0, "0105723605", "Tonny", "Lema", "tlemaj1@est.ups.edu.ec", "Cuenca", "0969417469")));
+           
+            usuarioFacade.create(new Usuario(1, "TUTU", "1592", "ADMINISTRADOR", new Administrador(1, "0106256027", "Edwin", "Angamarca", "eangamarcaz@est.ups.edu.ec", "Gualaceo", "0999862100")));
+
+            usuarioFacade.create(new Usuario(2, "TONNY", "4050", "ADMINISTRADOR", new Administrador(2, "0105723605", "Tonny", "Lema", "tlemaj1@est.ups.edu.ec", "Cuenca", "0969417469")));
         }
     }
 
@@ -114,7 +117,7 @@ public class UsuarioCLave implements Serializable {
         String redireccion = null;
         System.out.println(this.usuario.getUsuario());
         try {
-            us = usuarioFacade.iniciarUsuario(usuario); 
+            us = usuarioFacade.iniciarUsuario(usuario);
             if (us != null) {
                 //Almacenar en la sesion de JSF
                 FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("usuario", us);// (put) con esto hago un seguimiento de la sesion iniciada
