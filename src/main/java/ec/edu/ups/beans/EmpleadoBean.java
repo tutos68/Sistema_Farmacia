@@ -94,7 +94,7 @@ public class EmpleadoBean implements Serializable {
     }
 
     public List<Usuario> listaEmpleados() {
-        List<Usuario> listasUuU = new ArrayList<>();
+        List<Usuario> listasUuU = new ArrayList<>();//listar usu
         for (Usuario usuario1 : listUsuario) {
             if (usuario1.getRol().equals("EMPLEADO")) {
                 listasUuU.add(usuario1);
