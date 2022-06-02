@@ -9,7 +9,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
        xmlns:h="http://xmlns.jcp.org/jsf/html"
        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
        xmlns:p="http://primefaces.org/ui"
-       template="/WEB-INF/template.xhtml">
+       template="/WEB-INF/template.xhtml">o
     <h:head>
         <title>Lista de Productos</title>
 
@@ -19,7 +19,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         <div class="card">
             <h:form id="frmExclos">
                 <p:growl  id="mensajeGeneral3" sticky="false" showDetail="true"/>    
-                <p:dataTable id="products" var="p" value="#{productoBean.list}" styleClass="tabla" editable="true">
+                <p:dataTable id="products" var="p" value="#{productoBean.listaProductos()}" styleClass="tabla" editable="true">
                     <p:ajax listener="#{productoBean.edit(p)}"  event="rowEdit" update=":frmExclos:mensajeGeneral3"/>
                     <f:facet name="header">
                         <div class="p-d-flex p-jc-between p-ai-center">
@@ -97,4 +97,3 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
     </h:body>
     <ui:include src="../menu/footer.xhtml" />
 </html>
-
