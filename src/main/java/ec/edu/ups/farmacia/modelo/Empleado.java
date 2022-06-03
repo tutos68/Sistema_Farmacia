@@ -4,6 +4,7 @@
  */
 package ec.edu.ups.farmacia.modelo;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import jakarta.persistence.Entity;
@@ -25,6 +26,7 @@ public class Empleado extends Entidad implements Serializable {
     private Date fechaIngreso;
     private String cargo;
     private double sueldo;
+//    @OneToOne(cascade = CascadeType.PERSIST)
     @OneToOne
     @JoinColumn(name = "sucursal_id", referencedColumnName = "id")
     private Sucursal sucursal;

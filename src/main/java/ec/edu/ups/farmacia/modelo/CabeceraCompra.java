@@ -21,6 +21,8 @@ public class CabeceraCompra implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    //@OneToMany(cascade = CascadeType.ALL, mappedBy = "cabeceraCompra")
+    //private List<Detalle> detalles;
 
     public int getId() {
         return id;
@@ -54,5 +56,5 @@ public class CabeceraCompra implements Serializable {
     public String toString() {
         return "ec.edu.ups.farmacia.modelo.CabeceraCompra[ id=" + id + " ]";
     }
-    
+
 }

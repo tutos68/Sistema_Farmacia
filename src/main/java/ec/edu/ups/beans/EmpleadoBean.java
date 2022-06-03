@@ -96,7 +96,7 @@ public class EmpleadoBean implements Serializable {
     public List<Usuario> listaEmpleados() {
         List<Usuario> listasUuU = new ArrayList<>();//listar usu
         for (Usuario usuario1 : listUsuario) {
-            if (usuario1.getEntidad() instanceof Empleado) {
+            if (usuario1.getEntidad()instanceof Empleado) {
                 listasUuU.add(usuario1);
             }
         }

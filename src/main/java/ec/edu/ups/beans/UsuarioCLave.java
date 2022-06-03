@@ -8,8 +8,10 @@ import ec.edu.ups.farmacia.controlador.AdministradorFacade;
 import ec.edu.ups.farmacia.controlador.MenuFacade;
 import ec.edu.ups.farmacia.controlador.UsuarioFacade;
 import ec.edu.ups.farmacia.modelo.Administrador;
+import ec.edu.ups.farmacia.modelo.Empleado;
 import ec.edu.ups.farmacia.modelo.Entidad;
 import ec.edu.ups.farmacia.modelo.Menu;
+import ec.edu.ups.farmacia.modelo.Sucursal;
 import ec.edu.ups.farmacia.modelo.Usuario;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
@@ -18,6 +20,7 @@ import jakarta.faces.context.FacesContext;
 import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -61,6 +64,7 @@ public class UsuarioCLave implements Serializable {
             menuFacade.create(new Menu(12, "Nueva Categoria", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/categoria/categoria.xhtml", m10));
             menuFacade.create(new Menu(13, "Listar Producto", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/producto/listProducto.xhtml", m10));
             menuFacade.create(new Menu(14, "Listar Categoria", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/categoria/listCategoria.xhtml", m10));
+            menuFacade.create(new Menu(42, "Ver Kardex", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/kardex/listKardex.xhtml", m10));
             Menu m15 = new Menu(15, "Facturas", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m15);
             menuFacade.create(new Menu(16, "Nuevo Factura Compra", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/factura/facturaVenta.xhtml", m15));
@@ -82,6 +86,7 @@ public class UsuarioCLave implements Serializable {
             menuFacade.create(new Menu(28, "Nueva Categoria", "I", "EMPLEADO", "/Sistema_Farmacia/vista/categoria/categoria.xhtml", m6));
             menuFacade.create(new Menu(29, "Listar Producto", "I", "EMPLEADO", "/Sistema_Farmacia/vista/producto/listProductos.xhtml", m6));
             menuFacade.create(new Menu(30, "Listar Categoria", "I", "EMPLEADO", "/Sistema_Farmacia/vista/categoria/listCategoria.xhtml", m6));
+            menuFacade.create(new Menu(43, "Ver Kardex", "I", "EMPLEADO", "/Sistema_Farmacia/vista/kardex/listKardex.xhtml", m6));
             Menu m8 = new Menu(31, "Facturas", "S", "EMPLEADO", "/", null);
             menuFacade.create(m8);
             menuFacade.create(new Menu(32, "Nuevo Factura Compra", "I", "EMPLEADO", "/Sistema_Farmacia/vista/factura/facturaVenta.xhtml", m8));
@@ -97,10 +102,17 @@ public class UsuarioCLave implements Serializable {
             menuFacade.create(m11);
             menuFacade.create(new Menu(40, "Nuevo Proveedor", "I", "EMPLEADO", "/Sistema_Farmacia/vista/proveedor/proveedor.xhtml", m11));
             menuFacade.create(new Menu(41, "Listar Proveedor", "I", "EMPLEADO", "/Sistema_Farmacia/vista/proveedor/listProveedor.xhtml", m11));
-           
+
             usuarioFacade.create(new Usuario(1, "TUTU", "1592", "ADMINISTRADOR", new Administrador(1, "0106256027", "Edwin", "Angamarca", "eangamarcaz@est.ups.edu.ec", "Gualaceo", "0999862100")));
 
             usuarioFacade.create(new Usuario(2, "TONNY", "4050", "ADMINISTRADOR", new Administrador(2, "0105723605", "Tonny", "Lema", "tlemaj1@est.ups.edu.ec", "Cuenca", "0969417469")));
+            usuarioFacade.create(new Usuario(3, "ADRY", "ADRY", "ADMINISTRADOR", new Administrador(3, "0106487846", "Adrian", "Cabrera", "lcabrerab@est.ups.edu.ec", "Cuenca", "099338001")));
+
+//            Date fecha = new Date(122, 4, 1);
+//            Date fecha2 = new Date(115, 9, 20);
+// 
+//            usuarioFacade.create(new Usuario(4, "elliot", "elliot", "EMPLEADO", new Empleado(1, "404", "Elliot", "Wellick", "elliot@hotmail.com", "Cuenca", "40451", fecha, "Despachador", 1550, new Sucursal(1, "Av. de las Américas", "Matriz Feria Libre", "2945172", 1925, 5224))));
+//            usuarioFacade.create(new Usuario(5, "gabo", "gabo", "EMPLEADO", new Empleado(2, "985442", "Gabriel", "Leon", "gleon@hotmail.com", "Cuenca", "5574122495", fecha2, "Inspector", 3550, new Sucursal(2, "Av. Solano", "Sucursal Solano", "452122", 1920, 5220))));
         }
     }
 

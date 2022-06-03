@@ -4,12 +4,184 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui"
+       template="/WEB-INF/template.xhtml">
+    <h:head>
+        <title>Kardex</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+    </h:head>
+    <ui:include src="../menu/menuDinamico.xhtml" />
+    <h:body>
+        <div class="card">
+            <h:form id="formkardex">
+                <p:growl  id="mensajeGeneral3" sticky="false" showDetail="true"/>   
+                <p:dataTable id="products" var="k" value="#{kardexBean.list}" editable="true" styleClass="tabla"       >
+                    <p:ajax listener="#{kardexBean.edit(k)}"  event="rowEdit" update=":formkardex:mensajeGeneral3"/>
+
+                    <f:facet name="header">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            <h1 style="text-align: center; color: white">Kardex</h1>
+                            <div>
+                                <p:commandButton  id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
+                                <p:columnToggler datasource="products" trigger="toggler"/>
+                            </div>
+                        </div>
+                    </f:facet>
+
+                    <p:column headerText="ID"     style="width: 60px">
+                        <f:facet name="header">Id</f:facet>#{k.id}
+                    </p:column>
+
+                    <p:column headerText="Fecha"    style="width: 70px">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{k.venta.fecha}"/>
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{k.venta.fecha}"   />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Hora" style="width: 70px">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{k.venta.fecha.time}"/>
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{k.venta.fecha.time}"   />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="IdFacturaV" style="width: 100px">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{k.venta.id}"/>
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{k.venta.id}"  />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="IdDetalle"  style="width: 100px">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{k.venta.detalles.id}"/>
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{k.venta.detalles.id}" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Nombre Producto" style="width: 100px">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{k.venta.detalles.producto.nombreProducto}"/>
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{k.venta.detalles.producto.nombreProducto}" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Valor Unitario" style="width: 100px">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{k.venta.detalles.producto.precio}"/>
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{k.venta.detalles.producto.precio}" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Cantidad Entradas" style="width: 100px">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value=" "/>
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value=" " />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Valor Total Entradas" style="width: 100px">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value=" "/>
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value=" " />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Cantidad Salidas" style="width: 100px">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value=" "/>
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value=" " />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Valor Total Salidas" style="width: 100px">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value=" "/>
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value=" " />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Cantidad Existentes" style="width: 100px">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value=" "/>
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value=" " />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Valor Total Existentes" style="width: 100px">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value=" "/>
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value=" " />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Precio Ponderado" style="width: 100px">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value=" "/>
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value=" " />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+                     
+
+
+
+                </p:dataTable>
+            </h:form>
+        </div>
+    </h:body>
+    <ui:include src="../menu/footer.xhtml" />
 </html>
