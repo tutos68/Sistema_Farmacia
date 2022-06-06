@@ -4,55 +4,60 @@
  */
 package ec.edu.ups.farmacia.modelo;
 
+import jakarta.persistence.CascadeType;
 import java.io.Serializable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
+import java.util.GregorianCalendar;
+import java.util.List;
 
 /**
  *
  * @author Adrian
  */
 @Entity
-public class CabeceraCompra implements Serializable {
+@Table(name = "compra")
+public class CabeceraCompra  extends FacturaCabecera implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cabeceraCompra")
+    private List<Detalle> detalles;
+    @OneToOne
+    @JoinColumn
+    private Proveedor proveedor;
 
-    public int getId() {
-        return id;
+    public CabeceraCompra() {
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public CabeceraCompra(Proveedor proveedor, int id, GregorianCalendar fecha, double subtotal, double total, boolean estado) {
+        super(id, fecha, subtotal, total, estado);
+        this.proveedor = proveedor;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 0;
-        hash += (int) id;
-        return hash;
+    public List<Detalle> getDetalles() {
+        return detalles;
     }
 
-    @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof CabeceraCompra)) {
-            return false;
-        }
-        CabeceraCompra other = (CabeceraCompra) object;
-        if (this.id != other.id) {
-            return false;
-        }
-        return true;
+    public void setDetalles(List<Detalle> detalles) {
+        this.detalles = detalles;
     }
 
-    @Override
-    public String toString() {
-        return "ec.edu.ups.farmacia.modelo.CabeceraCompra[ id=" + id + " ]";
+    public Proveedor getProveedor() {
+        return proveedor;
     }
+
+    public void setProveedor(Proveedor proveedor) {
+        this.proveedor = proveedor;
+    }
+    
+    
+    
+    
+   
     
 }

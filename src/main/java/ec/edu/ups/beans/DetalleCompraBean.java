@@ -3,17 +3,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ec.edu.ups.beans;
-
 import ec.edu.ups.farmacia.controlador.DetalleFacade;
-import ec.edu.ups.farmacia.modelo.CabeceraVenta;
+import ec.edu.ups.farmacia.modelo.CabeceraCompra;
 import ec.edu.ups.farmacia.controlador.ProductoFacade;
 import ec.edu.ups.farmacia.modelo.Producto;
-import ec.edu.ups.farmacia.controlador.ClienteFacade;
-import ec.edu.ups.farmacia.modelo.Cliente;
-import ec.edu.ups.farmacia.controlador.FacturaVentaFacade;
-import ec.edu.ups.farmacia.modelo.CabeceraVenta;
+import ec.edu.ups.farmacia.controlador.ProveedorFacade;
+import ec.edu.ups.farmacia.modelo.Proveedor;
+import ec.edu.ups.farmacia.controlador.CabeceraCompraFacade;
 import ec.edu.ups.farmacia.modelo.Detalle;
-import ec.edu.ups.farmacia.modelo.Producto;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.SessionScoped;
@@ -25,38 +22,38 @@ import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Locale;
 import java.util.stream.Collectors;
-
 /**
  *
  * @author pcuser
  */
+
 @Named
 @SessionScoped
-public class DetalleBean implements Serializable {
-
+public class DetalleCompraBean implements Serializable{
+    
     private static final long serialVersionUID = 1L;
     @EJB
     private DetalleFacade detalleFacade;
     @EJB
     private ProductoFacade productoFacade;
     @EJB
-    private FacturaVentaFacade facturaVentaFacade;
+    private CabeceraCompraFacade facturaVentaFacade;
     @EJB
-    private ClienteFacade clienteFacade;
+    private ProveedorFacade clienteFacade;
     
     //Inicializamos las listas
     private List<Detalle> list = new ArrayList<>();
     private List<Producto> listaProductos = new ArrayList<>();
-    private List<Cliente> listaClientes = new ArrayList<>();
+    private List<Proveedor> listaClientes = new ArrayList<>();
     private int id;
     private int idProducto;
     private Producto producto;
     private int cantidad;
     private double precio;
     private double subtotal;
-    private CabeceraVenta cabeceraVenta;
+    private CabeceraCompra cabeceraVenta;
     private double total=0;
-    private Cliente cliente;
+    private Proveedor cliente;
     private String cedula;
     private String mensaje="";
     private String datosCliente="";
@@ -184,11 +181,11 @@ public class DetalleBean implements Serializable {
         this.subtotal = subtotal;
     }
 
-    public CabeceraVenta getCabeceraVenta() {
+    public CabeceraCompra getCabeceraVenta() {
         return cabeceraVenta;
     }
 
-    public void setCabeceraVenta(CabeceraVenta cabeceraVenta) {
+    public void setCabeceraVenta(CabeceraCompra cabeceraVenta) {
         this.cabeceraVenta = cabeceraVenta;
     }
 
@@ -208,19 +205,19 @@ public class DetalleBean implements Serializable {
         this.productoFacade = productoFacade;
     }
 
-    public FacturaVentaFacade getFacturaVentaFacade() {
+    public CabeceraCompraFacade getFacturaVentaFacade() {
         return facturaVentaFacade;
     }
 
-    public void setFacturaVentaFacade(FacturaVentaFacade facturaVentaFacade) {
+    public void setFacturaVentaFacade(CabeceraCompraFacade facturaVentaFacade) {
         this.facturaVentaFacade = facturaVentaFacade;
     }
 
-    public ClienteFacade getClienteFacade() {
+    public ProveedorFacade getClienteFacade() {
         return clienteFacade;
     }
 
-    public void setClienteFacade(ClienteFacade clienteFacade) {
+    public void setClienteFacade(ProveedorFacade clienteFacade) {
         this.clienteFacade = clienteFacade;
     }
 
@@ -244,19 +241,19 @@ public class DetalleBean implements Serializable {
         this.total = total;
     }
 
-    public List<Cliente> getListaClientes() {
+    public List<Proveedor> getListaClientes() {
         return listaClientes;
     }
 
-    public void setListaClientes(List<Cliente> listaClientes) {
+    public void setListaClientes(List<Proveedor> listaClientes) {
         this.listaClientes = listaClientes;
     }
 
-    public Cliente getCliente() {
+    public Proveedor getCliente() {
         return cliente;
     }
 
-    public void setCliente(Cliente cliente) {
+    public void setCliente(Proveedor cliente) {
         this.cliente = cliente;
     }
 
@@ -278,7 +275,7 @@ public class DetalleBean implements Serializable {
 
     public String clienteBusqueda(){
         mensaje="";
-        for (Cliente cliente : listaClientes) {
+        for (Proveedor Proveedor : listaClientes) {
             if (this.cedula.equals(cliente.getIdentificador())){
                 mensaje="Cliente Encontrado";
                 datosCliente=cliente.toString();
@@ -291,29 +288,29 @@ public class DetalleBean implements Serializable {
     
     
     public String guardarFactura(){
-        CabeceraVenta cabeceraVenta=new CabeceraVenta(cliente,id, new GregorianCalendar(), subtotal, total, true);
-        facturaVentaFacade.create(cabeceraVenta);
+        CabeceraCompra cabeceraCompra=new CabeceraCompra(cliente,id, new GregorianCalendar(), subtotal, total, true);
+        facturaVentaFacade.create(cabeceraCompra);
         
         for (Detalle detalle : list) {
-            detalleFacade.create(new Detalle(id, detalle.getProducto(), detalle.getCantidad(), detalle.getProducto().getPrecio(), detalle.getSubtotal(), cabeceraVenta));
+            detalleFacade.create(new Detalle(id, detalle.getProducto(), detalle.getCantidad(), detalle.getProducto().getPrecio(), detalle.getSubtotal(), cabeceraCompra));
            
         }
-        cabeceraVenta.setDetalles(list);
-        facturaVentaFacade.edit(cabeceraVenta);
+        cabeceraCompra.setDetalles(list);
+        facturaVentaFacade.edit(cabeceraCompra);
         list= new ArrayList<>();
-        actualizarStock(cabeceraVenta);
+        actualizarStock(cabeceraCompra);
         System.out.println("=========================================");
       
-        System.out.println("fecha="+cabeceraVenta.getFecha().toString());
+        System.out.println("fecha="+cabeceraCompra.getFecha().toString());
         System.out.println("=========================================");
         return null;
     }
     
     
-    public void actualizarStock(CabeceraVenta cabeceraVenta){
+    public void actualizarStock(CabeceraCompra cabeceraVenta){
         for (Detalle detalle : cabeceraVenta.getDetalles()) {
             producto=detalle.getProducto();
-            producto.setStock(producto.getStock()-detalle.getCantidad());
+            producto.setStock(producto.getStock()+detalle.getCantidad());
             productoFacade.edit(producto);
         }
     }
@@ -358,7 +355,6 @@ public class DetalleBean implements Serializable {
     public void setAutocompletado(String autocompletado) {
         this.autocompletado = autocompletado;
     }
-     
      
     
 }
