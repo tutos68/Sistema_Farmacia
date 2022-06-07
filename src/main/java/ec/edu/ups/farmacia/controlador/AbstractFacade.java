@@ -29,7 +29,7 @@ public abstract class AbstractFacade<T> {
     }
 
     public void edit(T entity) {
-        getEntityManager().merge(entity);
+        getEntityManager().merge(entity); // pasa a estado de manejado
     }
 
     public void remove(T entity) {

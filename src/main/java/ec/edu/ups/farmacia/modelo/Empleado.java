@@ -4,6 +4,7 @@
  */
 package ec.edu.ups.farmacia.modelo;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import jakarta.persistence.Entity;
@@ -25,6 +26,7 @@ public class Empleado extends Entidad implements Serializable {
     private Date fechaIngreso;
     private String cargo;
     private double sueldo;
+//    @OneToOne(cascade = CascadeType.PERSIST)
     @OneToOne
     @JoinColumn(name = "sucursal_id", referencedColumnName = "id")
     private Sucursal sucursal;
@@ -33,15 +35,6 @@ public class Empleado extends Entidad implements Serializable {
     }
 
     public Empleado( int id, String identificador, String nombre, String apellido,String correo, String direccion, String telefono,Date fechaIngreso, String cargo, double sueldo, Sucursal sucursal) {
-        super(id, identificador, nombre, apellido, correo, direccion, telefono);
-        this.fechaIngreso = fechaIngreso;
-        this.cargo = cargo;
-        this.sueldo = sueldo;
-        this.sucursal = sucursal;
-    }
-
-  
-    public Empleado(Date fechaIngreso, String cargo, double sueldo, Sucursal sucursal, int id, String identificador, String nombre, String apellido, String correo, String direccion, String telefono) {
         super(id, identificador, nombre, apellido, correo, direccion, telefono);
         this.fechaIngreso = fechaIngreso;
         this.cargo = cargo;
@@ -81,4 +74,9 @@ public class Empleado extends Entidad implements Serializable {
         this.sucursal = sucursal;
     }
 
+    @Override
+    public String toString() {
+        return "Empleado{" + "fechaIngreso=" + fechaIngreso + ", cargo=" + cargo + ", sueldo=" + sueldo + ", sucursal=" + sucursal + '}';
+    }
+    
 }

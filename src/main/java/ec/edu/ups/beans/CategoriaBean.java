@@ -46,7 +46,7 @@ public class CategoriaBean implements Serializable {
     public void edit(Categoria c) {
         categoriaFacade.edit(c);
         c.setEditable(true); //habilita la caja
-        list = categoriaFacade.findAll();
+        list = categoriaFacade.findAll();//actualizo la lista
     }
 
     public String save(Categoria c) {

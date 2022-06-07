@@ -58,46 +58,46 @@ public class EmpleadoBean implements Serializable {
         listaEmpleado = empleadoFacade.findAll();
         listaSucursals = EJBSucursalFacade.findAll();
         listUsuario = usuarioFacade.findAll();
+        listaEmpleados();
     }
 
-    public void registrar() {
-        try {
-            //empleado.setSucursal(sucursal);
-            empleadoFacade.create(new Empleado(fechaIngreso, cargo, sueldo, sucursal, id, identificador, nombre, apellido, correo, direccion, telefono));
-        } catch (Exception e) {
-            System.out.println("No ingreso" + e);
-        }
+    public String delete(Usuario u) { //el empleado se borra por el usuario ya que dentro de usuario esta la entidad y la misma hereda a usuario
+        usuarioFacade.remove(u);
+        listUsuario = usuarioFacade.findAll();
+        return null;
     }
 
- 
+    public void edit(Usuario u) {
+        Empleado e = (Empleado) u.getEntidad();
+        empleadoFacade.edit(e);
+        listUsuario = usuarioFacade.findAll();
+    }
 
     public String add() {
-        Empleado empleado = new Empleado(id, identificador, nombre, apellido,correo, direccion, telefono, fechaIngreso, cargo, sueldo, sucursal);
+        Empleado empleado = new Empleado(id, identificador, nombre, apellido, correo, direccion, telefono, fechaIngreso, cargo, sueldo, sucursal);
         if (empleado != null) {
             Usuario usuarios = new Usuario(id, usuario, contrasenia, cargo, empleado);
             if (usuarios != null) {
                 usuarioFacade.create(usuarios);
-                empleadoFacade.create(empleado);
+                //empleadoFacade.create(empleado);
                 listaEmpleado = empleadoFacade.findAll();
                 listUsuario = usuarioFacade.findAll();
+
             } else {
                 System.out.println("No sirve 1");
             }
         } else {
             System.out.println("No sirve 2");
         }
+        this.limpiar();
         return null;
     }
-    
-       public List<Usuario> listaEmpleados() {
-        List<Usuario> listaU = usuarioFacade.findAll();
-        List<Usuario> listasUuU = new ArrayList<>();
-        for (Usuario usuario1 : listaU) {
 
-            if (usuario1.getRol().equals("EMPLEADO")) {
-
+    public List<Usuario> listaEmpleados() {
+        List<Usuario> listasUuU = new ArrayList<>();//listar usu
+        for (Usuario usuario1 : listUsuario) {
+            if (usuario1.getEntidad()instanceof Empleado) {
                 listasUuU.add(usuario1);
-                System.out.println("fdf "+usuario1);
             }
         }
         return listasUuU;
@@ -263,4 +263,17 @@ public class EmpleadoBean implements Serializable {
         this.contrasenia = contrasenia;
     }
 
+    public void limpiar() {
+        this.apellido = "";
+        this.nombre = "";
+        this.correo = "";
+        this.direccion = "";
+        this.fechaIngreso = null;
+        this.telefono = "";
+        this.identificador = "";
+        this.usuario = "";
+        this.contrasenia = "";
+        this.sueldo = 0;
+
+    }
 }

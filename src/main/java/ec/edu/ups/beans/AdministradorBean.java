@@ -51,13 +51,12 @@ public class AdministradorBean implements Serializable {
     }
 
     public String add() {
-
         Administrador administrador = new Administrador(id, identificador, nombre, apellido, correo, direccion, telefono);
         if (administrador != null) {
             Usuario usuarios = new Usuario(id, usuario, contrasenia, rol, administrador);
             if (usuarios != null) {
                 usuarioFacade.create(usuarios);
-                administradorFacade.create(administrador);
+                // administradorFacade.create(administrador);
                 list = administradorFacade.findAll();
                 listu = usuarioFacade.findAll();
             } else {
@@ -66,43 +65,33 @@ public class AdministradorBean implements Serializable {
         } else {
             System.out.println("No sirve 2");
         }
+        this.limpiar();
         return null;
     }
 
     public List<Usuario> listaAdmin() {
-        List<Usuario> listasUU = usuarioFacade.findAll();
         List<Usuario> listasUuU = new ArrayList<>();
-        for (Usuario usuario1 : listasUU) {
+        for (Usuario usuario1 : listu) {
 
             if (usuario1.getRol().equals("ADMINISTRADOR")) {
-               
+
                 listasUuU.add(usuario1);
-                System.out.println("adsfd "+usuario1);
+
             }
         }
         return listasUuU;
     }
 
     public String delete(Usuario u) {
-        Administrador a = (Administrador) u.getEntidad();
-        administradorFacade.remove(a);
         usuarioFacade.remove(u);
-        list = administradorFacade.findAll();
-        listu = usuarioFacade.findAll();
+        listu = usuarioFacade.findAll();//actualizo la lista
         return null;
     }
 
     public String edit(Usuario u) {
-        Administrador a = (Administrador) u.getEntidad();
-        u.setEditable(true);
-        a.setEditable(true);
-        return null;
-    }
-
-    public String save(Administrador a) {
+        Administrador a = (Administrador) u.getEntidad();//hago un casteo
         administradorFacade.edit(a);
-        list = administradorFacade.findAll();
-        a.setEditable(false);
+        listu = usuarioFacade.findAll();//actualizo la lista
         return null;
     }
 
@@ -218,4 +207,15 @@ public class AdministradorBean implements Serializable {
         this.telefono = telefono;
     }
 
+    public void limpiar() {
+        this.apellido = "";
+        this.nombre = "";
+        this.correo = "";
+        this.direccion = "";
+        this.telefono = "";
+        this.identificador = "";
+        this.usuario = "";
+        this.contrasenia = "";
+
+    }
 }

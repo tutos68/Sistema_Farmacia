@@ -25,11 +25,7 @@ import java.util.List;
 @Table(name = "compra")
 public class CabeceraCompra  extends FacturaCabecera implements Serializable {
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cabeceraCompra")
-    private List<Detalle> detalles;
-    @OneToOne
-    @JoinColumn
-    private Proveedor proveedor;
+
 
     public CabeceraCompra() {
     }
@@ -51,13 +47,5 @@ public class CabeceraCompra  extends FacturaCabecera implements Serializable {
         return proveedor;
     }
 
-    public void setProveedor(Proveedor proveedor) {
-        this.proveedor = proveedor;
-    }
-    
-    
-    
-    
-   
-    
+
 }

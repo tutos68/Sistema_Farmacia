@@ -9,87 +9,86 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
        xmlns:h="http://xmlns.jcp.org/jsf/html"
        xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
        xmlns:p="http://primefaces.org/ui"
-       template="/WEB-INF/template.xhtml">
+       template="/WEB-INF/template.xhtml">o
     <h:head>
-        <title>Lista de Proveedores</title>
+        <title>Lista de Productos</title>
+
     </h:head>
     <ui:include src="../menu/menuDinamico.xhtml" />
     <h:body>
         <div class="card">
             <h:form id="frmExclos">
                 <p:growl  id="mensajeGeneral3" sticky="false" showDetail="true"/>    
-                <p:dataTable id="products" var="a" value="#{proveedorBean.list}" editable="true">
-                    <p:ajax listener="#{proveedorBean.edit(a)}"  event="rowEdit" update=":frmExclos:mensajeGeneral3"/>
-
+                <p:dataTable id="products" var="p" value="#{productoBean.listaProductos()}" styleClass="tabla" editable="true">
+                    <p:ajax listener="#{productoBean.edit(p)}"  event="rowEdit" update=":frmExclos:mensajeGeneral3"/>
                     <f:facet name="header">
                         <div class="p-d-flex p-jc-between p-ai-center">
-                            <h1>Lista de Proveedores</h1>
+                            <h1>Lista de Productos</h1>
 
                             <div>
-                                <p:commandButton styleClass="ui-button-success" id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
+                                <p:commandButton  styleClass="ui-button-success" id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
                                 <p:columnToggler datasource="products" trigger="toggler"/>
                             </div>
                         </div>
                     </f:facet>
 
-                    <p:column headerText="ID">
-                        <f:facet name="header">Id</f:facet>#{a.id} 
+                    <p:column headerText="Id">
+                        <f:facet name="header">Id</f:facet>#{p.id}
                     </p:column>
-
-                    <p:column headerText="RUC">
-                        <f:facet name="header">RUC</f:facet>#{a.identificador} 
-                    </p:column>
-
-                    <p:column headerText="Nombre Empresa">
+                    <p:column headerText="Nombre">
                         <p:cellEditor> 
                             <f:facet name="output">
-                                <h:outputText value="#{a.nombre}"  />
+                                <h:outputText value="#{p.nombreProducto}"/>
                             </f:facet> 
                             <f:facet name="input">
-                                <h:inputText value="#{a.nombre}" />
-                            </f:facet> 
-                        </p:cellEditor>
-
-                    </p:column>
-
-                    <p:column headerText="Telefono">
-                        <p:cellEditor> 
-                            <f:facet name="output">
-                                <h:outputText value="#{a.telefono}"  />
-                            </f:facet> 
-                            <f:facet name="input">
-                                <h:inputText value="#{a.telefono}" />
+                                <h:inputText value="#{p.nombreProducto}" size="10"  />
                             </f:facet> 
                         </p:cellEditor>
                     </p:column>
 
-                    <p:column headerText="Direccion">
+                    <p:column headerText="Stock">
                         <p:cellEditor> 
                             <f:facet name="output">
-                                <h:outputText value="#{a.direccion}"  />
+                                <h:outputText value="#{p.stock}"/>
                             </f:facet> 
                             <f:facet name="input">
-                                <h:inputText value="#{a.direccion}" />
+                                <h:inputText value="#{p.stock}" size="10"  />
                             </f:facet> 
                         </p:cellEditor>
                     </p:column>
-                    <p:column headerText="Correo">
+
+                    <p:column headerText="Precio">
                         <p:cellEditor> 
                             <f:facet name="output">
-                                <h:outputText value="#{a.correo}"  />
+                                <h:outputText value="#{p.precio}"/>
                             </f:facet> 
                             <f:facet name="input">
-                                <h:inputText value="#{a.correo}" />
+                                <h:inputText value="#{p.precio}" size="10"  />
                             </f:facet> 
                         </p:cellEditor>
-
                     </p:column>
 
-
+                    <p:column headerText="Descripcion">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{p.descripcion}"/>
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{p.descripcion}" size="10"  />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+                    
+                    <p:column headerText="Sucursal">
+                        <f:facet name="header">Categoria</f:facet>#{p.categoria.nombre}
+                    </p:column>
+                    <p:column headerText="Sucursal">
+                        <f:facet name="header">Sucursal</f:facet>#{p.sucursal.nombreClave}
+                    </p:column>
                     <p:column headerText="Eliminar">
-                        <p:commandButton value="Eliminar" action="#{proveedorBean.delete(a)}" update="products" styleClass="ui-button-raised ui-button-danger"/>
+                        <p:commandButton value="Eliminar" action="#{productoBean.delete(p)}" update="products" styleClass="ui-button-raised ui-button-danger"/>
                     </p:column>
-                     <p:column headerText="Editar">
+                    <p:column headerText="Editar">
                         <p:rowEditor />
                     </p:column>
                 </p:dataTable>

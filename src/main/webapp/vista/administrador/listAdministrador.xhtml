@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
- 
+
 <!DOCTYPE html>
 <html  xmlns="http://www.w3.org/1999/xhtml"
        xmlns:f="http://xmlns.jcp.org/jsf/core"
@@ -10,60 +10,105 @@
     <h:head>
         <title>Lista de Administradores</title>
     </h:head>
-   <ui:include src="../menu/menuDinamico.xhtml" />
+    <ui:include src="../menu/menuDinamico.xhtml" />
     <h:body>
         <div class="card">
-            <p:dataTable id="products" var="a" value="#{administradorBean.listaAdmin()}">
-                <f:facet name="header">
-                    <div class="p-d-flex p-jc-between p-ai-center">
-                        <h1>Lista de Administradores</h1>
+            <h:form id="frmExclos"> 
+                <p:growl  id="mensajeGeneral3" sticky="false" showDetail="true" />   
+                <p:dataTable id="products" var="a" value="#{administradorBean.listaAdmin()}"  editable="true">
+                    <p:ajax listener="#{administradorBean.edit(a)}"  event="rowEdit" update=":frmExclos:mensajeGeneral3"/>
 
-                        <div>
-                            <p:commandButton id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
-                            <p:columnToggler datasource="products" trigger="toggler"/>
+                    <f:facet name="header">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            <h1>Lista de Administradores</h1>
+
+                            <div>
+                                <p:commandButton id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
+                                <p:columnToggler datasource="products" trigger="toggler"/>
+                            </div>
                         </div>
-                    </div>
-                </f:facet>
+                    </f:facet>
 
-                <p:column headerText="ID">
-                    <h:outputText value="#{a.entidad.id}" />
-                </p:column>
+                    <p:column headerText="ID">
+                        <f:facet name="header">Id</f:facet>#{a.entidad.id}
+                    </p:column>
 
-                <p:column headerText="Cedula">
-                    <h:outputText value="#{a.entidad.identificador}" />
-                </p:column>
 
-                <p:column headerText="Apellido">
-                    <h:outputText value="#{a.entidad.apellido}" />
-                </p:column>
-                
-                <p:column headerText="Nombre">
-                    <h:outputText value="#{a.entidad.nombre}" />
-                </p:column>
+                    <p:column headerText="Cedula">
+                        <h:outputText value="#{a.entidad.identificador}" />
+                    </p:column>
 
-                <p:column headerText="Telefono">
-                    <h:outputText value="#{a.entidad.telefono}" />
-                </p:column>
+                    <p:column headerText="Apellido">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{a.entidad.apellido}"  />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{a.entidad.apellido}" />
+                            </f:facet> 
+                        </p:cellEditor>
 
-                <p:column headerText="Direccion">
-                    <h:outputText value="#{a.entidad.direccion}" />
-                </p:column>
-                <p:column headerText="Correo">
-                    <h:outputText value="#{a.entidad.correo}" />
-                </p:column>
+                    </p:column>
 
-                <p:column headerText="Usuario">
-                    <h:outputText value="#{a.usuario}" />
-                </p:column>
+                    <p:column headerText="Nombre">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{a.entidad.nombre}"  />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{a.entidad.nombre}" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
 
-                <p:column headerText="Eliminar">
-                    <p:commandButton value="Eliminar" styleClass="ui-button-raised ui-button-danger" action="#{administradorBean.delete(a)}"/>
-                </p:column>
-                <p:column headerText="Editar/Guardar">
-                    <p:commandButton value="Editar" action="#{administradorBean.edit(a)}"  rendered="#{not a.editable}" />
-                    <p:commandButton value="Guardar" action="#{administradorBean.edit(a)}" rendered="#{a.editable}"   />
-                </p:column>
-            </p:dataTable>
+                    <p:column headerText="Telefono">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{a.entidad.telefono}"  />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{a.entidad.telefono}" />
+                            </f:facet> 
+                        </p:cellEditor>
+
+                    </p:column>
+
+                    <p:column headerText="Direccion">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{a.entidad.direccion}"  />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{a.entidad.direccion}" />
+                            </f:facet> 
+                        </p:cellEditor>
+
+                    </p:column>
+                    <p:column headerText="Correo">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{a.entidad.correo}"  />
+                            </f:facet> 
+                            <f:facet name="input">
+                                <h:inputText value="#{a.entidad.correo}" />
+                            </f:facet> 
+                        </p:cellEditor>
+
+                    </p:column>
+
+                    <p:column headerText="Usuario">
+                        <h:outputText value="#{a.usuario}" />
+                    </p:column>
+
+                    <p:column headerText="Eliminar">
+                        <p:commandButton value="Eliminar" action="#{administradorBean.delete(a)}" update="products" styleClass="ui-button-raised ui-button-danger"/>
+
+                    </p:column>
+                    <p:column headerText="Editar">
+                        <p:rowEditor />
+                    </p:column>
+                </p:dataTable>
+            </h:form>  
         </div>
     </h:body>
     <ui:include src="../menu/footer.xhtml" />

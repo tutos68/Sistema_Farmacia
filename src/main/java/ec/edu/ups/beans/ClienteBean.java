@@ -46,6 +46,7 @@ public class ClienteBean implements Serializable {
     public String add() {
         clienteFacade.create(new Cliente(fechaNacimiento, id, identificador, nombre, apellido, correo, direccion, telefono));
         list = clienteFacade.findAll();
+        this.limpiar();
         return null;
     }
 
@@ -56,7 +57,7 @@ public class ClienteBean implements Serializable {
     }
 
     public String edit(Cliente c) {
-        c.setEditable(true); //habilita la caja
+      clienteFacade.edit(c);
         return null;
     }
 
@@ -148,4 +149,13 @@ public class ClienteBean implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public void limpiar() {
+        this.apellido = "";
+        this.nombre = "";
+        this.correo = "";
+        this.direccion = "";
+        this.fechaNacimiento = null;
+        this.telefono = "";
+        this.identificador="";
+    }
 }

@@ -43,6 +43,7 @@ public class ProveedorBean implements Serializable {
     public String add() {
         proveedorFacade.create(new Proveedor(sitioWeb, id, identificador, nombre, correo, direccion, telefono));
         list = proveedorFacade.findAll();
+        this.limpiar();
         return null;
     }
 
@@ -52,16 +53,18 @@ public class ProveedorBean implements Serializable {
         return null;
     }
 
-    public String edit(Proveedor p) {
-        p.setEditable(true);
-        return null;
-    }
-
-    public String save(Proveedor p) {
+    public void edit(Proveedor p) {
         proveedorFacade.edit(p);
         list = proveedorFacade.findAll();
-        p.setEditable(false);
-        return null;
+    }
+
+    public void limpiar() {
+        this.identificador = "";
+        this.nombre = "";
+        this.correo = "";
+        this.direccion = "";
+        this.telefono = "";
+        this.sitioWeb = "";
     }
 
     public ProveedorFacade getProveedorFacade() {
@@ -135,7 +138,5 @@ public class ProveedorBean implements Serializable {
     public void setSitioWeb(String sitioWeb) {
         this.sitioWeb = sitioWeb;
     }
-
-   
 
 }
