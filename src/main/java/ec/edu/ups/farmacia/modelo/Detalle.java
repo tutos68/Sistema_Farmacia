@@ -30,6 +30,9 @@ public class Detalle implements Serializable {
     @ManyToOne
     @JoinColumn//(name = "cabeceraa_id", nullable = true, referencedColumnName = "id")
     private CabeceraVenta cabeceraVenta;
+    @ManyToOne
+    @JoinColumn//(name = "cabeceraa_id", nullable = true, referencedColumnName = "id")
+    private CabeceraCompra cabeceraCompra;
 
     public Detalle() {
     }
@@ -42,6 +45,17 @@ public class Detalle implements Serializable {
         this.subtotal = subtotal;
         this.cabeceraVenta = cabeceraVenta;
     }
+
+    public Detalle(int id, Producto producto, int cantidad, double precio, double subtotal, CabeceraCompra cabeceraCompra) {
+        this.id = id;
+        this.producto = producto;
+        this.cantidad = cantidad;
+        this.precio = precio;
+        this.subtotal = subtotal;
+        this.cabeceraCompra = cabeceraCompra;
+    }
+    
+    
 
     public Detalle(int id, Producto producto, int cantidad, double precio, double subtotal) {
         this.id = id;
