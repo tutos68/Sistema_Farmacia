@@ -13,6 +13,8 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -26,25 +28,21 @@ public class KardexBean implements Serializable {
     @EJB
     private KardexFacade kardexFacade;
     @EJB
-    private CabeceraVentaFacade cabeceraVentaFacade;
+    private DetalleFacade detallefacade;
     @EJB
     private DetalleFacade detalleFacade;
     private List<Detalle> listDetalle;
     private List<Kardex> list = new ArrayList<>();
     private int id;
-    private CabeceraCompra compra;
-    private CabeceraVenta venta;
+    private Detalle detalle;
+    private String signo;
     private double precioPonderado;
-    
+    private GregorianCalendar fecha;
 
     @PostConstruct
     public void init() {
-        listDetalle=detalleFacade.findAll();
-    }
-     public String add() {
-        kardexFacade.create(new Kardex(id, compra,venta,precioPonderado));
-        list = kardexFacade.findAll();//llamo al findall para que se me actualice la lista
-        return null;
+        listDetalle = detalleFacade.findAll();
+        list = kardexFacade.findAll();
     }
 
     public String delete(Kardex k) {
@@ -55,7 +53,7 @@ public class KardexBean implements Serializable {
 
     public void edit(Kardex k) {
         kardexFacade.edit(k);
-        
+
         list = kardexFacade.findAll();//actualizo la lista
     }
 
@@ -73,22 +71,12 @@ public class KardexBean implements Serializable {
         this.list = list;
     }
 
-    
-    
     public KardexFacade getKardexFacade() {
         return kardexFacade;
     }
 
     public void setKardexFacade(KardexFacade kardexFacade) {
         this.kardexFacade = kardexFacade;
-    }
-
-    public CabeceraVentaFacade getCabeceraVentaFacade() {
-        return cabeceraVentaFacade;
-    }
-
-    public void setCabeceraVentaFacade(CabeceraVentaFacade cabeceraVentaFacade) {
-        this.cabeceraVentaFacade = cabeceraVentaFacade;
     }
 
     public DetalleFacade getDetalleFacade() {
@@ -115,22 +103,6 @@ public class KardexBean implements Serializable {
         this.id = id;
     }
 
-    public CabeceraCompra getCompra() {
-        return compra;
-    }
-
-    public void setCompra(CabeceraCompra compra) {
-        this.compra = compra;
-    }
-
-    public CabeceraVenta getVenta() {
-        return venta;
-    }
-
-    public void setVenta(CabeceraVenta venta) {
-        this.venta = venta;
-    }
-
     public double getPrecioPonderado() {
         return precioPonderado;
     }
@@ -138,7 +110,53 @@ public class KardexBean implements Serializable {
     public void setPrecioPonderado(double precioPonderado) {
         this.precioPonderado = precioPonderado;
     }
-    
-    
 
+    public DetalleFacade getDetallefacade() {
+        return detallefacade;
+    }
+
+    public void setDetallefacade(DetalleFacade detallefacade) {
+        this.detallefacade = detallefacade;
+    }
+
+    public Detalle getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(Detalle detalle) {
+        this.detalle = detalle;
+    }
+
+    public String getSigno() {
+        return signo;
+    }
+
+    public void setSigno(String signo) {
+        this.signo = signo;
+    }
+
+    public GregorianCalendar getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(GregorianCalendar fecha) {
+        this.fecha = fecha;
+    }
+
+    public Date asignarFecha(Kardex k){
+        Date a=new Date();
+        if(k.getDetalle().getCabeceraCompra()==null){
+            a=  k.getDetalle().getCabeceraVenta().getFecha().getTime();
+        }else{
+            a =  k.getDetalle().getCabeceraCompra().getFecha().getTime();
+        }
+        return a;
+    }
+    
+    
+    public Date fecha(CabeceraVenta d) {
+        Date a = d.getFecha().getTime();
+
+        return a;
+    }
 }

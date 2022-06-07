@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
 
 /**
  *
@@ -21,17 +23,19 @@ public class Kardex implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private CabeceraCompra compra;
-    private CabeceraVenta venta;
+    @OneToOne
+    @JoinColumn
+    private Detalle detalle;
+    private String signo;
     private double PrecioPonderado;
 
     public Kardex() {
     }
 
-    public Kardex(int id, CabeceraCompra compra, CabeceraVenta venta, double PrecioPonderado) {
+    public Kardex(int id, Detalle detalle, String signo, double PrecioPonderado) {
         this.id = id;
-        this.compra = compra;
-        this.venta = venta;
+        this.detalle = detalle;
+        this.signo = signo;
         this.PrecioPonderado = PrecioPonderado;
     }
 
@@ -43,21 +47,23 @@ public class Kardex implements Serializable {
         this.id = id;
     }
 
-    public CabeceraCompra getCompra() {
-        return compra;
+    public Detalle getDetalle() {
+        return detalle;
     }
 
-    public void setCompra(CabeceraCompra compra) {
-        this.compra = compra;
+    public void setDetalle(Detalle detalle) {
+        this.detalle = detalle;
     }
 
-    public CabeceraVenta getVenta() {
-        return venta;
+    public String getSigno() {
+        return signo;
     }
 
-    public void setVenta(CabeceraVenta venta) {
-        this.venta = venta;
+    public void setSigno(String signo) {
+        this.signo = signo;
     }
+
+   
 
     public double getPrecioPonderado() {
         return PrecioPonderado;
@@ -87,10 +93,6 @@ public class Kardex implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Kardex{" + "id=" + id + ", compra=" + compra + ", venta=" + venta + ", PrecioPonderado=" + PrecioPonderado + '}';
-    }
-
+    
  
 }

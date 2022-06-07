@@ -11,8 +11,10 @@ import ec.edu.ups.farmacia.modelo.Producto;
 import ec.edu.ups.farmacia.controlador.ClienteFacade;
 import ec.edu.ups.farmacia.modelo.Cliente;
 import ec.edu.ups.farmacia.controlador.FacturaVentaFacade;
+import ec.edu.ups.farmacia.controlador.KardexFacade;
 import ec.edu.ups.farmacia.modelo.CabeceraVenta;
 import ec.edu.ups.farmacia.modelo.Detalle;
+import ec.edu.ups.farmacia.modelo.Kardex;
 import ec.edu.ups.farmacia.modelo.Producto;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
@@ -43,11 +45,14 @@ public class DetalleBean implements Serializable {
     private FacturaVentaFacade facturaVentaFacade;
     @EJB
     private ClienteFacade clienteFacade;
+    @EJB
+    private KardexFacade kardexFacade;
     
     //Inicializamos las listas
     private List<Detalle> list = new ArrayList<>();
     private List<Producto> listaProductos = new ArrayList<>();
     private List<Cliente> listaClientes = new ArrayList<>();
+    private List<Kardex> listaKardex = new ArrayList<>();
     private int id;
     private int idProducto;
     private Producto producto;
@@ -60,15 +65,16 @@ public class DetalleBean implements Serializable {
     private String cedula;
     private String mensaje="";
     private String datosCliente="";
-    private String autocompletado;
+    private String autocompletado="";
     private GregorianCalendar g;
-    
+    private double totalDinero=0;
 
     @PostConstruct
     public void init() {
         list = new ArrayList<>();
         listaProductos = productoFacade.findAll();
         listaClientes= clienteFacade.findAll();
+        listaKardex=kardexFacade.findAll();
         
     }
 
@@ -81,7 +87,8 @@ public class DetalleBean implements Serializable {
                 this.producto=producto1;
             }
         }
-        list.add(new Detalle(1, producto, cantidad, producto.getPrecio(), (cantidad * producto.getPrecio())));
+        Detalle d =new Detalle(id, producto, cantidad, producto.getPrecio(), (cantidad * producto.getPrecio()));
+        list.add(d);
         this.limpiar();
         return null;
     }
@@ -115,6 +122,7 @@ public class DetalleBean implements Serializable {
     public void limpiar() {
         this.cantidad = 0;
         this.precio = 0.0;
+        this.autocompletado="";
 
     }
 
@@ -278,6 +286,7 @@ public class DetalleBean implements Serializable {
 
     public String clienteBusqueda(){
         mensaje="";
+        System.out.println(cedula);
         for (Cliente cliente : listaClientes) {
             if (this.cedula.equals(cliente.getIdentificador())){
                 mensaje="Cliente Encontrado";
@@ -295,21 +304,29 @@ public class DetalleBean implements Serializable {
         facturaVentaFacade.create(cabeceraVenta);
         
         for (Detalle detalle : list) {
-            detalleFacade.create(new Detalle(id, detalle.getProducto(), detalle.getCantidad(), detalle.getProducto().getPrecio(), detalle.getSubtotal(), cabeceraVenta));
+           // detalleFacade.create(new Detalle(id, detalle.getProducto(), detalle.getCantidad(), detalle.getProducto().getPrecio(), detalle.getSubtotal(), cabeceraVenta));
+           detalleFacade.create(detalle);
+           detalle.setCabeceraVenta(cabeceraVenta);
+           detalleFacade.edit(detalle);
            
+           kardexFacade.create(new Kardex(id, detalle, "+", detalle.getSubtotal()+calcularTotalKardex()));
         }
         cabeceraVenta.setDetalles(list);
         facturaVentaFacade.edit(cabeceraVenta);
         list= new ArrayList<>();
         actualizarStock(cabeceraVenta);
-        System.out.println("=========================================");
-      
-        System.out.println("fecha="+cabeceraVenta.getFecha().toString());
-        System.out.println("=========================================");
         return null;
     }
     
-    
+    public double calcularTotalKardex(){
+        listaKardex=kardexFacade.findAll();
+        double valor=0;
+        for (Kardex kardex : listaKardex) {
+             valor=kardex.getPrecioPonderado();
+        }
+        listaKardex=kardexFacade.findAll();
+        return valor;
+    }
     public void actualizarStock(CabeceraVenta cabeceraVenta){
         for (Detalle detalle : cabeceraVenta.getDetalles()) {
             producto=detalle.getProducto();
@@ -357,6 +374,22 @@ public class DetalleBean implements Serializable {
 
     public void setAutocompletado(String autocompletado) {
         this.autocompletado = autocompletado;
+    }
+
+    public List<Kardex> getListaKardex() {
+        return listaKardex;
+    }
+
+    public void setListaKardex(List<Kardex> listaKardex) {
+        this.listaKardex = listaKardex;
+    }
+
+    public double getTotalDinero() {
+        return totalDinero;
+    }
+
+    public void setTotalDinero(double totalDinero) {
+        this.totalDinero = totalDinero;
     }
      
      

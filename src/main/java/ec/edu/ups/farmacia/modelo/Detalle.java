@@ -4,6 +4,7 @@
  */
 package ec.edu.ups.farmacia.modelo;
 
+import jakarta.persistence.CascadeType;
 import java.io.Serializable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 
 /**
  *
@@ -33,6 +35,8 @@ public class Detalle implements Serializable {
     @ManyToOne
     @JoinColumn//(name = "cabeceraa_id", nullable = true, referencedColumnName = "id")
     private CabeceraCompra cabeceraCompra;
+    @OneToOne(cascade =CascadeType.ALL ,mappedBy ="detalle" )
+    private Kardex kardex;
 
     public Detalle() {
     }
@@ -112,6 +116,25 @@ public class Detalle implements Serializable {
     public void setCabeceraVenta(CabeceraVenta cabeceraVenta) {
         this.cabeceraVenta = cabeceraVenta;
     }
+
+    public CabeceraCompra getCabeceraCompra() {
+        return cabeceraCompra;
+    }
+
+    public void setCabeceraCompra(CabeceraCompra cabeceraCompra) {
+        this.cabeceraCompra = cabeceraCompra;
+    }
+
+    public Kardex getKardex() {
+        return kardex;
+    }
+
+    public void setKardex(Kardex kardex) {
+        this.kardex = kardex;
+    }
+    
+    
+    
 
     @Override
     public int hashCode() {

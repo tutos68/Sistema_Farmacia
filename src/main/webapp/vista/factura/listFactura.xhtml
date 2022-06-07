@@ -55,9 +55,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                         </p:cellEditor>
                     </p:column>
                     <p:column headerText="Fecha de Ingreso">
-                                <h:outputText value="#{ventaBena.fecha(s)}"  >
-                                    <f:convertDateTime  pattern="dd.MM.yyyy" />
-                                </h:outputText>
+                        
+                        
+                        <p:outputLabel  value="#{ventaBean.fecha(s)}"><f:convertDateTime pattern="dd-MM-yyyy" /></p:outputLabel>
+                       
                             </p:column>
                     <p:column headerText="Subtotal">
                         <p:cellEditor> 
@@ -92,7 +93,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                         </p:cellEditor>
                     </p:column>
                     <p:column headerText="Ver Detalle">
-                        <p:commandButton value="Nuevo" action="#{ventaBean.asignar(s)}" oncomplete="PF('valor').show(); "
+                        <p:commandButton value="Ver Detalles" action="#{ventaBean.asignar(s)}" oncomplete="PF('valor').show(); "
                                          update=":frmExclos:detalle"/>
 
                     </p:column>
@@ -103,7 +104,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 </p:dataTable>
 
 
-                <p:dialog widgetVar="valor" modal="true" showEffect="clip" header="NuevoRegistro" resizable="false">
+                <p:dialog widgetVar="valor" modal="true" showEffect="clip" header="Ver Detalles" resizable="false">
                    
                         <p:dataTable id="detalle" var="o" value="#{ventaBean.detalles}" styleClass="tabla" editable="true" >
                             <p:column headerText="ID">
