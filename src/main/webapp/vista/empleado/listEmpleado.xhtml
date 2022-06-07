@@ -18,7 +18,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         <div class="card">
             <h:form id="frmExclos"> 
                 <p:growl  id="mensajeGeneral3" sticky="false" showDetail="true"/>   
-                <p:dataTable id="products" var="e" value="#{empleadoBean.listaEmpleados()}" editable="true">
+                <p:dataTable id="products" var="e" value="#{empleadoBean.listaEmpleado}" editable="true">
                     <p:ajax listener="#{empleadoBean.edit(e)}"  event="rowEdit" update=":frmExclos:mensajeGeneral3"/>
                     <f:facet name="header">
                         <div class="p-d-flex p-jc-between p-ai-center">
@@ -36,7 +36,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 
                     <p:column headerText="Cedula">
 
-                        <f:facet name="header">Cedula</f:facet>#{e.entidad.identificador}
+                        <f:facet name="header">Cedula</f:facet>#{e.identificador}
 
 
                     </p:column>
@@ -44,10 +44,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <p:column headerText="Apellido">
                         <p:cellEditor> 
                             <f:facet name="output">
-                                <h:outputText value="#{e.entidad.apellido}"  />
+                                <h:outputText value="#{e.apellido}"  />
                             </f:facet> 
                             <f:facet name="input">
-                                <h:inputText value="#{e.entidad.apellido}" />
+                                <h:inputText value="#{e.apellido}" />
                             </f:facet> 
                         </p:cellEditor>
 
@@ -56,10 +56,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <p:column headerText="Nombre">
                         <p:cellEditor> 
                             <f:facet name="output">
-                                <h:outputText value="#{e.entidad.nombre}"  />
+                                <h:outputText value="#{e.nombre}"  />
                             </f:facet> 
                             <f:facet name="input">
-                                <h:inputText value="#{e.entidad.nombre}" />
+                                <h:inputText value="#{e.nombre}" />
                             </f:facet> 
                         </p:cellEditor>
                     </p:column>
@@ -67,10 +67,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <p:column headerText="Telefono">
                         <p:cellEditor> 
                             <f:facet name="output">
-                                <h:outputText value="#{e.entidad.telefono}"  />
+                                <h:outputText value="#{e.telefono}"  />
                             </f:facet> 
                             <f:facet name="input">
-                                <h:inputText value="#{e.entidad.telefono}" />
+                                <h:inputText value="#{e.telefono}" />
                             </f:facet> 
                         </p:cellEditor>
 
@@ -79,10 +79,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <p:column headerText="Direccion">
                         <p:cellEditor> 
                             <f:facet name="output">
-                                <h:outputText value="#{e.entidad.direccion}"  />
+                                <h:outputText value="#{e.direccion}"  />
                             </f:facet> 
                             <f:facet name="input">
-                                <h:inputText value="#{e.entidad.direccion}" />
+                                <h:inputText value="#{e.direccion}" />
                             </f:facet> 
                         </p:cellEditor>
 
@@ -91,40 +91,36 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <p:column headerText="Sueldo">
                         <p:cellEditor> 
                             <f:facet name="output">
-                                <h:outputText value="#{e.entidad.sueldo}"  />
+                                <h:outputText value="#{e.sueldo}"  />
                             </f:facet> 
                             <f:facet name="input">
-                                <h:inputText value="#{e.entidad.sueldo}" />
+                                <h:inputText value="#{e.sueldo}" />
                             </f:facet> 
                         </p:cellEditor>
 
                     </p:column>
                     <p:column headerText="Sucursal">
-                        <h:outputText value="#{e.entidad.sucursal.nombreClave}"    />
+                        <h:outputText value="#{e.sucursal.nombreClave}"    />
                     </p:column>
 
                     <p:column headerText="Correo">
                         <p:cellEditor> 
                             <f:facet name="output">
-                                <h:outputText value="#{e.entidad.correo}"  />
+                                <h:outputText value="#{e.correo}"  />
                             </f:facet> 
                             <f:facet name="input">
-                                <h:inputText value="#{e.entidad.correo}" />
+                                <h:inputText value="#{e.correo}" />
                             </f:facet> 
                         </p:cellEditor>
 
                     </p:column>
 
                     <p:column headerText="Fecha de Ingreso">
-                        <h:outputText   value="#{e.entidad.fechaIngreso}">
+                        <h:outputText   value="#{e.fechaIngreso}">
                             <f:convertDateTime pattern="dd-MM-yyyy" />
                         </h:outputText>
                     </p:column>
-
-                    <p:column headerText="Usuario">
-
-                        <h:outputText value="#{e.usuario}"    />
-                    </p:column>
+ 
 
                     <p:column headerText="Eliminar">
                         <p:commandButton value="Eliminar" action="#{empleadoBean.delete(e)}" update="products" styleClass="ui-button-raised ui-button-danger"/>

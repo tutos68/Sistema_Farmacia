@@ -43,9 +43,8 @@ public class VentaBean implements Serializable {
     public void init() {
         detalles = new ArrayList<>();
         list = ventaFacade.findAll();//de que se ha creado o visualizado el JSF o el bean
-    }                                   // esto se lo hace ya que puede que no se haya renderizado toda la vista y ya quiera llamar a buscar la info
-    //lo cual puede arrojar un error    
-
+        
+    }                                   
     public void edit(CabeceraVenta s) {
         System.out.println(s);
         ventaFacade.edit(s);

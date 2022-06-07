@@ -51,7 +51,7 @@ public class ProductoBean implements Serializable {
         this.categoria = new Categoria();
         this.producto = new Producto();
         listCategoria = categoriaFacade.findAll();
-       
+
         list = productoFacade.findAll();
     }
 
@@ -90,6 +90,7 @@ public class ProductoBean implements Serializable {
         this.stock = 0;
         this.precio = 0.0;
         this.descripcion = "";
+        this.categoria = new Categoria();
     }
 
     public Producto[] getList() { //este metodo tambien se lo modifica
@@ -188,16 +189,20 @@ public class ProductoBean implements Serializable {
     public void setSucursalFacade(SucursalFacade sucursalFacade) {
         this.sucursalFacade = sucursalFacade;
     }
-    
+
     public List<Producto> listaProductos() {
         List<Producto> listasUuU = new ArrayList<>();
         Usuario u = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");//
-        Empleado e = (Empleado) u.getEntidad();
-        for (Producto p : list) {
-            if (p.getSucursal().getId() == e.getSucursal().getId()) {
-                listasUuU.add(p);
+        System.out.println(u.toString());
+
+            Empleado e = (Empleado) u.getEntidad();
+            for (Producto p : list) {
+                if (p.getSucursal().getId() == e.getSucursal().getId()) {
+                    listasUuU.add(p);
+                }
             }
-        }
+        
+
         return listasUuU;
     }
 }

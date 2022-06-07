@@ -28,6 +28,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                                 <p:commandButton styleClass="ui-button-success" id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
                                 <p:columnToggler datasource="products" trigger="toggler"/>
                             </div>
+                            <div>
+                                <p:commandButton  value="Actualizar" update="frmExclos" />
+                            </div>
                         </div>
                     </f:facet>
                     <p:column headerText="ID">
@@ -55,12 +58,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                         </p:cellEditor>
                     </p:column>
                     <p:column headerText="Fecha de Ingreso">
-                        
-                        
+
+
                         <p:outputLabel  value="#{ventaBean.fecha(s)}"><f:convertDateTime pattern="dd-MM-yyyy" /></p:outputLabel>
-                       
-                            </p:column>
-                    <p:column headerText="Subtotal">
+
+                    </p:column>
+                    <!-- comment <p:column headerText="Subtotal">
                         <p:cellEditor> 
                             <f:facet name="output">
                                 <h:outputText value="#{s.subtotal}"  />
@@ -69,7 +72,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                                 <h:inputText value="#{s.subtotal}" size="10" />
                             </f:facet> 
                         </p:cellEditor>
-                    </p:column>
+                    </p:column>-->
                     <p:column headerText="Total">
                         <p:cellEditor> 
                             <f:facet name="output">
@@ -97,60 +100,58 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                                          update=":frmExclos:detalle"/>
 
                     </p:column>
-                    <p:column headerText="Editar">
-                        <p:rowEditor />
-                    </p:column>
+                   
 
                 </p:dataTable>
 
 
                 <p:dialog widgetVar="valor" modal="true" showEffect="clip" header="Ver Detalles" resizable="false">
-                   
-                        <p:dataTable id="detalle" var="o" value="#{ventaBean.detalles}" styleClass="tabla" editable="true" >
-                            <p:column headerText="ID">
-                                <f:facet name="header">Id</f:facet>#{o.id} 
-                            </p:column>
-                            <p:column headerText="Producto">
-                                <p:cellEditor> 
-                                    <f:facet name="output">
-                                        <h:outputText value="#{o.producto.nombreProducto}"  />
-                                    </f:facet> 
-                                    <f:facet name="input">
-                                        <h:inputText value="#{o.producto.nombreProducto}" />
-                                    </f:facet> 
-                                </p:cellEditor>
-                            </p:column>
-                            <p:column headerText="Cantidad">
-                                <p:cellEditor> 
-                                    <f:facet name="output">
-                                        <h:outputText value="#{o.cantidad}"/>
-                                    </f:facet> 
-                                    <f:facet name="input">
-                                        <h:inputText value="#{o.cantidad}" size="10"  />
-                                    </f:facet> 
-                                </p:cellEditor>
-                            </p:column>
-                            <p:column headerText="Precio">
-                                <p:cellEditor> 
-                                    <f:facet name="output">
-                                        <h:outputText value="#{o.precio}"  />
-                                    </f:facet> 
-                                    <f:facet name="input">
-                                        <h:inputText value="#{o.precio}" size="10" />
-                                    </f:facet> 
-                                </p:cellEditor>
-                            </p:column>
-                            <p:column headerText="Subtotal">
-                                <p:cellEditor> 
-                                    <f:facet name="output">
-                                        <h:outputText value="#{o.subtotal}" />
-                                    </f:facet> 
-                                    <f:facet name="input">
-                                        <h:inputText value="#{o.subtotal}" size="10" />
-                                    </f:facet> 
-                                </p:cellEditor>
-                            </p:column>
-                        </p:dataTable>
+
+                    <p:dataTable id="detalle" var="o" value="#{ventaBean.detalles}" styleClass="tabla" editable="true" >
+                        <p:column headerText="ID">
+                            <f:facet name="header">Id</f:facet>#{o.id} 
+                        </p:column>
+                        <p:column headerText="Producto">
+                            <p:cellEditor> 
+                                <f:facet name="output">
+                                    <h:outputText value="#{o.producto.nombreProducto}"  />
+                                </f:facet> 
+                                <f:facet name="input">
+                                    <h:inputText value="#{o.producto.nombreProducto}" />
+                                </f:facet> 
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Cantidad">
+                            <p:cellEditor> 
+                                <f:facet name="output">
+                                    <h:outputText value="#{o.cantidad}"/>
+                                </f:facet> 
+                                <f:facet name="input">
+                                    <h:inputText value="#{o.cantidad}" size="10"  />
+                                </f:facet> 
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Precio">
+                            <p:cellEditor> 
+                                <f:facet name="output">
+                                    <h:outputText value="#{o.precio}"  />
+                                </f:facet> 
+                                <f:facet name="input">
+                                    <h:inputText value="#{o.precio}" size="10" />
+                                </f:facet> 
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Subtotal">
+                            <p:cellEditor> 
+                                <f:facet name="output">
+                                    <h:outputText value="#{o.subtotal}" />
+                                </f:facet> 
+                                <f:facet name="input">
+                                    <h:inputText value="#{o.subtotal}" size="10" />
+                                </f:facet> 
+                            </p:cellEditor>
+                        </p:column>
+                    </p:dataTable>
                     <p:commandButton  value="Cerrar" oncomplete="PF('valor').hide(); " />
 
                 </p:dialog>

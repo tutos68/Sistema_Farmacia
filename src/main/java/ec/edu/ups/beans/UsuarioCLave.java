@@ -45,7 +45,7 @@ public class UsuarioCLave implements Serializable {
     public void init() {
         this.usuario = new Usuario();
         list = menuFacade.findAll();
-        if (list.isEmpty()) {
+       if (list.isEmpty()) {
             Menu m1 = new Menu(1, "Cliente", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m1);
             menuFacade.create(new Menu(2, "Nuevo Cliente", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/cliente/cliente.xhtml", m1));
@@ -67,10 +67,10 @@ public class UsuarioCLave implements Serializable {
             menuFacade.create(new Menu(42, "Ver Kardex", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/kardex/listKardex.xhtml", m10));
             Menu m15 = new Menu(15, "Facturas", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m15);
-            menuFacade.create(new Menu(16, "Nuevo Factura Compra", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/factura/facturaVenta.xhtml", m15));
-            menuFacade.create(new Menu(17, "Listar Facturas Compra", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/factura/listFactura.xhtml", m15));
-            menuFacade.create(new Menu(18, "Nuevo Factura Venta", "I", "ADMINISTRADOR", "/", m15));
-            menuFacade.create(new Menu(19, "Listar Factura Venta", "I", "ADMINISTRADOR", "/", m15));
+            menuFacade.create(new Menu(16, "Nueva Factura de Compra", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/factura/facturaCompra.xhtml", m15));
+            menuFacade.create(new Menu(17, "Listar Facturas  de Compra", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/factura/listFactura.xhtml", m15));
+            menuFacade.create(new Menu(18, "Nueva  Factura de Venta", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/factura/facturaVenta.xhtml", m15));
+            menuFacade.create(new Menu(19, "Listar Factura de Venta", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/factura/listFactura.xhtml", m15));
             Menu m20 = new Menu(20, "Administrador", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m20);
             menuFacade.create(new Menu(21, "Nuevo Administrador", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/administrador/administrador.xhtml", m20));
@@ -89,10 +89,10 @@ public class UsuarioCLave implements Serializable {
             menuFacade.create(new Menu(43, "Ver Kardex", "I", "EMPLEADO", "/Sistema_Farmacia/vista/kardex/listKardex.xhtml", m6));
             Menu m8 = new Menu(31, "Facturas", "S", "EMPLEADO", "/", null);
             menuFacade.create(m8);
-            menuFacade.create(new Menu(32, "Nuevo Factura Compra", "I", "EMPLEADO", "/Sistema_Farmacia/vista/factura/facturaVenta.xhtml", m8));
-            menuFacade.create(new Menu(33, "Listar Facturas Compra", "I", "EMPLEADO", "/Sistema_Farmacia/vista/factura/listFactura.xhtml", m8));
-            menuFacade.create(new Menu(34, "Nuevo Factura Venta", "I", "EMPLEADO", "/", m8));
-            menuFacade.create(new Menu(35, "Listar Factura Venta", "I", "EMPLEADO", "/", m8));
+            menuFacade.create(new Menu(32, "Nueva Factura  de Compra", "I", "EMPLEADO", "/Sistema_Farmacia/vista/factura/facturaCompra.xhtml", m8));
+            menuFacade.create(new Menu(33, "Listar Facturas  de Compra", "I", "EMPLEADO", "/Sistema_Farmacia/vista/factura/listFactura.xhtml", m8));
+            menuFacade.create(new Menu(34, "Nueva  Factura de  Venta", "I", "EMPLEADO", "/Sistema_Farmacia/vista/factura/facturaVenta.xhtml", m8));
+            menuFacade.create(new Menu(35, "Listar Facturas deVenta", "I", "EMPLEADO", "/Sistema_Farmacia/vista/factura/listFactura.xhtml", m8));
 
             Menu m9 = new Menu(36, "Proveedor", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m9);

@@ -4,6 +4,7 @@
  */
 package ec.edu.ups.beans;
 
+import ec.edu.ups.farmacia.controlador.CabeceraVentaFacade;
 import ec.edu.ups.farmacia.controlador.DetalleFacade;
 import ec.edu.ups.farmacia.modelo.CabeceraVenta;
 import ec.edu.ups.farmacia.controlador.ProductoFacade;
@@ -47,12 +48,15 @@ public class DetalleBean implements Serializable {
     private ClienteFacade clienteFacade;
     @EJB
     private KardexFacade kardexFacade;
-    
+    @EJB
+    private CabeceraVentaFacade ventaFacade;//mando mi fachada
+
     //Inicializamos las listas
     private List<Detalle> list = new ArrayList<>();
     private List<Producto> listaProductos = new ArrayList<>();
     private List<Cliente> listaClientes = new ArrayList<>();
     private List<Kardex> listaKardex = new ArrayList<>();
+    private List<CabeceraVenta> listCabecera = new ArrayList<>();
     private int id;
     private int idProducto;
     private Producto producto;
@@ -60,34 +64,34 @@ public class DetalleBean implements Serializable {
     private double precio;
     private double subtotal;
     private CabeceraVenta cabeceraVenta;
-    private double total=0;
+    private double total = 0;
     private Cliente cliente;
     private String cedula;
-    private String mensaje="";
-    private String datosCliente="";
-    private String autocompletado="";
+    private String mensaje = "";
+    private String datosCliente = "";
+    private String autocompletado = "";
     private GregorianCalendar g;
-    private double totalDinero=0;
+    private double totalDinero = 0;
 
     @PostConstruct
     public void init() {
         list = new ArrayList<>();
         listaProductos = productoFacade.findAll();
-        listaClientes= clienteFacade.findAll();
-        listaKardex=kardexFacade.findAll();
-        
+        listaClientes = clienteFacade.findAll();
+        listaKardex = kardexFacade.findAll();
+
     }
 
     public String add() {
-       // Producto p = new Producto(1, "producto", 1, 2.3, null, null, null);
-       // productoFacade.create(p);
+        // Producto p = new Producto(1, "producto", 1, 2.3, null, null, null);
+        // productoFacade.create(p);
         //producto=p;
         for (Producto producto1 : listaProductos) {
-            if(producto1.getNombreProducto().equals(autocompletado)){
-                this.producto=producto1;
+            if (producto1.getNombreProducto().equals(autocompletado)) {
+                this.producto = producto1;
             }
         }
-        Detalle d =new Detalle(id, producto, cantidad, producto.getPrecio(), (cantidad * producto.getPrecio()));
+        Detalle d = new Detalle(id, producto, cantidad, producto.getPrecio(), (cantidad * producto.getPrecio()));
         list.add(d);
         this.limpiar();
         return null;
@@ -111,18 +115,20 @@ public class DetalleBean implements Serializable {
         int c = 0;
         for (Detalle detalle : list) {
             if (s.equals(detalle)) {
-                Detalle d = new Detalle(detalle.getId(), detalle.getProducto(), detalle.getCantidad(), detalle.getPrecio(), detalle.getCantidad()*detalle.getPrecio());
+                Detalle d = new Detalle(detalle.getId(), detalle.getProducto(), detalle.getCantidad(), detalle.getPrecio(), detalle.getCantidad() * detalle.getPrecio());
                 list.set(id - 1, detalle);
             }
         }
-        
+
         return null;
     }
 
     public void limpiar() {
         this.cantidad = 0;
         this.precio = 0.0;
-        this.autocompletado="";
+        this.autocompletado = "";
+        this.cedula = "";
+        this.datosCliente = "";
 
     }
 
@@ -241,9 +247,9 @@ public class DetalleBean implements Serializable {
     }
 
     public double getTotal() {
-        this.total=0;
+        this.total = 0;
         for (Detalle detalle : list) {
-            total=total+detalle.getSubtotal();
+            total = total + detalle.getSubtotal();
         }
         return total;
     }
@@ -284,57 +290,60 @@ public class DetalleBean implements Serializable {
         this.mensaje = mensaje;
     }
 
-    public String clienteBusqueda(){
-        mensaje="";
+    public String clienteBusqueda() {
+        mensaje = "";
         System.out.println(cedula);
         for (Cliente cliente : listaClientes) {
-            if (this.cedula.equals(cliente.getIdentificador())){
-                mensaje="Cliente Encontrado";
-                datosCliente=cliente.toString();
-                this.cliente=cliente;
+            if (this.cedula.equals(cliente.getIdentificador())) {
+                mensaje = "Cliente Encontrado";
+                datosCliente = cliente.toString();
+                this.cliente = cliente;
             }
-            
+
         }
         return null;
     }
-    
-    
-    public String guardarFactura(){
-        CabeceraVenta cabeceraVenta=new CabeceraVenta(cliente,id, new GregorianCalendar(), subtotal, total, true);
+
+    public String guardarFactura() {
+        CabeceraVenta cabeceraVenta = new CabeceraVenta(cliente, id, new GregorianCalendar(), subtotal, total, true);
         facturaVentaFacade.create(cabeceraVenta);
-        
+
         for (Detalle detalle : list) {
-           // detalleFacade.create(new Detalle(id, detalle.getProducto(), detalle.getCantidad(), detalle.getProducto().getPrecio(), detalle.getSubtotal(), cabeceraVenta));
-           detalleFacade.create(detalle);
-           detalle.setCabeceraVenta(cabeceraVenta);
-           detalleFacade.edit(detalle);
-           
-           kardexFacade.create(new Kardex(id, detalle, "+", detalle.getSubtotal()+calcularTotalKardex()));
+            // detalleFacade.create(new Detalle(id, detalle.getProducto(), detalle.getCantidad(), detalle.getProducto().getPrecio(), detalle.getSubtotal(), cabeceraVenta));
+            detalleFacade.create(detalle);
+            detalle.setCabeceraVenta(cabeceraVenta);
+            detalleFacade.edit(detalle);
+
+            kardexFacade.create(new Kardex(id, detalle, "+", detalle.getSubtotal() + calcularTotalKardex()));
         }
         cabeceraVenta.setDetalles(list);
         facturaVentaFacade.edit(cabeceraVenta);
-        list= new ArrayList<>();
+        list = new ArrayList<>();
         actualizarStock(cabeceraVenta);
+        listCabecera = ventaFacade.findAll();
+        limpiar();
         return null;
     }
-    
-    public double calcularTotalKardex(){
-        listaKardex=kardexFacade.findAll();
-        double valor=0;
+
+    public double calcularTotalKardex() {
+        listaKardex = kardexFacade.findAll();
+        double valor = 0;
         for (Kardex kardex : listaKardex) {
-             valor=kardex.getPrecioPonderado();
+            valor = kardex.getPrecioPonderado();
         }
-        listaKardex=kardexFacade.findAll();
+        listaKardex = kardexFacade.findAll();
         return valor;
     }
-    public void actualizarStock(CabeceraVenta cabeceraVenta){
+
+    public void actualizarStock(CabeceraVenta cabeceraVenta) {
         for (Detalle detalle : cabeceraVenta.getDetalles()) {
-            producto=detalle.getProducto();
-            producto.setStock(producto.getStock()-detalle.getCantidad());
+            producto = detalle.getProducto();
+            producto.setStock(producto.getStock() - detalle.getCantidad());
             productoFacade.edit(producto);
         }
     }
-    public GregorianCalendar mostrarFecha(){
+
+    public GregorianCalendar mostrarFecha() {
         return new GregorianCalendar();
     }
 
@@ -353,14 +362,11 @@ public class DetalleBean implements Serializable {
     public void setDatosCliente(String datosCliente) {
         this.datosCliente = datosCliente;
     }
-    
-    
-    
-    
-     public List<String> completeText(String query) {
+
+    public List<String> completeText(String query) {
         String queryLowerCase = query.toLowerCase();
         List<String> countryList = new ArrayList<>();
-        List<Producto> producto =productoFacade.findAll();
+        List<Producto> producto = productoFacade.findAll();
         for (Producto country : producto) {
             countryList.add(country.getNombreProducto());
         }
@@ -391,7 +397,5 @@ public class DetalleBean implements Serializable {
     public void setTotalDinero(double totalDinero) {
         this.totalDinero = totalDinero;
     }
-     
-     
-    
+
 }

@@ -58,12 +58,12 @@ public class EmpleadoBean implements Serializable {
         listaEmpleado = empleadoFacade.findAll();
         listaSucursals = EJBSucursalFacade.findAll();
         listUsuario = usuarioFacade.findAll();
-        listaEmpleados();
+        //listaEmpleados();
     }
 
-    public String delete(Usuario u) { //el empleado se borra por el usuario ya que dentro de usuario esta la entidad y la misma hereda a usuario
-        usuarioFacade.remove(u);
-        listUsuario = usuarioFacade.findAll();
+    public String delete(Empleado e) { //el empleado se borra por el usuario ya que dentro de usuario esta la entidad y la misma hereda a usuario
+        empleadoFacade.remove(e);
+        listaEmpleado = empleadoFacade.findAll();
         return null;
     }
 
@@ -274,6 +274,7 @@ public class EmpleadoBean implements Serializable {
         this.usuario = "";
         this.contrasenia = "";
         this.sueldo = 0;
+        this.sucursal=new Sucursal();
 
     }
 }
