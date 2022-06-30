@@ -321,6 +321,7 @@ public class DetalleBean implements Serializable {
         list = new ArrayList<>();
         actualizarStock(cabeceraVenta);
         listCabecera = ventaFacade.findAll();
+        listaProductos = productoFacade.findAll();
         limpiar();
         return null;
     }

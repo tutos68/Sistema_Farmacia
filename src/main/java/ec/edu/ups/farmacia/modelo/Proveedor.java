@@ -5,6 +5,7 @@
 package ec.edu.ups.farmacia.modelo;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import java.io.Serializable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.JoinColumn;
@@ -17,6 +18,7 @@ import jakarta.persistence.OneToOne;
 @Entity
 public class Proveedor extends Entidad implements Serializable {
 
+    @Column(name = "sitio_web")
     private String sitioWeb;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "proveedor")
     private CabeceraCompra cabeceraCompra;

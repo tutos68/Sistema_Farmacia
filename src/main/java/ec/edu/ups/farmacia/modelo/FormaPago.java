@@ -4,8 +4,10 @@
  */
 package ec.edu.ups.farmacia.modelo;
 
+import jakarta.persistence.Column;
 import java.io.Serializable;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,11 +25,16 @@ public class FormaPago implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "tipo_pago")
+    @Enumerated
     private TipoPago tipoPago;
+    @Column(name = "nombre_titular")
     private String nombreTitular;
+    @Column(name = "numero_tarjeta")
     private String numeroTarjeta;
     private double vuelto;
     private int meses;
+
     //@OneToOne
     //@JoinColumn
     //private FacturaCabecera facturaCabecera;
@@ -42,8 +49,6 @@ public class FormaPago implements Serializable {
         this.vuelto = vuelto;
         this.meses = meses;
     }
-
-    
 
     public int getId() {
         return id;
@@ -61,7 +66,6 @@ public class FormaPago implements Serializable {
         this.tipoPago = tipoPago;
     }
 
- 
     public String getNombreTitular() {
         return nombreTitular;
     }
@@ -119,5 +123,4 @@ public class FormaPago implements Serializable {
         return "FormaPago{" + "id=" + id + ", tipoPago=" + tipoPago + ", nombreTitular=" + nombreTitular + ", numeroTarjeta=" + numeroTarjeta + ", vuelto=" + vuelto + ", meses=" + meses + '}';
     }
 
- 
 }

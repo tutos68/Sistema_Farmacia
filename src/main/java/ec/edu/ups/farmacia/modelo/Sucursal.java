@@ -31,6 +31,7 @@ public class Sucursal implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String direccion;
+    @Column(name = "nombre_clave")
     private String nombreClave;
     private String telefono;
     private double latitud;

@@ -4,16 +4,10 @@
  */
 package ec.edu.ups.farmacia.modelo;
 
-import jakarta.persistence.CascadeType;
+
 import java.io.Serializable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.NamedQuery;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
-import jakarta.persistence.Temporal;
-import jakarta.persistence.TemporalType;
+import jakarta.persistence.*;
 import java.util.Date;
-import java.util.GregorianCalendar;
 
 /**
  *
@@ -27,7 +21,7 @@ import java.util.GregorianCalendar;
 public class Cliente extends Entidad implements Serializable {
 
     
-    
+    @Column(name = "fecha_Nacimiento")
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente")

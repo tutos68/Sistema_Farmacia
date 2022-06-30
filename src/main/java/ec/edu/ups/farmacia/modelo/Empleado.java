@@ -5,6 +5,7 @@
 package ec.edu.ups.farmacia.modelo;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import jakarta.persistence.Entity;
@@ -23,6 +24,7 @@ import java.util.Date;
 public class Empleado extends Entidad implements Serializable {
 
     @Temporal(TemporalType.DATE)
+     @Column(name = "fecha_ingreso")
     private Date fechaIngreso;
     private String cargo;
     private double sueldo;

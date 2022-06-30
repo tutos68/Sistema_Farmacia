@@ -4,6 +4,7 @@
  */
 package ec.edu.ups.farmacia.modelo;
 
+import jakarta.persistence.Column;
 import java.io.Serializable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -26,6 +27,7 @@ public class Menu implements Serializable {
     private int id;
     private String nombre;
     private String tipo;
+     @Column(name = "tipo_usuario")
     private String tipoUsuario;
     private String url;
     @ManyToOne

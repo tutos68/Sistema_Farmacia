@@ -29,6 +29,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                                 <p:commandButton  styleClass="ui-button-success" id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
                                 <p:columnToggler datasource="products" trigger="toggler"/>
                             </div>
+                            <div>
+                                <p:commandButton value="Actualizar"  update="frmExclos" styleClass="ui-button-raised ui-button-danger"/>
+
+                            </div>
                         </div>
                     </f:facet>
 
@@ -78,7 +82,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                             </f:facet> 
                         </p:cellEditor>
                     </p:column>
-                    
+
                     <p:column headerText="Sucursal">
                         <f:facet name="header">Categoria</f:facet>#{p.categoria.nombre}
                     </p:column>

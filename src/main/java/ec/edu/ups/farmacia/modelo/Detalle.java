@@ -5,6 +5,7 @@
 package ec.edu.ups.farmacia.modelo;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import java.io.Serializable;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -30,10 +31,10 @@ public class Detalle implements Serializable {
     private double precio;
     private double subtotal;
     @ManyToOne
-    @JoinColumn//(name = "cabeceraa_id", nullable = true, referencedColumnName = "id")
+    @JoinColumn(name = "cabecera_venta")
     private CabeceraVenta cabeceraVenta;
     @ManyToOne
-    @JoinColumn//(name = "cabeceraa_id", nullable = true, referencedColumnName = "id")
+    @JoinColumn(name = "cabecera_compra")
     private CabeceraCompra cabeceraCompra;
     @OneToOne(cascade =CascadeType.ALL ,mappedBy ="detalle" )
     private Kardex kardex;

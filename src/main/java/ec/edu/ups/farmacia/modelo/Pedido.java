@@ -4,6 +4,7 @@
  */
 package ec.edu.ups.farmacia.modelo;
 
+import jakarta.persistence.Column;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -27,10 +28,13 @@ public class Pedido implements Serializable {
     private double latitud;
     private double longitud;
     private Detalle detalle;
-    private EstadoPedido estado; 
+    private EstadoPedido estado;
+    @Column(name = "tiempo_espera")
     private Date tiempoEspera;
+    @Column(name = "costo_envio")
     private double costoEnvio;
     private List<Detalle> detalles;
+  
     private FormaPago formaPago;
 
     public Pedido() {
@@ -48,8 +52,6 @@ public class Pedido implements Serializable {
         this.detalles = detalles;
         this.formaPago = formaPago;
     }
-    
-    
 
     public Pedido(int id, Usuario usuario, double latitud, double longitud, EstadoPedido estado, Date tiempoEspera, double costoEnvio, List<Detalle> detalles, FormaPago formaPago) {
         this.id = id;
@@ -135,7 +137,7 @@ public class Pedido implements Serializable {
     public void setFormaPago(FormaPago formaPago) {
         this.formaPago = formaPago;
     }
-    
+
     public int getId() {
         return id;
     }
@@ -143,8 +145,6 @@ public class Pedido implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
-
- 
 
     @Override
     public int hashCode() {
@@ -170,6 +170,5 @@ public class Pedido implements Serializable {
     public String toString() {
         return "Pedido{" + "id=" + id + ", usuario=" + usuario + ", latitud=" + latitud + ", longitud=" + longitud + ", detalle=" + detalle + ", estado=" + estado + ", tiempoEspera=" + tiempoEspera + ", costoEnvio=" + costoEnvio + ", detalles=" + detalles + ", formaPago=" + formaPago + '}';
     }
- 
-    
+
 }

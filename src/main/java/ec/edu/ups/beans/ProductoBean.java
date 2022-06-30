@@ -51,8 +51,8 @@ public class ProductoBean implements Serializable {
         this.categoria = new Categoria();
         this.producto = new Producto();
         listCategoria = categoriaFacade.findAll();
-
         list = productoFacade.findAll();
+        this.listaProductos();
     }
 
     public String add() {
