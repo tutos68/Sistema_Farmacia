@@ -42,24 +42,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <p:column headerText="Nombre">
                         <p:cellEditor> 
                             <f:facet name="output">
-                                <h:outputText value="#{p.nombreProducto}"/>
+                                <h:outputText value="#{p.nombre}"/>
                             </f:facet> 
                             <f:facet name="input">
-                                <h:inputText value="#{p.nombreProducto}" size="10"  />
+                                <h:inputText value="#{p.nombre}" size="10"  />
                             </f:facet> 
                         </p:cellEditor>
                     </p:column>
 
-                    <p:column headerText="Stock">
-                        <p:cellEditor> 
-                            <f:facet name="output">
-                                <h:outputText value="#{p.stock}"/>
-                            </f:facet> 
-                            <f:facet name="input">
-                                <h:inputText value="#{p.stock}" size="10"  />
-                            </f:facet> 
-                        </p:cellEditor>
-                    </p:column>
+
 
                     <p:column headerText="Precio">
                         <p:cellEditor> 
@@ -83,11 +74,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                         </p:cellEditor>
                     </p:column>
                     
-                    <p:column headerText="Sucursal">
+                    <p:column headerText="Categoria">
                         <f:facet name="header">Categoria</f:facet>#{p.categoria.nombre}
-                    </p:column>
-                    <p:column headerText="Sucursal">
-                        <f:facet name="header">Sucursal</f:facet>#{p.sucursal.nombreClave}
                     </p:column>
                     <p:column headerText="Eliminar">
                         <p:commandButton value="Eliminar" action="#{productoBean.delete(p)}" update="products" styleClass="ui-button-raised ui-button-danger"/>

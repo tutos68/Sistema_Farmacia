@@ -79,8 +79,10 @@ public class DetalleVentaBean implements Serializable {
         listaProductos = productoFacade.findAll();
         listaClientes = clienteFacade.findAll();
         listaKardex = kardexFacade.findAll();
-
+      
     }
+    
+  
 
     public String add() {
         // Producto p = new Producto(1, "producto", 1, 2.3, null, null, null);
@@ -390,6 +392,38 @@ public class DetalleVentaBean implements Serializable {
 
     public void setTotalDinero(double totalDinero) {
         this.totalDinero = totalDinero;
+    }
+
+    public KardexFacade getKardexFacade() {
+        return kardexFacade;
+    }
+
+    public void setKardexFacade(KardexFacade kardexFacade) {
+        this.kardexFacade = kardexFacade;
+    }
+
+    public CabeceraVentaFacade getVentaFacade() {
+        return ventaFacade;
+    }
+
+    public void setVentaFacade(CabeceraVentaFacade ventaFacade) {
+        this.ventaFacade = ventaFacade;
+    }
+
+    public List<CabeceraVenta> getListCabecera() {
+        return listCabecera;
+    }
+
+    public void setListCabecera(List<CabeceraVenta> listCabecera) {
+        this.listCabecera = listCabecera;
+    }
+
+    public ProductoSucursal getProducto() {
+        return producto;
+    }
+
+    public void setProducto(ProductoSucursal producto) {
+        this.producto = producto;
     }
 
 }

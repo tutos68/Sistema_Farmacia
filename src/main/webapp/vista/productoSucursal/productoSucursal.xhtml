@@ -35,21 +35,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Nombre Producto" for="@next"/>
-                    <p:autoComplete id="acSimple" value="#{detalleBean.autocompletado}"
-                                    completeMethod="#{detalleBean.completeText}" scrollHeight="250"/>
+                    <p:autoComplete id="acSimple" value="#{detalleVentaBean.autocompletado}"
+                                    completeMethod="#{detalleVentaBean.completeText}" scrollHeight="250"/>
 
 
 
 
 
                     <p:outputLabel value="Cantidad"/>
-                    <p:inputText value="#{detalleBean.cantidad}"/>
+                    <p:inputText value="#{detalleVentaBean.cantidad}"/>
 
                 </p:panelGrid>
 
                 <p:panelGrid columns="1">
                     <p:commandButton value="Agregar Nuevo Detalle" oncomplete="PF('valor').hide();" 
-                                     update="frmExclos" actionListener="#{detalleBean.add}"/>
+                                     update="frmExclos" actionListener="#{detalleVentaBean.add}"/>
                 </p:panelGrid>
             </h:form>
         </p:dialog>
@@ -60,8 +60,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         <div class="card">
             <h:form id="frmExclos">
                 <p:growl  id="mensajeGeneral3" sticky="false" showDetail="true"/>    
-                <p:dataTable id="products" var="s" value="#{detalleBean.list}" styleClass="tabla" editable="true">
-                    <p:ajax listener="#{detalleBean.edit(s)}"  event="rowEdit" update=":frmExclos:mensajeGeneral3"/>
+                <p:dataTable id="products" var="s" value="#{detalleVentaBean.list}" styleClass="tabla" editable="true">
+                    <p:ajax listener="#{detalleVentaBean.edit(s)}"  event="rowEdit" update=":frmExclos:mensajeGeneral3"/>
 
                     <f:facet name="header">
                         <div class="p-d-flex p-jc-between p-ai-center">
@@ -78,10 +78,10 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <p:column headerText="Producto">
                         <p:cellEditor> 
                             <f:facet name="output">
-                                <h:outputText value="#{s.producto.nombreProducto}"  />
+                                <h:outputText value="#{s.producto.nombre}"  />
                             </f:facet> 
                             <f:facet name="input">
-                                <h:inputText value="#{s.producto.nombreProducto}" />
+                                <h:inputText value="#{s.producto.nombre}" />
                             </f:facet> 
                         </p:cellEditor>
                     </p:column>
@@ -117,7 +117,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     </p:column>
 
                     <p:column headerText="Eliminar">
-                        <p:commandButton value="Eliminar" action="#{detalleBean.delete(s)}" update="products" styleClass="ui-button-raised ui-button-danger"/>
+                        <p:commandButton value="Eliminar" action="#{detalleVentaBean.delete(s)}" update="products" styleClass="ui-button-raised ui-button-danger"/>
                     </p:column>
                     <p:column headerText="Editar">
                         <p:rowEditor />
@@ -127,7 +127,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
 
                 <p:panelGrid columns="2">
                     <p:outputLabel value="Total"/>
-                    <p:outputLabel value="#{detalleBean.total}"/>
+                    <p:outputLabel value="#{detalleVentaBean.total}"/>
 
                 </p:panelGrid>
             </h:form> 

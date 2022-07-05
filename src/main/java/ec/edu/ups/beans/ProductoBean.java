@@ -41,7 +41,7 @@ public class ProductoBean implements Serializable {
     private List<Producto> list = new ArrayList<>();
     private List<Categoria> listCategoria = new ArrayList<>();
     private int id;
-    private String nombreProducto;
+    private String nombre;
     private int stock;
     private double precio;
     private String descripcion;
@@ -58,7 +58,7 @@ public class ProductoBean implements Serializable {
         Usuario u = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");//
        // Empleado e = (Empleado) u.getEntidad();
        // System.out.println(e.getSucursal().getNombreClave());
-        productoFacade.create(new Producto(nombreProducto, precio, descripcion, categoria));
+        productoFacade.create(new Producto(nombre, precio, descripcion, categoria));
 
         //Sucursal s = (Sucursal) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
         list = productoFacade.findAll();//llamo al findall para que se me actualice la lista
@@ -82,7 +82,7 @@ public class ProductoBean implements Serializable {
     }
 
     public void limpiar() {
-        this.nombreProducto = "";
+        this.nombre = "";
         this.stock = 0;
         this.precio = 0.0;
         this.descripcion = "";
@@ -130,12 +130,12 @@ public class ProductoBean implements Serializable {
         this.id = id;
     }
 
-    public String getNombreProducto() {
-        return nombreProducto;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreProducto(String nombreProducto) {
-        this.nombreProducto = nombreProducto;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public int getStock() {

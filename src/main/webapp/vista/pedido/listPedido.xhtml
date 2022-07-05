@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit this template
+-->
+<!DOCTYPE html>
+<html  xmlns="http://www.w3.org/1999/xhtml"
+       xmlns:f="http://xmlns.jcp.org/jsf/core"
+       xmlns:h="http://xmlns.jcp.org/jsf/html"
+       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+       xmlns:p="http://primefaces.org/ui"
+       template="/WEB-INF/template.xhtml">
+    <h:head>
+        <title>Lista de Pedidos</title>
+    </h:head>
+    <ui:include src="../menu/menuDinamico.xhtml" />
+    <h:body>
+        <div class="card">
+            <h:form id="frmExclos">
+                <p:growl  id="mensajeGeneral3" sticky="false" showDetail="true"/>   
+                <p:dataTable id="products" var="a" value="#{pedidoBean.listaPedidos}" editable="true" styleClass="tabla">
+
+                    <p:ajax listener="#{pedidoBean.edit(a)}"  event="rowEdit" update=":frmExclos:mensajeGeneral3"/>
+
+                    <f:facet name="header">
+                        <div class="p-d-flex p-jc-between p-ai-center">
+                            <h1 style="text-align: center; color: white" >Lista de Pedidos</h1>
+                            <div>
+                                <p:commandButton styleClass="ui-button-success" id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
+                                <p:columnToggler datasource="products" trigger="toggler"/>
+                            </div>
+                        </div>
+                    </f:facet>
+
+                    <p:column headerText="ID">
+                        <f:facet name="header">Id</f:facet>#{a.id}
+                    </p:column>
+
+                    <p:column headerText="Usuario">
+                        <f:facet name="header">Cedula</f:facet> #{a.usuario.entidad.identificador}
+                    </p:column>
+                    <p:column headerText="Latitud">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{a.latitud}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <h:inputText value="#{a.latitud}" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Longitud">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{a.longitud}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <h:inputText value="#{a.longitud}" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Estado">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{a.estado}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <h:inputText value="#{a.estado}" />
+                            </f:facet> 
+                        </p:cellEditor>
+
+                    </p:column>
+
+                    <p:column headerText="Tiempo de Espera">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{a.tiempoEspera}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <h:inputText value="#{a.tiempoEspera}" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Costo de Envio">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{a.costoEnvio}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <h:inputText value="#{a.costoEnvio}" />
+                            </f:facet> 
+                        </p:cellEditor>
+
+                    </p:column>
+
+                    <p:column headerText="Detalles">
+                        <p:commandButton value="Ver Detalles" action="#{pedidoBean.delete(a)}" update="products" />
+                    </p:column>
+
+                    <p:column headerText="Forma de Pago">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{a.formaPago.tipoPago}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <h:inputText value="#{a.formaPago.tipoPago}" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+                    <p:column headerText="Entidad">
+                        <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{a.usuario.entidad.id}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <h:inputText value="#{a.usuario.entidad.id}" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+
+                    <p:column headerText="Total">
+                         <p:cellEditor> 
+                            <f:facet name="output">
+                                <h:outputText value="#{a.total}" />
+                            </f:facet>
+                            <f:facet name="input">
+                                <h:inputText value="#{a.total}" />
+                            </f:facet> 
+                        </p:cellEditor>
+                    </p:column>
+
+                  
+                    <p:column headerText="Editar">
+                        <p:rowEditor />
+                    </p:column>
+                </p:dataTable>
+            </h:form>
+        </div>
+    </h:body>
+    <ui:include src="../menu/footer.xhtml" />
+</html>

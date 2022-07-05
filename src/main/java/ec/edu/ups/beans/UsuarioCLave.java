@@ -109,6 +109,16 @@ public class UsuarioCLave implements Serializable {
             menuFacade.create(new Menu(40, "Nuevo Proveedor", "I", "EMPLEADO", "/Sistema_Farmacia/vista/proveedor/proveedor.xhtml", m11));
             menuFacade.create(new Menu(41, "Listar Proveedor", "I", "EMPLEADO", "/Sistema_Farmacia/vista/proveedor/listProveedor.xhtml", m11));
             
+            Menu m12 = new Menu(50, "Pedidos", "S", "EMPLEADO", "/", null);
+            menuFacade.create(m12);
+            menuFacade.create(new Menu(51, "Listar Pedidos", "I", "EMPLEADO", "/Sistema_Farmacia/vista/pedido/listPedido.xhtml", m12));
+            
+            Menu m13 = new Menu(52, "Pedidos", "S", "ADMINISTRADOR", "/", null);
+            menuFacade.create(m13);
+            menuFacade.create(new Menu(53, "Listar Pedidos", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/pedido/listPedido.xhtml", m13));
+      
+             
+            
            
             
            // usuarioBean.addAdminisrador("1400", "NOMBRE", "APELLIDO", "m@gmail.com", "direccion 1", "1234567890", "ADMIN", "1");

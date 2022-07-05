@@ -42,6 +42,13 @@ public class ProductoSucursal implements Serializable {
         this.stock = stock;
     }
 
+    public ProductoSucursal(int id, Sucursal sucursal, Producto producto, int stock) {
+        this.id = id;
+        this.sucursal = sucursal;
+        this.producto = producto;
+        this.stock = stock;
+    }
+
     public Sucursal getSucursal() {
         return sucursal;
     }
