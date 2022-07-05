@@ -51,9 +51,9 @@ public class AdministradorBean implements Serializable {
     }
 
     public String add() {
-        Administrador administrador = new Administrador(id, identificador, nombre, apellido, correo, direccion, telefono);
+        Administrador administrador = new Administrador(identificador, nombre, apellido, correo, direccion, telefono);
         if (administrador != null) {
-            Usuario usuarios = new Usuario(id, usuario, contrasenia, rol, administrador);
+            Usuario usuarios = new Usuario(usuario, contrasenia, rol, administrador);
             if (usuarios != null) {
                 usuarioFacade.create(usuarios);
                 // administradorFacade.create(administrador);

@@ -23,6 +23,8 @@ public class AdministradorFacade extends AbstractFacade<Administrador> {
         super(Administrador.class);
     }
     
+    
+    
     @Override
     protected EntityManager getEntityManager() {
         return em;

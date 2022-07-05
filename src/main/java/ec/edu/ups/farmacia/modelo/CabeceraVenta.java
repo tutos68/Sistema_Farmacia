@@ -28,6 +28,9 @@ public class CabeceraVenta extends FacturaCabecera implements Serializable {
     @OneToOne
     @JoinColumn
     private Cliente cliente;
+    @OneToOne
+    @JoinColumn
+    private Usuario usuario;
 
     public CabeceraVenta(Cliente cliente, int id, GregorianCalendar fecha, double subtotal, double total, boolean estado) {
         super(id, fecha, subtotal, total, estado);

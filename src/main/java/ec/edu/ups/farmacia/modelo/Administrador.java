@@ -22,6 +22,13 @@ public class Administrador extends Entidad implements Serializable {
 
     public Administrador() {
     }
+    
+    
+    public Administrador(String identificador, String nombre, String apellido, String correo, String direccion, String telefono) {
+       
+    }
+    
+    
 
    
     

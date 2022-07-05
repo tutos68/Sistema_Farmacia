@@ -13,12 +13,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 /**
  *
  * @author Adrian
  */
 @Entity
+@Table(name = "forma_pago")
 public class FormaPago implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -35,9 +37,11 @@ public class FormaPago implements Serializable {
     private double vuelto;
     private int meses;
 
-    //@OneToOne
-    //@JoinColumn
-    //private FacturaCabecera facturaCabecera;
+    @OneToOne
+    @JoinColumn
+    private FacturaCabecera facturaCabecera;
+    
+    
     public FormaPago() {
     }
 

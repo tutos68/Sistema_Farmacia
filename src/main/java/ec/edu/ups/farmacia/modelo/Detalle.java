@@ -26,7 +26,9 @@ public class Detalle implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private Producto producto;
+    @OneToOne
+    @JoinColumn
+    private ProductoSucursal productoSucursal;
     private int cantidad;
     private double precio;
     private double subtotal;
@@ -42,41 +44,23 @@ public class Detalle implements Serializable {
     public Detalle() {
     }
 
-    public Detalle(int id, Producto producto, int cantidad, double precio, double subtotal, CabeceraVenta cabeceraVenta) {
-        this.id = id;
-        this.producto = producto;
+    public Detalle(ProductoSucursal productoSucursal, int cantidad, double precio, double subtotal, CabeceraVenta cabeceraVenta) {
+        this.productoSucursal = productoSucursal;
         this.cantidad = cantidad;
         this.precio = precio;
         this.subtotal = subtotal;
         this.cabeceraVenta = cabeceraVenta;
     }
 
-    public Detalle(int id, Producto producto, int cantidad, double precio, double subtotal, CabeceraCompra cabeceraCompra) {
-        this.id = id;
-        this.producto = producto;
+    public Detalle(ProductoSucursal productoSucursal, int cantidad, double precio, double subtotal, CabeceraCompra cabeceraCompra) {
+        this.productoSucursal = productoSucursal;
         this.cantidad = cantidad;
         this.precio = precio;
         this.subtotal = subtotal;
         this.cabeceraCompra = cabeceraCompra;
     }
-    
-    
 
-    public Detalle(int id, Producto producto, int cantidad, double precio, double subtotal) {
-        this.id = id;
-        this.producto = producto;
-        this.cantidad = cantidad;
-        this.precio = precio;
-        this.subtotal = subtotal;
-    }
-
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
+   
 
     public int getCantidad() {
         return cantidad;
@@ -133,6 +117,14 @@ public class Detalle implements Serializable {
     public void setKardex(Kardex kardex) {
         this.kardex = kardex;
     }
+
+    public ProductoSucursal getProductoSucursal() {
+        return productoSucursal;
+    }
+
+    public void setProductoSucursal(ProductoSucursal productoSucursal) {
+        this.productoSucursal = productoSucursal;
+    }
     
     
     
@@ -157,9 +149,6 @@ public class Detalle implements Serializable {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Detalle{" + "id=" + id + ", producto=" + producto + ", cantidad=" + cantidad + ", precio=" + precio + ", subtotal=" + subtotal + '}';
-    }
+    
 
 }

@@ -7,7 +7,7 @@ package ec.edu.ups.beans;
 import ec.edu.ups.farmacia.controlador.CabeceraVentaFacade;
 import ec.edu.ups.farmacia.controlador.DetalleFacade;
 import ec.edu.ups.farmacia.modelo.CabeceraVenta;
-import ec.edu.ups.farmacia.controlador.ProductoFacade;
+import ec.edu.ups.farmacia.controlador.ProductoSucursalFacade;
 import ec.edu.ups.farmacia.modelo.Producto;
 import ec.edu.ups.farmacia.controlador.ClienteFacade;
 import ec.edu.ups.farmacia.modelo.Cliente;
@@ -16,7 +16,7 @@ import ec.edu.ups.farmacia.controlador.KardexFacade;
 import ec.edu.ups.farmacia.modelo.CabeceraVenta;
 import ec.edu.ups.farmacia.modelo.Detalle;
 import ec.edu.ups.farmacia.modelo.Kardex;
-import ec.edu.ups.farmacia.modelo.Producto;
+import ec.edu.ups.farmacia.modelo.ProductoSucursal;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
 import jakarta.enterprise.context.SessionScoped;
@@ -35,13 +35,13 @@ import java.util.stream.Collectors;
  */
 @Named
 @SessionScoped
-public class DetalleBean implements Serializable {
+public class DetalleVentaBean implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @EJB
     private DetalleFacade detalleFacade;
     @EJB
-    private ProductoFacade productoFacade;
+    private ProductoSucursalFacade productoFacade;
     @EJB
     private FacturaVentaFacade facturaVentaFacade;
     @EJB
@@ -53,13 +53,13 @@ public class DetalleBean implements Serializable {
 
     //Inicializamos las listas
     private List<Detalle> list = new ArrayList<>();
-    private List<Producto> listaProductos = new ArrayList<>();
+    private List<ProductoSucursal> listaProductos = new ArrayList<>();
     private List<Cliente> listaClientes = new ArrayList<>();
     private List<Kardex> listaKardex = new ArrayList<>();
     private List<CabeceraVenta> listCabecera = new ArrayList<>();
     private int id;
     private int idProducto;
-    private Producto producto;
+    private ProductoSucursal producto;
     private int cantidad;
     private double precio;
     private double subtotal;
@@ -86,12 +86,12 @@ public class DetalleBean implements Serializable {
         // Producto p = new Producto(1, "producto", 1, 2.3, null, null, null);
         // productoFacade.create(p);
         //producto=p;
-        for (Producto producto1 : listaProductos) {
-            if (producto1.getNombreProducto().equals(autocompletado)) {
+        for (ProductoSucursal producto1 : listaProductos) {
+            if (producto1.getProducto().getNombre().equals(autocompletado)) {
                 this.producto = producto1;
             }
         }
-        Detalle d = new Detalle(id, producto, cantidad, producto.getPrecio(), (cantidad * producto.getPrecio()));
+        Detalle d = new Detalle(producto, cantidad, precio, subtotal, cabeceraVenta);
         list.add(d);
         this.limpiar();
         return null;
@@ -115,7 +115,7 @@ public class DetalleBean implements Serializable {
         int c = 0;
         for (Detalle detalle : list) {
             if (s.equals(detalle)) {
-                Detalle d = new Detalle(detalle.getId(), detalle.getProducto(), detalle.getCantidad(), detalle.getPrecio(), detalle.getCantidad() * detalle.getPrecio());
+ //               Detalle d = new Detalle(detalle.getId(), detalle.get(), detalle.getCantidad(), detalle.getPrecio(), detalle.getCantidad() * detalle.getPrecio());
                 list.set(id - 1, detalle);
             }
         }
@@ -166,13 +166,6 @@ public class DetalleBean implements Serializable {
         this.detalleFacade = detalleFacade;
     }
 
-    public Producto getProducto() {
-        return producto;
-    }
-
-    public void setProducto(Producto producto) {
-        this.producto = producto;
-    }
 
     public int getCantidad() {
         return cantidad;
@@ -214,11 +207,11 @@ public class DetalleBean implements Serializable {
         this.idProducto = idProducto;
     }
 
-    public ProductoFacade getProductoFacade() {
+    public ProductoSucursalFacade getProductoFacade() {
         return productoFacade;
     }
 
-    public void setProductoFacade(ProductoFacade productoFacade) {
+    public void setProductoFacade(ProductoSucursalFacade productoFacade) {
         this.productoFacade = productoFacade;
     }
 
@@ -238,11 +231,11 @@ public class DetalleBean implements Serializable {
         this.clienteFacade = clienteFacade;
     }
 
-    public List<Producto> getListaProductos() {
+    public List<ProductoSucursal> getListaProductos() {
         return listaProductos;
     }
 
-    public void setListaProductos(List<Producto> listaProductos) {
+    public void setListaProductos(List<ProductoSucursal> listaProductos) {
         this.listaProductos = listaProductos;
     }
 
@@ -319,7 +312,7 @@ public class DetalleBean implements Serializable {
         cabeceraVenta.setDetalles(list);
         facturaVentaFacade.edit(cabeceraVenta);
         list = new ArrayList<>();
-        actualizarStock(cabeceraVenta);
+//        actualizarStock(cabeceraVenta);
         listCabecera = ventaFacade.findAll();
         listaProductos = productoFacade.findAll();
         limpiar();
@@ -336,13 +329,13 @@ public class DetalleBean implements Serializable {
         return valor;
     }
 
-    public void actualizarStock(CabeceraVenta cabeceraVenta) {
-        for (Detalle detalle : cabeceraVenta.getDetalles()) {
-            producto = detalle.getProducto();
-            producto.setStock(producto.getStock() - detalle.getCantidad());
-            productoFacade.edit(producto);
-        }
-    }
+//    public void actualizarStock(CabeceraVenta cabeceraVenta) {
+//        for (Detalle detalle : cabeceraVenta.getDetalles()) {
+//            producto = detalle.getProducto();
+//            producto.setStock(producto.getStock() - detalle.getCantidad());
+//            productoFacade.edit(producto);
+//        }
+//    }
 
     public GregorianCalendar mostrarFecha() {
         return new GregorianCalendar();
@@ -367,9 +360,9 @@ public class DetalleBean implements Serializable {
     public List<String> completeText(String query) {
         String queryLowerCase = query.toLowerCase();
         List<String> countryList = new ArrayList<>();
-        List<Producto> producto = productoFacade.findAll();
-        for (Producto country : producto) {
-            countryList.add(country.getNombreProducto());
+        List<ProductoSucursal> producto = productoFacade.findAll();
+        for (ProductoSucursal country : producto) {
+            countryList.add(country.getProducto().getNombre());
         }
 
         return countryList.stream().filter(t -> t.toLowerCase().startsWith(queryLowerCase)).collect(Collectors.toList());

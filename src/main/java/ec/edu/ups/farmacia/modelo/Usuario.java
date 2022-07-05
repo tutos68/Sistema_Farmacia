@@ -45,6 +45,23 @@ public class Usuario implements Serializable {
         this.entidad = entidad;
     }
 
+    public Usuario(String usuario, String contrasenia, String rol, Entidad entidad, boolean editable) {
+        this.usuario = usuario;
+        this.contrasenia = contrasenia;
+        this.rol = rol;
+        this.entidad = entidad;
+        this.editable = editable;
+    }
+
+    public Usuario(String usuario, String contrasenia, String rol, Entidad entidad) {
+        this.usuario = usuario;
+        this.contrasenia = contrasenia;
+        this.rol = rol;
+        this.entidad = entidad;
+    }
+    
+    
+
     public int getId() {
         return id;
     }

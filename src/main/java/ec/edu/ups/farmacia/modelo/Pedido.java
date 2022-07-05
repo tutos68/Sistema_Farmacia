@@ -9,9 +9,13 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 import jakarta.persistence.Entity;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 
 /**
  *
@@ -24,28 +28,37 @@ public class Pedido implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @OneToOne
+    @JoinColumn
     private Usuario usuario;
     private double latitud;
     private double longitud;
-    private Detalle detalle;
+    @Enumerated
     private EstadoPedido estado;
     @Column(name = "tiempo_espera")
     private Date tiempoEspera;
     @Column(name = "costo_envio")
     private double costoEnvio;
-    private List<Detalle> detalles;
-  
+    @OneToMany
+    @JoinColumn(name="pedido_detalle")
+    private List<PedidoDetalle> detalles;
+    @OneToOne
+    @JoinColumn(name="forma_pago")
     private FormaPago formaPago;
+    @OneToOne
+    @JoinColumn
+    private Entidad entidad;
+    
+    private  double total;
 
     public Pedido() {
     }
 
-    public Pedido(int id, Usuario usuario, double latitud, double longitud, Detalle detalle, EstadoPedido estado, Date tiempoEspera, double costoEnvio, List<Detalle> detalles, FormaPago formaPago) {
+    public Pedido(int id, Usuario usuario, double latitud, double longitud, EstadoPedido estado, Date tiempoEspera, double costoEnvio, List<PedidoDetalle> detalles, FormaPago formaPago) {
         this.id = id;
         this.usuario = usuario;
         this.latitud = latitud;
         this.longitud = longitud;
-        this.detalle = detalle;
         this.estado = estado;
         this.tiempoEspera = tiempoEspera;
         this.costoEnvio = costoEnvio;
@@ -53,17 +66,22 @@ public class Pedido implements Serializable {
         this.formaPago = formaPago;
     }
 
-    public Pedido(int id, Usuario usuario, double latitud, double longitud, EstadoPedido estado, Date tiempoEspera, double costoEnvio, List<Detalle> detalles, FormaPago formaPago) {
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
         this.id = id;
-        this.usuario = usuario;
-        this.latitud = latitud;
-        this.longitud = longitud;
-        this.detalle = new Detalle();//Composicion
-        this.estado = estado;
-        this.tiempoEspera = tiempoEspera;
-        this.costoEnvio = costoEnvio;
-        this.detalles = detalles;
-        this.formaPago = formaPago;
     }
 
     public Usuario getUsuario() {
@@ -90,14 +108,7 @@ public class Pedido implements Serializable {
         this.longitud = longitud;
     }
 
-    public Detalle getDetalle() {
-        return detalle;
-    }
-
-    public void setDetalle(Detalle detalle) {
-        this.detalle = detalle;
-    }
-
+  
     public EstadoPedido getEstado() {
         return estado;
     }
@@ -122,13 +133,23 @@ public class Pedido implements Serializable {
         this.costoEnvio = costoEnvio;
     }
 
-    public List<Detalle> getDetalles() {
+    public List<PedidoDetalle> getDetalles() {
         return detalles;
     }
 
-    public void setDetalles(List<Detalle> detalles) {
+    public void setDetalles(List<PedidoDetalle> detalles) {
         this.detalles = detalles;
     }
+
+    public Entidad getEntidad() {
+        return entidad;
+    }
+
+    public void setEntidad(Entidad entidad) {
+        this.entidad = entidad;
+    }
+
+    
 
     public FormaPago getFormaPago() {
         return formaPago;
@@ -138,37 +159,27 @@ public class Pedido implements Serializable {
         this.formaPago = formaPago;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 0;
-        hash += (int) id;
+        int hash = 7;
+        hash = 19 * hash + this.id;
         return hash;
     }
 
     @Override
-    public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Pedido)) {
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
             return false;
         }
-        Pedido other = (Pedido) object;
-        if (this.id != other.id) {
+        if (getClass() != obj.getClass()) {
             return false;
         }
-        return true;
+        final Pedido other = (Pedido) obj;
+        return this.id == other.id;
     }
 
-    @Override
-    public String toString() {
-        return "Pedido{" + "id=" + id + ", usuario=" + usuario + ", latitud=" + latitud + ", longitud=" + longitud + ", detalle=" + detalle + ", estado=" + estado + ", tiempoEspera=" + tiempoEspera + ", costoEnvio=" + costoEnvio + ", detalles=" + detalles + ", formaPago=" + formaPago + '}';
-    }
-
+   
 }

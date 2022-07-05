@@ -52,14 +52,13 @@ public class ProductoBean implements Serializable {
         this.producto = new Producto();
         listCategoria = categoriaFacade.findAll();
         list = productoFacade.findAll();
-        this.listaProductos();
     }
 
     public String add() {
         Usuario u = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");//
-        Empleado e = (Empleado) u.getEntidad();
-        System.out.println(e.getSucursal().getNombreClave());
-        productoFacade.create(new Producto(id, nombreProducto, stock, precio, descripcion, categoria, e.getSucursal()));
+       // Empleado e = (Empleado) u.getEntidad();
+       // System.out.println(e.getSucursal().getNombreClave());
+        productoFacade.create(new Producto(nombreProducto, precio, descripcion, categoria));
 
         //Sucursal s = (Sucursal) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");
         list = productoFacade.findAll();//llamo al findall para que se me actualice la lista
@@ -73,15 +72,12 @@ public class ProductoBean implements Serializable {
         return null;
     }
 
-    public String edit(Producto p) {
-        p.setEditable(true); //habilita la caja
-        return null;
-    }
+   
 
     public String save(Producto p) {
         productoFacade.edit(p);
         list = productoFacade.findAll(); //actualizo la lista
-        p.setEditable(false); //desabilita la caja
+     //   p.setEditable(false); //desabilita la caja
         return null;
     }
 
@@ -190,19 +186,5 @@ public class ProductoBean implements Serializable {
         this.sucursalFacade = sucursalFacade;
     }
 
-    public List<Producto> listaProductos() {
-        List<Producto> listasUuU = new ArrayList<>();
-        Usuario u = (Usuario) FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("usuario");//
-        System.out.println(u.toString());
-
-            Empleado e = (Empleado) u.getEntidad();
-            for (Producto p : list) {
-                if (p.getSucursal().getId() == e.getSucursal().getId()) {
-                    listasUuU.add(p);
-                }
-            }
-        
-
-        return listasUuU;
-    }
+  
 }

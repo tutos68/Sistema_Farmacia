@@ -36,8 +36,6 @@ public class Sucursal implements Serializable {
     private String telefono;
     private double latitud;
     private double longitud;
-    @Transient
-    private boolean editable;
 
     public Sucursal() {
     }
@@ -99,13 +97,7 @@ public class Sucursal implements Serializable {
         this.longitud = longitud;
     }
 
-    public boolean isEditable() {
-        return editable;
-    }
-
-    public void setEditable(boolean editable) {
-        this.editable = editable;
-    }
+    
 
     @Override
     public int hashCode() {

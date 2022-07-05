@@ -23,13 +23,16 @@ import java.util.List;
  */
 @Entity
 @Table(name = "compra")
-public class CabeceraCompra  extends FacturaCabecera implements Serializable {
-@OneToMany(cascade = CascadeType.ALL, mappedBy = "cabeceraCompra")
+public class CabeceraCompra extends FacturaCabecera implements Serializable {
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cabeceraCompra")
     private List<Detalle> detalles;
     @OneToOne
     @JoinColumn
     private Proveedor proveedor;
-
+    @OneToOne
+    @JoinColumn
+    private Usuario usuario;
 
     public CabeceraCompra() {
     }
@@ -37,6 +40,13 @@ public class CabeceraCompra  extends FacturaCabecera implements Serializable {
     public CabeceraCompra(Proveedor proveedor, int id, GregorianCalendar fecha, double subtotal, double total, boolean estado) {
         super(id, fecha, subtotal, total, estado);
         this.proveedor = proveedor;
+    }
+
+    public CabeceraCompra(List<Detalle> detalles, Proveedor proveedor, Usuario usuario, int id, GregorianCalendar fecha, double subtotal, double total, boolean estado) {
+        super(id, fecha, subtotal, total, estado);
+        this.detalles = detalles;
+        this.proveedor = proveedor;
+        this.usuario = usuario;
     }
 
     public List<Detalle> getDetalles() {
@@ -51,5 +61,12 @@ public class CabeceraCompra  extends FacturaCabecera implements Serializable {
         return proveedor;
     }
 
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
 
 }
