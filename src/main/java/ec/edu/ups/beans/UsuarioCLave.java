@@ -39,11 +39,17 @@ public class UsuarioCLave implements Serializable {
     private AdministradorFacade administradorFacade;
     private Menu menu;
     private List<Menu> list = new ArrayList<>();
+  //  private UsuarioBean usuarioBean = new UsuarioBean();
+    //private AdministradorBean administradorBean = new AdministradorBean();
     private Usuario usuario;
 
+    
+    
+    
     @PostConstruct
     public void init() {
         this.usuario = new Usuario();
+      //  this.usuarioBean= new UsuarioBean();
         list = menuFacade.findAll();
        if (list.isEmpty()) {
             Menu m1 = new Menu(1, "Cliente", "S", "ADMINISTRADOR", "/", null);
@@ -102,11 +108,21 @@ public class UsuarioCLave implements Serializable {
             menuFacade.create(m11);
             menuFacade.create(new Menu(40, "Nuevo Proveedor", "I", "EMPLEADO", "/Sistema_Farmacia/vista/proveedor/proveedor.xhtml", m11));
             menuFacade.create(new Menu(41, "Listar Proveedor", "I", "EMPLEADO", "/Sistema_Farmacia/vista/proveedor/listProveedor.xhtml", m11));
+            
+           
+            
+           // usuarioBean.addAdminisrador("1400", "NOMBRE", "APELLIDO", "m@gmail.com", "direccion 1", "1234567890", "ADMIN", "1");
+            
+            
+            usuarioFacade.create(new Usuario(11, "TUTU", "1592", "ADMINISTRADOR", new Administrador(100, "0106256027", "Edwin", "Angamarca", "eangamarcaz@est.ups.edu.ec", "Gualaceo", "0999862100")));
 
-            usuarioFacade.create(new Usuario(1, "TUTU", "1592", "ADMINISTRADOR", new Administrador(1, "0106256027", "Edwin", "Angamarca", "eangamarcaz@est.ups.edu.ec", "Gualaceo", "0999862100")));
+            usuarioFacade.create(new Usuario(21, "TONNY", "4050", "ADMINISTRADOR", new Administrador(200, "0105723605", "Tonny", "Lema", "tlemaj1@est.ups.edu.ec", "Cuenca", "0969417469")));
+            usuarioFacade.create(new Usuario(31, "ADRY", "ADRY", "ADMINISTRADOR", new Administrador(300, "0106487846", "Adrian", "Cabrera", "lcabrerab@est.ups.edu.ec", "Cuenca", "099338001")));
 
-            usuarioFacade.create(new Usuario(2, "TONNY", "4050", "ADMINISTRADOR", new Administrador(2, "0105723605", "Tonny", "Lema", "tlemaj1@est.ups.edu.ec", "Cuenca", "0969417469")));
-            usuarioFacade.create(new Usuario(3, "ADRY", "ADRY", "ADMINISTRADOR", new Administrador(3, "0106487846", "Adrian", "Cabrera", "lcabrerab@est.ups.edu.ec", "Cuenca", "099338001")));
+
+
+
+
 
 //            Date fecha = new Date(122, 4, 1);
 //            Date fecha2 = new Date(115, 9, 20);

@@ -25,39 +25,22 @@ public class Producto implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-     @Column(name = "nombre_producto")
-    private String nombreProducto;
-    private int stock;
+    @Column(name = "nombre_producto")
+    private String nombre;
     private double precio;
     private String descripcion;
     @OneToOne
-    @JoinColumn(name = "categoria_id", nullable = false, referencedColumnName = "id")
+    @JoinColumn
     private Categoria categoria;
-    @OneToOne
-    @JoinColumn(name = "sucursal_id", nullable = false, referencedColumnName = "id")
-    private Sucursal sucursal;
-    @Transient
-    private boolean editable;
-
-    public boolean isEditable() {
-        return editable;
-    }
-
-    public void setEditable(boolean editable) {
-        this.editable = editable;
-    }
-
+    
     public Producto() {
     }
 
-    public Producto(int id, String nombreProducto, int stock, double precio, String descripcion, Categoria categoria, Sucursal sucursal) {
-        this.id = id;
-        this.nombreProducto = nombreProducto;
-        this.stock = stock;
+    public Producto(String nombre, double precio, String descripcion, Categoria categoria) {
+        this.nombre = nombre;
         this.precio = precio;
         this.descripcion = descripcion;
         this.categoria = categoria;
-        this.sucursal = sucursal;
     }
 
     public int getId() {
@@ -68,20 +51,12 @@ public class Producto implements Serializable {
         this.id = id;
     }
 
-    public String getNombreProducto() {
-        return nombreProducto;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombreProducto(String nombreProducto) {
-        this.nombreProducto = nombreProducto;
-    }
-
-    public int getStock() {
-        return stock;
-    }
-
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public double getPrecio() {
@@ -108,18 +83,10 @@ public class Producto implements Serializable {
         this.categoria = categoria;
     }
 
-    public Sucursal getSucursal() {
-        return sucursal;
-    }
-
-    public void setSucursal(Sucursal sucursal) {
-        this.sucursal = sucursal;
-    }
-
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 97 * hash + this.id;
+        int hash = 7;
+        hash = 79 * hash + this.id;
         return hash;
     }
 
@@ -138,9 +105,6 @@ public class Producto implements Serializable {
         return this.id == other.id;
     }
 
-    @Override
-    public String toString() {
-        return "Producto{" + "id=" + id + ", nombreProducto=" + nombreProducto + ", stock=" + stock + ", precio=" + precio + ", descripcion=" + descripcion + ", categoria=" + categoria + ", sucursal=" + sucursal + '}';
-    }
+   
 
 }

@@ -26,6 +26,10 @@ public class Cliente extends Entidad implements Serializable {
     private Date fechaNacimiento;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "cliente")
     private CabeceraVenta cabeceraVenta;
+    
+    @OneToOne
+    @JoinColumn(name="forma_pago")
+    private FormaPago formaPago;
     public Cliente() {
     }
 
@@ -34,6 +38,32 @@ public class Cliente extends Entidad implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
     }
 
+    public CabeceraVenta getCabeceraVenta() {
+        return cabeceraVenta;
+    }
+
+    public void setCabeceraVenta(CabeceraVenta cabeceraVenta) {
+        this.cabeceraVenta = cabeceraVenta;
+    }
+
+    public FormaPago getFormaPago() {
+        return formaPago;
+    }
+
+    public void setFormaPago(FormaPago formaPago) {
+        this.formaPago = formaPago;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
+    
     public Date getFechaNacimiento() {
         return fechaNacimiento;
     }

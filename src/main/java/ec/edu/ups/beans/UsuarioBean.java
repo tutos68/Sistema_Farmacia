@@ -15,6 +15,7 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import ec.edu.ups.farmacia.modelo.Administrador;
 
 /**
  *
@@ -42,6 +43,17 @@ public class UsuarioBean implements Serializable {
 
     public String add() { //administrador
         usuarioFacade.create(new Usuario(id, usuario, contrasenia, rol, entidad));
+        list = usuarioFacade.findAll();//llamo al findall para que se me actualice la lista
+        return null;
+    }
+    
+    
+    public String addAdminisrador(String identificador, String nombre, String apellido, String correo, String direccion, String telefono,String usuario, String contrasenia) { //administrador
+        
+        Administrador administrador = new Administrador(identificador, nombre, apellido, correo, direccion, telefono);
+        String rol="ADMINISTRADOR";
+        
+        usuarioFacade.create(new Usuario(usuario, contrasenia, rol, administrador));
         list = usuarioFacade.findAll();//llamo al findall para que se me actualice la lista
         return null;
     }
