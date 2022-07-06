@@ -5,6 +5,7 @@
 package ec.edu.ups.farmacia.modelo;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import jakarta.persistence.Entity;
@@ -31,6 +32,13 @@ public class CabeceraVenta extends FacturaCabecera implements Serializable {
     @OneToOne
     @JoinColumn
     private Usuario usuario;
+    private String identificador;
+    private String nombre;
+    private String apellido;
+    @Column(name = "correo")
+    private String correo;
+    private String direccion;
+    private String telefono;
 
     public CabeceraVenta(Cliente cliente, int id, GregorianCalendar fecha, double subtotal, double total, boolean estado) {
         super(id, fecha, subtotal, total, estado);
@@ -64,6 +72,62 @@ public class CabeceraVenta extends FacturaCabecera implements Serializable {
 
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
+    }
+
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
 
     

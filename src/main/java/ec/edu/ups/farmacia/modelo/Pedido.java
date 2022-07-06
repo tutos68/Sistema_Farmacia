@@ -45,9 +45,13 @@ public class Pedido implements Serializable {
     @OneToOne
     @JoinColumn(name="forma_pago")
     private FormaPago formaPago;
-    @OneToOne
-    @JoinColumn
-    private Entidad entidad;
+    private String identificador;
+    private String nombre;
+    private String apellido;
+    @Column(name = "correo")
+    private String correo;
+    private String direccion;
+    private String telefono;
     
     private  double total;
 
@@ -141,13 +145,55 @@ public class Pedido implements Serializable {
         this.detalles = detalles;
     }
 
-    public Entidad getEntidad() {
-        return entidad;
+    public String getIdentificador() {
+        return identificador;
     }
 
-    public void setEntidad(Entidad entidad) {
-        this.entidad = entidad;
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getDireccion() {
+        return direccion;
+    }
+
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    
 
     
 
