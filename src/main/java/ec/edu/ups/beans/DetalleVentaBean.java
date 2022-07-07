@@ -68,7 +68,11 @@ public class DetalleVentaBean implements Serializable {
     private Cliente cliente;
     private String cedula;
     private String mensaje = "";
-    private String datosCliente = "";
+    private String nombreCliente = "";
+    private String apellidoCliente = "";
+    private String correoCliente = "";
+    private String direccionCliente = "";
+    private String telefonoCliente = "";
     private String autocompletado = "";
     private GregorianCalendar g;
     private double totalDinero = 0;
@@ -79,10 +83,8 @@ public class DetalleVentaBean implements Serializable {
         listaProductos = productoFacade.findAll();
         listaClientes = clienteFacade.findAll();
         listaKardex = kardexFacade.findAll();
-      
+
     }
-    
-  
 
     public String add() {
         // Producto p = new Producto(1, "producto", 1, 2.3, null, null, null);
@@ -117,7 +119,7 @@ public class DetalleVentaBean implements Serializable {
         int c = 0;
         for (Detalle detalle : list) {
             if (s.equals(detalle)) {
- //               Detalle d = new Detalle(detalle.getId(), detalle.get(), detalle.getCantidad(), detalle.getPrecio(), detalle.getCantidad() * detalle.getPrecio());
+                //               Detalle d = new Detalle(detalle.getId(), detalle.get(), detalle.getCantidad(), detalle.getPrecio(), detalle.getCantidad() * detalle.getPrecio());
                 list.set(id - 1, detalle);
             }
         }
@@ -130,7 +132,12 @@ public class DetalleVentaBean implements Serializable {
         this.precio = 0.0;
         this.autocompletado = "";
         this.cedula = "";
-        this.datosCliente = "";
+        this.nombreCliente = "";
+
+        this.apellidoCliente = "";
+        this.direccionCliente = "";
+        this.correoCliente = "";
+        this.telefonoCliente = "";
 
     }
 
@@ -167,7 +174,6 @@ public class DetalleVentaBean implements Serializable {
     public void setDetalleFacade(DetalleFacade detalleFacade) {
         this.detalleFacade = detalleFacade;
     }
-
 
     public int getCantidad() {
         return cantidad;
@@ -291,7 +297,11 @@ public class DetalleVentaBean implements Serializable {
         for (Cliente cliente : listaClientes) {
             if (this.cedula.equals(cliente.getIdentificador())) {
                 mensaje = "Cliente Encontrado";
-                datosCliente = cliente.toString();
+                nombreCliente = cliente.getNombre();
+                apellidoCliente = cliente.getApellido();
+                direccionCliente = cliente.getDireccion();
+                correoCliente = cliente.getCorreo();
+                telefonoCliente = cliente.getTelefono();
                 this.cliente = cliente;
             }
 
@@ -338,7 +348,6 @@ public class DetalleVentaBean implements Serializable {
 //            productoFacade.edit(producto);
 //        }
 //    }
-
     public GregorianCalendar mostrarFecha() {
         return new GregorianCalendar();
     }
@@ -352,11 +361,11 @@ public class DetalleVentaBean implements Serializable {
     }
 
     public String getDatosCliente() {
-        return datosCliente;
+        return nombreCliente;
     }
 
     public void setDatosCliente(String datosCliente) {
-        this.datosCliente = datosCliente;
+        this.nombreCliente = datosCliente;
     }
 
     public List<String> completeText(String query) {
@@ -424,6 +433,46 @@ public class DetalleVentaBean implements Serializable {
 
     public void setProducto(ProductoSucursal producto) {
         this.producto = producto;
+    }
+
+    public String getNombreCliente() {
+        return nombreCliente;
+    }
+
+    public void setNombreCliente(String nombreCliente) {
+        this.nombreCliente = nombreCliente;
+    }
+
+    public String getApellidoCliente() {
+        return apellidoCliente;
+    }
+
+    public void setApellidoCliente(String apellidoCliente) {
+        this.apellidoCliente = apellidoCliente;
+    }
+
+    public String getCorreoCliente() {
+        return correoCliente;
+    }
+
+    public void setCorreoCliente(String correoCliente) {
+        this.correoCliente = correoCliente;
+    }
+
+    public String getDireccionCliente() {
+        return direccionCliente;
+    }
+
+    public void setDireccionCliente(String direccionCliente) {
+        this.direccionCliente = direccionCliente;
+    }
+
+    public String getTelefonoCliente() {
+        return telefonoCliente;
+    }
+
+    public void setTelefonoCliente(String telefonoCliente) {
+        this.telefonoCliente = telefonoCliente;
     }
 
 }

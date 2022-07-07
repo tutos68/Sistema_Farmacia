@@ -112,7 +112,6 @@ public class UsuarioCLave implements Serializable {
             Menu m12 = new Menu(50, "Pedidos", "S", "EMPLEADO", "/", null);
             menuFacade.create(m12);
             menuFacade.create(new Menu(51, "Listar Pedidos", "I", "EMPLEADO", "/Sistema_Farmacia/vista/pedido/listPedido.xhtml", m12));
-            
             Menu m13 = new Menu(52, "Pedidos", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m13);
             menuFacade.create(new Menu(53, "Listar Pedidos", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/pedido/listPedido.xhtml", m13));
@@ -124,10 +123,10 @@ public class UsuarioCLave implements Serializable {
            // usuarioBean.addAdminisrador("1400", "NOMBRE", "APELLIDO", "m@gmail.com", "direccion 1", "1234567890", "ADMIN", "1");
             
             
-            usuarioFacade.create(new Usuario(11, "TUTU", "1592", "ADMINISTRADOR", new Administrador(100, "0106256027", "Edwin", "Angamarca", "eangamarcaz@est.ups.edu.ec", "Gualaceo", "0999862100")));
+            usuarioFacade.create(new Usuario(0, "TUTU", "1592", "ADMINISTRADOR", new Administrador(0, "0106256027", "Edwin", "Angamarca", "eangamarcaz@est.ups.edu.ec", "Gualaceo", "0999862100")));
 
-            usuarioFacade.create(new Usuario(21, "TONNY", "4050", "ADMINISTRADOR", new Administrador(200, "0105723605", "Tonny", "Lema", "tlemaj1@est.ups.edu.ec", "Cuenca", "0969417469")));
-            usuarioFacade.create(new Usuario(31, "ADRY", "ADRY", "ADMINISTRADOR", new Administrador(300, "0106487846", "Adrian", "Cabrera", "lcabrerab@est.ups.edu.ec", "Cuenca", "099338001")));
+            usuarioFacade.create(new Usuario(0, "TONNY", "4050", "ADMINISTRADOR", new Administrador(0, "0105723605", "Tonny", "Lema", "tlemaj1@est.ups.edu.ec", "Cuenca", "0969417469")));
+            usuarioFacade.create(new Usuario(0, "ADRY", "ADRY", "ADMINISTRADOR", new Administrador(0, "0106487846", "Adrian", "Cabrera", "lcabrerab@est.ups.edu.ec", "Cuenca", "099338001")));
 
 
 

@@ -41,9 +41,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 </div>
             </div>
         </h:form>              
-
-
-
         <h:form id="nuevo">
             <p:fieldset  legend="Agregar Detalle"  toggleable="true">
                 <p:panelGrid columns="1">
@@ -59,16 +56,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <p:outputLabel value="Nombre Producto" for="@next"/>
                     <p:autoComplete id="acSimple" value="#{detalleCompraBean.autocompletado}"
                                     completeMethod="#{detalleCompraBean.completeText}" scrollHeight="250"/>
-
-
-
-
-
                     <p:outputLabel value="Cantidad"/>
                     <p:inputText value="#{detalleCompraBean.cantidad}"/>
-
                 </p:panelGrid>
-
                 <p:panelGrid columns="1">
                     <p:commandButton value="Agregar Nuevo Detalle" oncomplete="PF('valor').hide();" 
                                      update="frmExclos" actionListener="#{detalleCompraBean.add}"/>
