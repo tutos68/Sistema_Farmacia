@@ -6,9 +6,7 @@ package ec.edu.ups.beans;
 
 import ec.edu.ups.farmacia.controlador.CabeceraVentaFacade;
 import ec.edu.ups.farmacia.controlador.DetalleFacade;
-import ec.edu.ups.farmacia.modelo.CabeceraVenta;
 import ec.edu.ups.farmacia.controlador.ProductoSucursalFacade;
-import ec.edu.ups.farmacia.modelo.Producto;
 import ec.edu.ups.farmacia.controlador.ClienteFacade;
 import ec.edu.ups.farmacia.modelo.Cliente;
 import ec.edu.ups.farmacia.controlador.FacturaVentaFacade;
@@ -23,10 +21,8 @@ import jakarta.enterprise.context.SessionScoped;
 import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.stream.Collectors;
 
 /**
@@ -74,6 +70,8 @@ public class DetalleVentaBean implements Serializable {
     private String direccionCliente = "";
     private String telefonoCliente = "";
     private String autocompletado = "";
+    private List<ProductoSucursal> listaPruebaProducto;
+    private List<ProductoSucursal> listaPruebaEjemplo;
     private GregorianCalendar g;
     private double totalDinero = 0;
 
@@ -475,4 +473,21 @@ public class DetalleVentaBean implements Serializable {
         this.telefonoCliente = telefonoCliente;
     }
 
+    public List<ProductoSucursal> getListaPruebaProducto() {
+        return listaPruebaProducto;
+    }
+
+    public void setListaPruebaProducto(List<ProductoSucursal> listaPruebaProducto) {
+        this.listaPruebaProducto = listaPruebaProducto;
+    }
+
+    public List<ProductoSucursal> getListaPruebaEjemplo() {
+        return listaPruebaEjemplo;
+    }
+
+    public void setListaPruebaEjemplo(List<ProductoSucursal> listaPruebaEjemplo) {
+        this.listaPruebaEjemplo = listaPruebaEjemplo;
+    }
+
+   
 }

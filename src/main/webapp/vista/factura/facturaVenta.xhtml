@@ -23,7 +23,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 <div class="container">
                     <div class="row">
                         <div class="col">
-                            
+
                         </div>
                         <div class="col-6">
                             <div class="container">
@@ -88,7 +88,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                             </div>
                         </div>
                         <div class="col">
-                            
+
                         </div>
                     </div>
 
@@ -104,26 +104,41 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                 <p:panelGrid columns="1">
                     <p:commandButton value="Nuevo" oncomplete="PF('valor').show();"/>
                 </p:panelGrid>
-
             </p:fieldset>
         </h:form>
         <p:dialog widgetVar="valor" modal="true" showEffect="clip" header="NuevoRegistro" resizable="false">
             <h:form id="detalle">
 
-                <p:panelGrid columns="2">
-                    <p:outputLabel value="Nombre Producto" for="@next"/>
-                    <p:autoComplete id="acSimple" value="#{detalleVentaBean.autocompletado}"
-                                    completeMethod="#{detalleVentaBean.completeText}" scrollHeight="250"/>
-
-                    <p:outputLabel value="Cantidad"/>
-                    <p:inputText value="#{detalleVentaBean.cantidad}"/>
-
-                </p:panelGrid>
-
-                <p:panelGrid columns="1">
+                <!--<p:panelGrid columns="1">
                     <p:commandButton value="Agregar Nuevo Detalle" oncomplete="PF('valor').hide();" 
-                                     update="frmExclos" actionListener="#{detalleVentaBean.add}"/>
-                </p:panelGrid>
+                                     update="frmExclos"/>
+                </p:panelGrid>-->
+                <p:dataTable var="customer" value="#{productoBean.list}" widgetVar="customersTable2"
+                             emptyMessage="No customers found with given criteria"
+                             filteredValue="#{detalleVentaBean.listaPruebaProducto}" filterBy="#{detalleVentaBean.listaPruebaEjemplo}">
+
+                    <f:facet name="header">
+                        <span>List of Customers</span>
+                    </f:facet>
+
+                    <p:column headerText="Nombre" filterBy="#{customer.nombre}">
+                        <h:outputText value="#{customer.nombre}" />
+                    </p:column>
+                    <p:column headerText="Descripcion" filterBy="#{customer.descripcion}">
+                        <h:outputText value="#{customer.descripcion}" />
+                    </p:column>
+
+                    <p:column headerText="Cantidad">
+
+                        <p:inputText value="#{detalleVentaBean.cantidad}"/>
+                    </p:column>
+                    <p:column headerText="Agregar" >
+                        <p:panelGrid columns="1">
+                            <p:commandButton value="Agregar Nuevo Detalle" oncomplete="PF('valor').hide();" 
+                                             update="frmExclos" actionListener="#{detalleVentaBean.add}"/>
+                        </p:panelGrid>
+                    </p:column>
+                </p:dataTable>
             </h:form>
         </p:dialog>
         <div class="card">
@@ -197,12 +212,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     </p:column>
 
                 </p:dataTable>
+                <div style="display: inline; float: right; margin-left:   auto; margin-right: auto">
+                    <p:panelGrid columns="2">
+                        <p:outputLabel value="Total"/>
+                        <p:outputLabel value="#{detalleVentaBean.total}"/>
 
-                <p:panelGrid columns="2">
-                    <p:outputLabel value="Total"/>
-                    <p:outputLabel value="#{detalleVentaBean.total}"/>
+                    </p:panelGrid>
+                </div>
 
-                </p:panelGrid>
             </h:form> 
         </div>
 
