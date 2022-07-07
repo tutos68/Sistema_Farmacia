@@ -19,14 +19,19 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         <div class="card">
             <h:form id="frmExclos">
                 <p:growl  id="mensajeGeneral3" sticky="false" showDetail="true"/>    
-                <p:dataTable id="products" var="p" value="#{productoBean.list}" styleClass="tabla" editable="true">
+                <p:dataTable id="products" var="p" value="#{productoBean.list}" styleClass="tabla" editable="true"
+                             rows="2"
+                             paginator="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} Registros"
+                             rowsPerPageTemplate="2,5,{ShowAll|'Todos'}">
                     <p:ajax listener="#{productoBean.edit(p)}"  event="rowEdit" update=":frmExclos:mensajeGeneral3"/>
                     <f:facet name="header">
                         <div class="p-d-flex p-jc-between p-ai-center">
-                            <h1>Lista de Productos</h1>
+                            <h1 style="text-align: center; color: white">Lista de Productos</h1>
 
                             <div>
-                                <p:commandButton  styleClass="ui-button-success" id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
+                                <p:commandButton  id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>
                                 <p:columnToggler datasource="products" trigger="toggler"/>
                             </div>
                             <div>

@@ -18,12 +18,17 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         <div class="card">
             <h:form id="frmExclos">
                 <p:growl  id="mensajeGeneral3" sticky="false" showDetail="true"/>    
-                <p:dataTable id="products" var="a" value="#{proveedorBean.list}" editable="true">
+                <p:dataTable id="products" var="a" value="#{proveedorBean.list}" editable="true"
+                             rows="2"
+                             paginator="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} Registros"
+                             rowsPerPageTemplate="2,5,{ShowAll|'Todos'}">
                     <p:ajax listener="#{proveedorBean.edit(a)}"  event="rowEdit" update=":frmExclos:mensajeGeneral3"/>
 
                     <f:facet name="header">
                         <div class="p-d-flex p-jc-between p-ai-center">
-                            <h1>Lista de Proveedores</h1>
+                            <h1 style="text-align: center; color: white">Lista de Proveedores</h1>
 
                             <div>
                                 <p:commandButton styleClass="ui-button-success" id="toggler" type="button" value="Columnas" icon="pi pi-align-justify"/>

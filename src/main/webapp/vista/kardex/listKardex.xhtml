@@ -19,7 +19,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         <div class="card">
             <h:form id="formkardex">
                 <p:growl  id="mensajeGeneral3" sticky="false" showDetail="true"/>   
-                <p:dataTable id="products" var="k" value="#{kardexBean.list}" editable="true" styleClass="tabla"       >
+                <p:dataTable id="products" var="k" value="#{kardexBean.list}" editable="true" styleClass="tabla"    
+                             rows="2"
+                             paginator="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} Registros"
+                             rowsPerPageTemplate="2,5,{ShowAll|'Todos'}">
                     <p:ajax listener="#{kardexBean.edit(k)}"  event="rowEdit" update=":formkardex:mensajeGeneral3"/>
 
                     <f:facet name="header">
@@ -32,22 +37,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                         </div>
                     </f:facet>
 
-                    
-                    
+
+
                     <p:column headerText="ID"     style="width: 60px">
                         <f:facet name="header">Id</f:facet>#{k.id}
                     </p:column>
 
-                    
+
                     <p:column headerText="Fecha" style="width: 100px">
-                        
-                           <p:outputLabel value="#{kardexBean.asignarFecha(k)}"><f:convertDateTime pattern="dd-MM-yyyy" /></p:outputLabel>
-                       
+
+                        <p:outputLabel value="#{kardexBean.asignarFecha(k)}"><f:convertDateTime pattern="dd-MM-yyyy" /></p:outputLabel>
+
                     </p:column>
                     <p:column headerText="Nombre Producto" style="width: 100px">
                         <h:outputText value="#{k.detalle.producto.nombre}"/>
                     </p:column>
-                    
+
                     <p:column headerText="Valor" style="width: 100px">
                         <h:outputText value="#{k.detalle.subtotal}"/>
                     </p:column>

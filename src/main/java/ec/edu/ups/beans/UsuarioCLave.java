@@ -5,9 +5,12 @@
 package ec.edu.ups.beans;
 
 import ec.edu.ups.farmacia.controlador.AdministradorFacade;
+import ec.edu.ups.farmacia.controlador.CategoriaFacade;
 import ec.edu.ups.farmacia.controlador.MenuFacade;
+import ec.edu.ups.farmacia.controlador.SucursalFacade;
 import ec.edu.ups.farmacia.controlador.UsuarioFacade;
 import ec.edu.ups.farmacia.modelo.Administrador;
+import ec.edu.ups.farmacia.modelo.Categoria;
 import ec.edu.ups.farmacia.modelo.Empleado;
 import ec.edu.ups.farmacia.modelo.Entidad;
 import ec.edu.ups.farmacia.modelo.Menu;
@@ -34,24 +37,25 @@ public class UsuarioCLave implements Serializable {
     @EJB
     private UsuarioFacade usuarioFacade;
     @EJB
+    private SucursalFacade sucursalFacade;
+    @EJB
+    private CategoriaFacade categoriaFacade;
+    @EJB
     private MenuFacade menuFacade;
     @EJB
     private AdministradorFacade administradorFacade;
     private Menu menu;
     private List<Menu> list = new ArrayList<>();
-  //  private UsuarioBean usuarioBean = new UsuarioBean();
+    //  private UsuarioBean usuarioBean = new UsuarioBean();
     //private AdministradorBean administradorBean = new AdministradorBean();
     private Usuario usuario;
 
-    
-    
-    
     @PostConstruct
     public void init() {
         this.usuario = new Usuario();
-      //  this.usuarioBean= new UsuarioBean();
+        //  this.usuarioBean= new UsuarioBean();
         list = menuFacade.findAll();
-       if (list.isEmpty()) {
+        if (list.isEmpty()) {
             Menu m1 = new Menu(1, "Cliente", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m1);
             menuFacade.create(new Menu(2, "Nuevo Cliente", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/cliente/cliente.xhtml", m1));
@@ -108,30 +112,28 @@ public class UsuarioCLave implements Serializable {
             menuFacade.create(m11);
             menuFacade.create(new Menu(40, "Nuevo Proveedor", "I", "EMPLEADO", "/Sistema_Farmacia/vista/proveedor/proveedor.xhtml", m11));
             menuFacade.create(new Menu(41, "Listar Proveedor", "I", "EMPLEADO", "/Sistema_Farmacia/vista/proveedor/listProveedor.xhtml", m11));
-            
+
             Menu m12 = new Menu(50, "Pedidos", "S", "EMPLEADO", "/", null);
             menuFacade.create(m12);
             menuFacade.create(new Menu(51, "Listar Pedidos", "I", "EMPLEADO", "/Sistema_Farmacia/vista/pedido/listPedido.xhtml", m12));
             Menu m13 = new Menu(52, "Pedidos", "S", "ADMINISTRADOR", "/", null);
             menuFacade.create(m13);
             menuFacade.create(new Menu(53, "Listar Pedidos", "I", "ADMINISTRADOR", "/Sistema_Farmacia/vista/pedido/listPedido.xhtml", m13));
-      
-             
-            
-           
-            
-           // usuarioBean.addAdminisrador("1400", "NOMBRE", "APELLIDO", "m@gmail.com", "direccion 1", "1234567890", "ADMIN", "1");
-            
-            
+
+            // usuarioBean.addAdminisrador("1400", "NOMBRE", "APELLIDO", "m@gmail.com", "direccion 1", "1234567890", "ADMIN", "1");
             usuarioFacade.create(new Usuario(0, "TUTU", "1592", "ADMINISTRADOR", new Administrador(0, "0106256027", "Edwin", "Angamarca", "eangamarcaz@est.ups.edu.ec", "Gualaceo", "0999862100")));
 
             usuarioFacade.create(new Usuario(0, "TONNY", "4050", "ADMINISTRADOR", new Administrador(0, "0105723605", "Tonny", "Lema", "tlemaj1@est.ups.edu.ec", "Cuenca", "0969417469")));
             usuarioFacade.create(new Usuario(0, "ADRY", "ADRY", "ADMINISTRADOR", new Administrador(0, "0106487846", "Adrian", "Cabrera", "lcabrerab@est.ups.edu.ec", "Cuenca", "099338001")));
-
-
-
-
-
+            categoriaFacade.create(new Categoria(0, "Higiene bucal"));
+            categoriaFacade.create(new Categoria(1, "Dermocosmética"));
+            categoriaFacade.create(new Categoria(2, "Cuidado corporal"));
+            categoriaFacade.create(new Categoria(3, "Cuidados 3º edad y vitaminas"));
+            categoriaFacade.create(new Categoria(4, "Medicamentos"));
+            categoriaFacade.create(new Categoria(5, "Dietéticos y edulcorantes"));
+            sucursalFacade.create(new Sucursal(0, "Av Gil Ramirez Davalos", "Matriz", "18924025", -2.891158, -78.984039));
+            sucursalFacade.create(new Sucursal(1, "Adolfo Torres", "Bodega 27 de Febrero", "07592451", -2.913790, -79.022245));
+            sucursalFacade.create(new Sucursal(2, "Calle Vieja y Ellia Liut", "FarmaUPS", "07982412", -2.879141, -78.989935));
 
 //            Date fecha = new Date(122, 4, 1);
 //            Date fecha2 = new Date(115, 9, 20);
