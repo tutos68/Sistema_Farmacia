@@ -19,6 +19,7 @@ import java.util.List;
  *
  * @author edwin
  */
+//Hola
 @Named
 @SessionScoped
 public class AdministradorBean implements Serializable {
