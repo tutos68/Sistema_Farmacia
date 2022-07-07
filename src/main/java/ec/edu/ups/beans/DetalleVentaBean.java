@@ -70,8 +70,6 @@ public class DetalleVentaBean implements Serializable {
     private String direccionCliente = "";
     private String telefonoCliente = "";
     private String autocompletado = "";
-    private List<ProductoSucursal> listaPruebaProducto;
-    private List<ProductoSucursal> listaPruebaEjemplo;
     private GregorianCalendar g;
     private double totalDinero = 0;
 
@@ -473,21 +471,6 @@ public class DetalleVentaBean implements Serializable {
         this.telefonoCliente = telefonoCliente;
     }
 
-    public List<ProductoSucursal> getListaPruebaProducto() {
-        return listaPruebaProducto;
-    }
-
-    public void setListaPruebaProducto(List<ProductoSucursal> listaPruebaProducto) {
-        this.listaPruebaProducto = listaPruebaProducto;
-    }
-
-    public List<ProductoSucursal> getListaPruebaEjemplo() {
-        return listaPruebaEjemplo;
-    }
-
-    public void setListaPruebaEjemplo(List<ProductoSucursal> listaPruebaEjemplo) {
-        this.listaPruebaEjemplo = listaPruebaEjemplo;
-    }
-
    
+
 }

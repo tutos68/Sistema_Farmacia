@@ -113,18 +113,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <p:commandButton value="Agregar Nuevo Detalle" oncomplete="PF('valor').hide();" 
                                      update="frmExclos"/>
                 </p:panelGrid>-->
-                <p:dataTable var="customer" value="#{productoBean.list}" widgetVar="customersTable2"
-                             emptyMessage="No customers found with given criteria"
-                             filteredValue="#{detalleVentaBean.listaPruebaProducto}" filterBy="#{detalleVentaBean.listaPruebaEjemplo}">
+                <p:dataTable var="customer" value="#{productoBean.list}" widgetVar="customersTable2">
 
                     <f:facet name="header">
                         <span>List of Customers</span>
                     </f:facet>
 
-                    <p:column headerText="Nombre" filterBy="#{customer.nombre}">
+                    <p:column headerText="Nombre" field="nombre">
                         <h:outputText value="#{customer.nombre}" />
                     </p:column>
-                    <p:column headerText="Descripcion" filterBy="#{customer.descripcion}">
+                    <p:column headerText="Descripcion" field="descripcion">
                         <h:outputText value="#{customer.descripcion}" />
                     </p:column>
 
