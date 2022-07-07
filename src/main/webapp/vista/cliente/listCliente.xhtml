@@ -18,7 +18,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
         <div class="card">
             <h:form id="frmExclos">
                 <p:growl  id="mensajeGeneral3" sticky="false" showDetail="true"/>   
-                <p:dataTable id="products" var="a" value="#{clienteBean.list}" editable="true" styleClass="tabla">
+                <p:dataTable id="products" var="a" value="#{clienteBean.list}" editable="true" styleClass="tabla" 
+                             rows="2"
+                             paginator="true"
+                             paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                             currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} Registros"
+                             rowsPerPageTemplate="2,5,{ShowAll|'Todos'}">
 
                     <p:ajax listener="#{clienteBean.edit(a)}"  event="rowEdit" update=":frmExclos:mensajeGeneral3"/>
 
@@ -50,12 +55,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                         </p:cellEditor>
                     </p:column>
                     <p:column headerText="Nombre">
-                         <p:cellEditor> 
+                        <p:cellEditor> 
                             <f:facet name="output">
-                               <h:outputText value="#{a.nombre}" />
+                                <h:outputText value="#{a.nombre}" />
                             </f:facet>
                             <f:facet name="input">
-                                 <h:inputText value="#{a.nombre}" />
+                                <h:inputText value="#{a.nombre}" />
                             </f:facet> 
                         </p:cellEditor>
                     </p:column>
@@ -63,22 +68,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <p:column headerText="Telefono">
                         <p:cellEditor> 
                             <f:facet name="output">
-                               <h:outputText value="#{a.telefono}" />
+                                <h:outputText value="#{a.telefono}" />
                             </f:facet>
                             <f:facet name="input">
-                                 <h:inputText value="#{a.telefono}" />
+                                <h:inputText value="#{a.telefono}" />
                             </f:facet> 
                         </p:cellEditor>
-                      
+
                     </p:column>
 
                     <p:column headerText="Direccion">
                         <p:cellEditor> 
                             <f:facet name="output">
-                               <h:outputText value="#{a.direccion}" />
+                                <h:outputText value="#{a.direccion}" />
                             </f:facet>
                             <f:facet name="input">
-                                 <h:inputText value="#{a.direccion}" />
+                                <h:inputText value="#{a.direccion}" />
                             </f:facet> 
                         </p:cellEditor>
                     </p:column>
@@ -86,13 +91,13 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                     <p:column headerText="Correo">
                         <p:cellEditor> 
                             <f:facet name="output">
-                              <h:outputText value="#{a.correo}" />
+                                <h:outputText value="#{a.correo}" />
                             </f:facet>
                             <f:facet name="input">
-                                 <h:inputText value="#{a.correo}" />
+                                <h:inputText value="#{a.correo}" />
                             </f:facet> 
                         </p:cellEditor>
-                       
+
                     </p:column>
 
                     <p:column headerText="Fecha de Nacimiento">
