@@ -43,7 +43,7 @@ public class Pedido implements Serializable {
     @JoinColumn(name="pedido_detalle")
     private List<PedidoDetalle> detalles;
     @OneToOne
-    @JoinColumn(name="forma_pago")
+    @JoinColumn(name="forma_pago_id")
     private FormaPago formaPago;
     private String identificador;
     private String nombre;

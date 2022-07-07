@@ -136,10 +136,16 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/XHtml.xhtml to edit t
                         </p:cellEditor>
                     </p:column>
 
-                  
-                    <p:column headerText="Editar">
-                        <p:rowEditor />
+                   <p:column headerText="Aceptar">
+                        <p:commandButton value="Aceptar" action="#{pedidoBean.aceptar(a)}" update="products" />
                     </p:column>
+                    <p:column headerText="Cancelar">
+                        <p:commandButton value="Cancelar" action="#{pedidoBean.cancelar(a)}" update="products" />
+                    </p:column>
+                    <p:column headerText="Finalizar">
+                        <p:commandButton value="Finalizar" action="#{pedidoBean.finalizar(a)}" update="products" />
+                    </p:column>
+                   
                 </p:dataTable>
             </h:form>
         </div>

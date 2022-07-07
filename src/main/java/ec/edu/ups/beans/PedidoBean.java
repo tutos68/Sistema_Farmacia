@@ -5,11 +5,20 @@
 package ec.edu.ups.beans;
 
 import ec.edu.ups.farmacia.controlador.PedidoFacade;
+import ec.edu.ups.farmacia.controlador.PedidoDetalleFacade;
+import ec.edu.ups.farmacia.controlador.FacturaVentaFacade;
+import ec.edu.ups.farmacia.controlador.DetalleFacade;
+import ec.edu.ups.farmacia.controlador.ProductoSucursalFacade;
+
+import ec.edu.ups.farmacia.modelo.CabeceraVenta;
+import ec.edu.ups.farmacia.modelo.Detalle;
 import ec.edu.ups.farmacia.modelo.Entidad;
 import ec.edu.ups.farmacia.modelo.EstadoPedido;
 import ec.edu.ups.farmacia.modelo.FormaPago;
+import ec.edu.ups.farmacia.modelo.Kardex;
 import ec.edu.ups.farmacia.modelo.Pedido;
 import ec.edu.ups.farmacia.modelo.PedidoDetalle;
+import ec.edu.ups.farmacia.modelo.ProductoSucursal;
 import ec.edu.ups.farmacia.modelo.Usuario;
 import jakarta.annotation.PostConstruct;
 import jakarta.ejb.EJB;
@@ -18,6 +27,7 @@ import jakarta.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 /**
@@ -31,7 +41,17 @@ public class PedidoBean implements Serializable {
     private static final long serialVersionUID = 1L;
     @EJB
     private PedidoFacade pedidoFacade;
+    @EJB
+    private FacturaVentaFacade facturaVentaFacade;
+    @EJB
+    private DetalleFacade detalleFacade;
+    @EJB
+    private PedidoDetalleFacade pedidoDetalleFacade;
+    @EJB
+    private ProductoSucursalFacade productoSucursalFacade;
+    
     private List<Pedido> listaPedidos = new ArrayList<>();
+    private List<PedidoDetalle> listaPedidosDetalles = new ArrayList<>();
     private int id;
     private Usuario usuario;
     private double latitud;
@@ -46,6 +66,7 @@ public class PedidoBean implements Serializable {
     @PostConstruct
     public void init() {
         listaPedidos = pedidoFacade.findAll();
+        listaPedidosDetalles= pedidoDetalleFacade.findAll();
     }
 
     public String add() {
@@ -59,6 +80,74 @@ public class PedidoBean implements Serializable {
         listaPedidos = pedidoFacade.findAll();
         return null;
     }
+    
+    public void aceptar(Pedido p){
+        p.setEstado(EstadoPedido.ACEPTADO);
+        pedidoFacade.edit(p);
+        listaPedidos=pedidoFacade.findAll();
+    }
+    
+     public void cancelar(Pedido p){
+        p.setEstado(EstadoPedido.CANCELADO);
+        pedidoFacade.edit(p);
+        listaPedidos=pedidoFacade.findAll();
+    }
+     
+       public void finalizar(Pedido p){
+        p.setEstado(EstadoPedido.FINALIZADO);
+        pedidoFacade.edit(p);
+        generarFactura(p);
+        listaPedidos=pedidoFacade.findAll();
+    }
+       
+       
+    public  void  generarFactura(Pedido p){
+        CabeceraVenta cabeceraVenta = new CabeceraVenta();
+        cabeceraVenta.setApellido(p.getApellido());
+        cabeceraVenta.setUsuario(p.getUsuario());
+        cabeceraVenta.setCorreo(p.getCorreo());
+        cabeceraVenta.setDireccion(p.getDireccion());
+        cabeceraVenta.setEstado(true);
+        cabeceraVenta.setFecha(new GregorianCalendar());
+        cabeceraVenta.setIdentificador(p.getIdentificador());
+        cabeceraVenta.setSubtotal(p.getTotal());
+        cabeceraVenta.setTelefono(p.getTelefono());
+        cabeceraVenta.setTotal(p.getCostoEnvio()+p.getTotal());
+        facturaVentaFacade.create(cabeceraVenta);
+        List<Detalle> list= new ArrayList<>();
+        for (PedidoDetalle pedidoDetalle : listaPedidosDetalles) {
+            if (pedidoDetalle.getPedido().equals(p)) {
+                  Detalle d = new Detalle(pedidoDetalle.getProductoSucursal(), pedidoDetalle.getCantidad(), pedidoDetalle.getPrecio(), pedidoDetalle.getSubtotal(), cabeceraVenta);
+                ProductoSucursal productoSucursal = pedidoDetalle.getProductoSucursal();
+                  productoSucursal.setStock(productoSucursal.getStock()-pedidoDetalle.getCantidad());
+                  productoSucursalFacade.edit(productoSucursal);
+            list.add(d);
+            }
+            
+          
+            
+        }
+
+       
+        for (Detalle detalle : list) {
+            // detalleFacade.create(new Detalle(id, detalle.getProducto(), detalle.getCantidad(), detalle.getProducto().getPrecio(), detalle.getSubtotal(), cabeceraVenta));
+            detalleFacade.create(detalle);
+            detalle.setCabeceraVenta(cabeceraVenta);
+            detalleFacade.edit(detalle);
+
+          //  kardexFacade.create(new Kardex(id, detalle, "+", detalle.getSubtotal() + calcularTotalKardex()));
+        }
+        cabeceraVenta.setDetalles(list);
+        facturaVentaFacade.edit(cabeceraVenta);
+        list = new ArrayList<>();
+//        actualizarStock(cabeceraVenta);
+        
+        
+    }
+    
+    
+    
+    
     
     public void edit(Pedido p){
         pedidoFacade.edit(p);
