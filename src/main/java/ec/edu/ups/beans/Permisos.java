@@ -26,7 +26,7 @@ public class Permisos implements Serializable {
             Usuario us = (Usuario) context.getExternalContext().getSessionMap().get("usuario"); // (get) con esto hago un seguimiento de la sesion iniciada
 
             if (us == null) {
-                context.getExternalContext().redirect("../administrador/permisos.html"); //redirecciono al login 
+                context.getExternalContext().redirect("../administrador/404.html"); //redirecciono al login 
             }
         } catch (Exception e) {
             System.out.println("No entro");
