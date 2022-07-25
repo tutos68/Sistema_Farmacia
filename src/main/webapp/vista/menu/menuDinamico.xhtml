@@ -16,22 +16,15 @@
 
         <div class="card">
             <h:form>
-                <div class="row">
-                    <div class="col-11">
-                        <p:menubar model="#{menuDinamico.model}">
-                        </p:menubar>
-                    </div>
-                    <div class="col-1">
-                         <p:menubar >
-                    <p:menuitem value="Salir" actionListener="#{menuDinamico.cerrarSesion}" url="../loginDemo.xhtml" icon="pi pi-fw pi-power-off" />
-                    <p:divider layout="vertical"/>
+               <p:growl id="messages"/>
+
+                <p:menubar model="#{menuDinamico.model}">
+                    <f:facet name="options">
+                        <p:commandButton actionListener="#{menuDinamico.cerrarSesion}"  action="../loginDemo.xhtml" icon="pi pi-fw pi-power-off" />
+                    </f:facet>
                 </p:menubar>
-                    </div>
-                </div>
 
-                <p:growl id="messages"/>
 
-               
             </h:form>
 
         </div>

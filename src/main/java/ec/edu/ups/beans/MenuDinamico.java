@@ -92,7 +92,7 @@ public class MenuDinamico implements Serializable {
         this.model = model;
     }
 
-    public void cerrarSesion() {
+    public void cerrarSesion() {  
         FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
     }
 }
